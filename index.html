@@ -31,7 +31,8 @@
       <li><a href="#equipo">Equipo</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#pilares">Valores</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="antecedentes.html">Antecedentes</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
 
@@ -47,7 +48,8 @@
     <a href="#equipo" role="menuitem">Equipo médico</a>
     <a href="#servicios" role="menuitem">Servicios</a>
     <a href="#pilares" role="menuitem">Valores</a>
-    <a href="#faq" role="menuitem">Preguntas frecuentes</a>
+    <a href="antecedentes.html" role="menuitem">Antecedentes</a>
+    <a href="faq.html" role="menuitem">Preguntas frecuentes</a>
     <a href="#contacto" role="menuitem">Contacto</a>
     <a href="#contacto" class="btn-primary" role="menuitem">Solicitar consulta</a>
   </div>
@@ -193,12 +195,10 @@
     <div class="legado-layout">
 
       <div class="legado-portrait fade-left">
-        <div class="legado-portrait-placeholder">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="40" cy="30" r="18" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-            <path d="M10 72C10 56 22 46 40 46C58 46 70 56 70 72" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <div class="portrait-name">
+        <div class="legado-portrait-frame">
+          <img src="img/graceFinal.png" alt="Prof. Patricia Viviana García" loading="lazy">
+          <div class="legado-portrait-overlay" aria-hidden="true"></div>
+          <div class="legado-portrait-name">
             <strong>Prof. Patricia Viviana García</strong>
             <span>Fundadora &amp; Directora Asistencial</span>
           </div>
@@ -232,86 +232,64 @@
 <div class="divider-gradient"></div>
 
 <!-- ═══════════════════════════════════════════════════════
-     EQUIPO MÉDICO — DR. BURGOS
+     ESPECIALISTAS / REFERENTES DE LA MARCA
      ═══════════════════════════════════════════════════════ -->
 <section class="section equipo" id="equipo" aria-labelledby="equipo-title">
   <div class="section-inner">
 
     <div class="equipo-header fade-up">
-      <span class="section-label">Nuestro Equipo Médico</span>
+      <span class="section-label">Referentes de la especialidad</span>
       <div class="section-separator" style="justify-content:center;">
         <div class="section-separator-line"></div>
       </div>
-      <h2 class="section-title" id="equipo-title">El respaldo médico que cada familia merece</h2>
-      <p class="section-subtitle">Profesionales de trayectoria internacional integrados a nuestro equipo</p>
+      <h2 class="section-title" id="equipo-title">Avalados por líderes de la geriatría</h2>
+      <p class="section-subtitle">Especialistas de trayectoria internacional que respaldan y enriquecen nuestra propuesta de cuidado</p>
     </div>
 
-    <div class="burgos-layout">
+    <div class="especialistas-carousel-wrap fade-up delay-1">
 
-      <div class="burgos-profile fade-left">
-        <!-- PLACEHOLDER FOTO: cuando tengas la foto, reemplazar el div por:
-             <img src="img/dr-burgos.jpg" alt="Dr. Burgos" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;">
-        -->
-        <div class="burgos-photo-placeholder" aria-hidden="true">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-            <circle cx="32" cy="24" r="14" stroke="rgba(255,255,255,0.5)" stroke-width="1.8"/>
-            <path d="M8 58C8 44 18 36 32 36C46 36 56 44 56 58" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
+      <button class="carousel-arrow carousel-arrow--prev" id="esp-prev" aria-label="Anterior" disabled>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="especialistas-carousel" id="esp-track">
+
+        <div class="carousel-slide is-active">
+          <video muted preload="metadata" class="carousel-video" playsinline>
+            <source src="videos/LONGEVITY12.mp4" type="video/mp4">
+          </video>
         </div>
-        <div class="burgos-info">
-          <!-- PLACEHOLDER: completar con nombre completo, especialidad y biografía del Dr. Burgos -->
-          <h3 class="burgos-name">Dr. Burgos</h3>
-          <span class="burgos-specialty">[Especialidad médica — completar]</span>
-          <p class="burgos-bio">[Descripción del Dr. Burgos: trayectoria, instituciones, especialización y su rol dentro del equipo de Longevity Argentina. Reemplazar con texto definitivo.]</p>
+
+        <div class="carousel-slide">
+          <video muted preload="metadata" class="carousel-video" playsinline>
+            <source src="videos/LONGEVITY15.mp4" type="video/mp4">
+          </video>
         </div>
+
+        <div class="carousel-slide carousel-slide--coming">
+          <div class="coming-inner">
+            <div class="coming-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="13" cy="15" r="5" stroke="#B565A7" stroke-width="1.5"/>
+                <circle cx="27" cy="15" r="5" stroke="#B565A7" stroke-width="1.5"/>
+                <path d="M7 30C7 25 10 22 13 22M33 30C33 25 30 22 27 22M17 30C17 25 18.5 22 20 22C21.5 22 23 25 23 30" stroke="#B565A7" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="20" cy="8" r="3" stroke="#7B2F8E" stroke-width="1.3" stroke-dasharray="2.5 2"/>
+                <path d="M20 4V12M16 8H24" stroke="#4FB5E5" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="coming-text">Próximamente se suman más<br>geriatras y especialistas</p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="burgos-videos fade-right">
-        <h3 class="burgos-videos-title">Entrevistas &amp; Contenido</h3>
-        <div class="videos-grid">
-
-          <!-- VIDEO 1: cuando tengas el link, reemplazar este bloque .video-placeholder por:
-               <div class="video-embed">
-                 <iframe src="https://www.youtube.com/embed/VIDEO_ID_AQUI" frameborder="0" allowfullscreen loading="lazy"></iframe>
-               </div>
-          -->
-          <div class="video-placeholder" aria-label="Video 1 — pendiente">
-            <div class="video-placeholder-inner">
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-                <circle cx="22" cy="22" r="20" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
-                <path d="M18 14L34 22L18 30V14Z" fill="rgba(255,255,255,0.75)"/>
-              </svg>
-              <span>Video 1</span>
-              <small>Pendiente de publicación</small>
-            </div>
-          </div>
-
-          <!-- VIDEO 2: reemplazar con iframe de YouTube cuando esté disponible -->
-          <div class="video-placeholder" aria-label="Video 2 — pendiente">
-            <div class="video-placeholder-inner">
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-                <circle cx="22" cy="22" r="20" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
-                <path d="M18 14L34 22L18 30V14Z" fill="rgba(255,255,255,0.75)"/>
-              </svg>
-              <span>Video 2</span>
-              <small>Pendiente de publicación</small>
-            </div>
-          </div>
-
-          <!-- VIDEO 3: reemplazar con iframe de YouTube cuando esté disponible -->
-          <div class="video-placeholder" aria-label="Video 3 — pendiente">
-            <div class="video-placeholder-inner">
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-                <circle cx="22" cy="22" r="20" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
-                <path d="M18 14L34 22L18 30V14Z" fill="rgba(255,255,255,0.75)"/>
-              </svg>
-              <span>Video 3</span>
-              <small>Pendiente de publicación</small>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      <button class="carousel-arrow carousel-arrow--next" id="esp-next" aria-label="Siguiente">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
 
     </div>
   </div>
@@ -348,7 +326,7 @@
           </svg>
         </div>
         <span class="service-complexity">Apoyo cotidiano</span>
-        <h3 class="service-title">Cuidador / Acompañante de Salud</h3>
+        <h3 class="service-title">Cuidador/a - Acompañante de salud</h3>
         <p class="service-desc">Asiste en higiene personal, movilidad, alimentación, administración de medicación oral con prescripción y control de signos vitales. Brinda apoyo diario no clínico en el entorno del paciente.</p>
       </div>
 
@@ -499,66 +477,53 @@
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════
-         SERVICIOS ADICIONALES
-         COMPLETAR CON CONTENIDO DEL FOLLETO (pág. 10+)
-         ═══════════════════════════════════════════════════════ -->
-    <div class="adicionales-strip fade-up" style="margin-top: 48px;">
-      <div class="adicionales-header">
-        <span class="section-label" style="color:rgba(255,255,255,0.6)">Lo que nos diferencia</span>
-        <h3 class="adicionales-title">Servicios que otras empresas del sector no ofrecen</h3>
-        <p class="adicionales-subtitle">Nuestro compromiso va más allá del cuidado estándar.</p>
+    <!-- BENEFICIOS DE LA INTERNACIÓN DOMICILIARIA -->
+    <div class="beneficios-hogar fade-up" style="margin-top: 48px;">
+      <div class="beneficios-hogar-header">
+        <span class="section-label" style="color:rgba(255,255,255,0.55)">¿Por qué en casa?</span>
+        <h3 class="beneficios-hogar-title">Algunos beneficios de la internación domiciliaria</h3>
       </div>
-      <div class="adicionales-grid">
-        <!-- PLACEHOLDER: reemplazar los textos entre corchetes con el contenido del folleto (páginas 10+) -->
-        <div class="adicional-item">
-          <div class="adicional-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-              <path d="M11 2L13 8H19L14.5 11.5L16.5 18L11 14.5L5.5 18L7.5 11.5L3 8H9L11 2Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linejoin="round"/>
+      <div class="beneficios-hogar-grid">
+
+        <div class="beneficio-hogar-card">
+          <div class="beneficio-hogar-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <path d="M13 3C9 3 6 6 6 10C6 14 9 15.5 13 22C17 15.5 20 14 20 10C20 6 17 3 13 3Z" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M10 10L12 12L16 8" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <span>[Servicio adicional 1 — completar desde folleto pág. 10]</span>
+          <p>Evitar internaciones prolongadas y posibles infecciones intrahospitalarias.</p>
         </div>
-        <div class="adicional-item">
-          <div class="adicional-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-              <path d="M11 2L13 8H19L14.5 11.5L16.5 18L11 14.5L5.5 18L7.5 11.5L3 8H9L11 2Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linejoin="round"/>
+
+        <div class="beneficio-hogar-card">
+          <div class="beneficio-hogar-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <path d="M13 3L22 9V22H4V9L13 3Z" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linejoin="round"/>
+              <rect x="9" y="14" width="8" height="8" rx="1" stroke="rgba(255,255,255,0.85)" stroke-width="1.3"/>
             </svg>
           </div>
-          <span>[Servicio adicional 2 — completar desde folleto pág. 10]</span>
+          <p>Volver a vivir en "su ambiente", pero con la atención profesional adecuada.</p>
         </div>
-        <div class="adicional-item">
-          <div class="adicional-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-              <path d="M11 2L13 8H19L14.5 11.5L16.5 18L11 14.5L5.5 18L7.5 11.5L3 8H9L11 2Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linejoin="round"/>
+
+        <div class="beneficio-hogar-card">
+          <div class="beneficio-hogar-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <circle cx="13" cy="13" r="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+              <path d="M13 8V13L16 16" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <span>[Servicio adicional 3 — completar desde folleto pág. 10]</span>
+          <p>Mantener la rutina y equilibrio diario en el hogar.</p>
         </div>
-        <div class="adicional-item">
-          <div class="adicional-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-              <path d="M11 2L13 8H19L14.5 11.5L16.5 18L11 14.5L5.5 18L7.5 11.5L3 8H9L11 2Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linejoin="round"/>
+
+        <div class="beneficio-hogar-card">
+          <div class="beneficio-hogar-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <path d="M13 22C13 22 3 16 3 9C3 6.5 5 4 8 4C10 4 12 5.5 13 7C14 5.5 16 4 18 4C21 4 23 6.5 23 9C23 16 13 22 13 22Z" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linejoin="round"/>
             </svg>
           </div>
-          <span>[Servicio adicional 4 — completar desde folleto pág. 10]</span>
+          <p>Estar rodeado de familiares y afectos, disponiendo ambos de tiempo de calidad para compartir.</p>
         </div>
-        <div class="adicional-item">
-          <div class="adicional-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-              <path d="M11 2L13 8H19L14.5 11.5L16.5 18L11 14.5L5.5 18L7.5 11.5L3 8H9L11 2Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span>[Servicio adicional 5 — completar desde folleto pág. 10]</span>
-        </div>
-        <div class="adicional-item">
-          <div class="adicional-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-              <path d="M11 2L13 8H19L14.5 11.5L16.5 18L11 14.5L5.5 18L7.5 11.5L3 8H9L11 2Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span>[Servicio adicional 6 — completar desde folleto pág. 10]</span>
-        </div>
+
       </div>
     </div>
 
@@ -635,169 +600,6 @@
   </div>
 </section>
 
-<div class="divider-gradient"></div>
-
-<!-- ═══════════════════════════════════════════════════════
-     BENEFICIOS DE LA INTERNACIÓN DOMICILIARIA
-     ═══════════════════════════════════════════════════════ -->
-<section class="section beneficios" id="beneficios" aria-labelledby="beneficios-title">
-  <div class="section-inner">
-    <div class="beneficios-layout">
-
-      <div class="fade-left">
-        <span class="section-label">¿Por qué en casa?</span>
-        <div class="section-separator"><div class="section-separator-line"></div></div>
-        <h2 class="section-title" id="beneficios-title">Beneficios de la internación domiciliaria</h2>
-
-        <div class="beneficios-list">
-          <div class="beneficio-item fade-up delay-1">
-            <div class="beneficio-num">1</div>
-            <div class="beneficio-text">Evitar internaciones prolongadas y posibles infecciones intrahospitalarias.</div>
-          </div>
-          <div class="beneficio-item fade-up delay-2">
-            <div class="beneficio-num">2</div>
-            <div class="beneficio-text">Volver a vivir en "su ambiente", pero con la atención profesional adecuada.</div>
-          </div>
-          <div class="beneficio-item fade-up delay-3">
-            <div class="beneficio-num">3</div>
-            <div class="beneficio-text">Mantener la rutina y equilibrio diario en el hogar, clave para la recuperación.</div>
-          </div>
-          <div class="beneficio-item fade-up delay-4">
-            <div class="beneficio-num">4</div>
-            <div class="beneficio-text">Estar rodeado de familiares y afectos, disponiendo de tiempo de calidad para compartir.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="historia-card fade-right">
-        <h3 class="historia-card-title">Antecedentes de la especialidad</h3>
-        <p>Los antecedentes más lejanos de esta especialidad datan de fines del siglo XVIII en Boston, USA. Se cree que su advenimiento subyace con el objetivo de profesionalizar el cuidado que entre familiares y amigos se brindaba a los enfermos.</p>
-        <p>En Argentina, algunos hospitales comenzaron a implementar la modalidad como alternativa en la década de los '80. Sin embargo en la actualidad y más allá de la disponibilidad de camas en un centro asistencial, es considerado un servicio de valor agregado: mejora drásticamente tanto la efectiva recuperación física y mental del paciente como la de su entorno familiar.</p>
-        <p>Existen diferentes tipos de servicios que abarcan desde cuidados básicos de rutina, acompañamiento terapéutico a tiempo parcial o 24×7, hasta complejidades tales como discapacidades o cuidados paliativos, incluyendo todo el manejo logístico necesario (camas ortopédicas, medicamentos, entre otros) en un esquema integral.</p>
-        <p style="font-family:'Poppins',sans-serif; font-weight:300; font-style:italic; font-size:17px; color:var(--purple); margin-top:8px;">"Omnia Vincit Amor"</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider-gradient"></div>
-
-<!-- ═══════════════════════════════════════════════════════
-     FAQ
-     ═══════════════════════════════════════════════════════ -->
-<section class="section faq" id="faq" aria-labelledby="faq-title">
-  <div class="section-inner">
-    <div class="faq-layout">
-
-      <div class="faq-aside fade-left">
-        <span class="section-label">FAQ</span>
-        <h2 class="section-title" id="faq-title">Preguntas frecuentes</h2>
-        <p>Respondemos con claridad las inquietudes más comunes de las familias que confían en nosotros por primera vez.</p>
-      </div>
-
-      <div class="faq-list fade-up delay-1" role="list">
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-            <span class="faq-question-text">¿Por qué cuidados domiciliarios y no internación clínica o geriátrico?</span>
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Investigaciones recientes en los países más avanzados coinciden en que los pacientes que se recuperan rodeados de sus afectos, en un entorno familiar amigable, con acceso a su familia, amigos y objetos que les aporten confort, mejoran su estado de ánimo y evolucionan en menor tiempo. La ciencia confirma lo que la lógica ya indicaba: el amor y la cercanía son medicina.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-            <span class="faq-question-text">¿Longevity Argentina es una agencia de enfermería que envía personas?</span>
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              No. No somos una agencia. Brindamos servicios integrales que implican en todo momento el trabajo de un equipo profesional con diferentes roles. Nunca enviamos personas en forma aislada. Garantizamos el cuidado más esmerado del paciente y la debida contención de la familia a través de una estrategia coordinada y sistemática.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-            <span class="faq-question-text">¿Puedo confiar en quién entra al hogar del paciente?</span>
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Absolutamente. Realizamos una exhaustiva selección de nuestros recursos humanos, a quienes probamos y capacitamos en forma previa y posterior a asignarles un servicio. Cotejamos los antecedentes desde todo punto de vista, sobre los que además realizamos un seguimiento permanente. La confianza se construye con transparencia y verificación rigurosa.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-            <span class="faq-question-text">¿Cómo es el sistema de facturación y pago?</span>
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              La contratación de nuestros servicios se realiza en forma particular. El pago es privado y absolutamente confidencial. Emitimos las facturas en legal forma para que puedas gestionar los reintegros pertinentes con tu prepaga u obra social. Los valores se ajustan regularmente para mantener la calidad de las prestaciones intacta, siendo siempre competitivos con empresas habilitadas de primera línea.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-            <span class="faq-question-text">¿Tienen cobertura de obras sociales o prepagas?</span>
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              En algunos casos el servicio está alcanzado por la cobertura médica u obra social del paciente, debiendo entonces realizar su gestión allí. También puede contratarse en forma particular. En ambos casos te orientamos en el proceso para que el acceso sea lo más simple posible.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-            <span class="faq-question-text">¿Cómo inicio el proceso de contratación?</span>
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              El primer paso es una conversación sin compromiso. Puede iniciarse a través de WhatsApp y respondemos en muy corto plazo. A continuación realizamos entrevistas virtuales para conocer la situación del paciente y la familia. Finalmente, nuestra directora asistencial concurre personalmente al domicilio para presentar al equipo e iniciar la prestación.
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════════════════════════════════════════════
      PREPAGAS
@@ -990,9 +792,9 @@
           <li><a href="#equipo">Equipo médico</a></li>
           <li><a href="#servicios">Nuestros servicios</a></li>
           <li><a href="#pilares">Pilares CECE</a></li>
-          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="antecedentes.html">Antecedentes</a></li>
           <li><a href="#prepagas">Cobertura</a></li>
-          <li><a href="#faq">Preguntas frecuentes</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
           <li><a href="#contacto">Solicitar consulta</a></li>
         </ul>
       </div>
@@ -1016,6 +818,18 @@
     <path d="M10.5 9.5C10.5 9.5 9 12 10.5 14C12 16 14 18 16 18.5C17.5 19 20 18 20 18L18.5 15.5L16.5 16.5C16.5 16.5 13 13.5 12.5 11.5L14.5 11L13 8.5L10.5 9.5Z" fill="#25D366"/>
   </svg>
 </a>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Reproducir video" aria-hidden="true">
+  <button class="video-modal-close" id="modal-close" aria-label="Cerrar video">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <path d="M17 5L5 17M5 5L17 17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="video-modal-inner">
+    <video class="video-modal-player" id="modal-video" controls playsinline></video>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

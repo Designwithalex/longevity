@@ -177,6 +177,95 @@
     }
   };
 
+  /* ── CAROUSEL + MODAL — ESPECIALISTAS ── */
+  (function () {
+    var track = document.getElementById('esp-track');
+    if (!track) return;
+
+    var slides   = Array.from(track.querySelectorAll('.carousel-slide'));
+    var prevBtn  = document.getElementById('esp-prev');
+    var nextBtn  = document.getElementById('esp-next');
+    var modal    = document.getElementById('video-modal');
+    var modalVid = document.getElementById('modal-video');
+    var modalClose = document.getElementById('modal-close');
+    var current  = 0;
+    var autoTimer = null;
+
+    /* — navegar a un slide — */
+    function goTo(idx) {
+      idx = (idx % slides.length + slides.length) % slides.length;
+      current = idx;
+      slides.forEach(function (s, i) { s.classList.toggle('is-active', i === idx); });
+      var slide  = slides[idx];
+      var target = slide.offsetLeft - (track.clientWidth / 2) + (slide.offsetWidth / 2);
+      track.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) nextBtn.disabled = idx === slides.length - 1;
+    }
+
+    /* — auto-avance cada 4 s — */
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function () { goTo((current + 1) % slides.length); }, 4000);
+    }
+    function stopAuto() { clearInterval(autoTimer); }
+
+    /* — flechas — */
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); startAuto(); });
+
+    /* — pausa en hover — */
+    track.addEventListener('mouseenter', stopAuto);
+    track.addEventListener('mouseleave', startAuto);
+
+    /* — swipe táctil — */
+    var txStart = 0;
+    track.addEventListener('touchstart', function (e) { txStart = e.touches[0].clientX; stopAuto(); }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      var dx = txStart - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 40) goTo(dx > 0 ? current + 1 : current - 1);
+      startAuto();
+    }, { passive: true });
+
+    /* — modal — */
+    function openModal(src) {
+      if (!modal || !modalVid) return;
+      modalVid.src = src;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      modalVid.play().catch(function () {});
+      stopAuto();
+    }
+    function closeModal() {
+      if (!modal || !modalVid) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalVid.pause();
+      modalVid.removeAttribute('src');
+      modalVid.load();
+      document.body.style.overflow = '';
+      startAuto();
+    }
+
+    slides.forEach(function (slide) {
+      if (slide.classList.contains('carousel-slide--coming')) return;
+      var src = slide.querySelector('source');
+      if (!src) return;
+      slide.addEventListener('click', function () { openModal(src.getAttribute('src')); });
+    });
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) closeModal();
+    });
+
+    /* — init — */
+    goTo(0);
+    startAuto();
+  }());
+
   /* ── CARD TILT (subtle 3D on hover) ── */
   var tiltCards = document.querySelectorAll('.service-card, .valor-card, .pilar-card');
   tiltCards.forEach(function (card) {

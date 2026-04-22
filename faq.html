@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes | Longevity Argentina</title>
+  <meta name="description" content="Respondemos las preguntas más comunes sobre nuestros servicios de cuidados domiciliarios, facturación, confiabilidad del equipo y más.">
+  <link rel="canonical" href="https://longevityargentina.com/faq.html">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="scroll-progress" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Longevity Argentina — Inicio">
+      <img src="marca.png" alt="Longevity Argentina" class="nav-logo-img">
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+      <li><a href="index.html#equipo">Equipo</a></li>
+      <li><a href="index.html#servicios">Servicios</a></li>
+      <li><a href="index.html#pilares">Valores</a></li>
+      <li><a href="antecedentes.html">Antecedentes</a></li>
+      <li><a href="faq.html" style="color:var(--purple)">FAQ</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+
+    <a href="index.html#contacto" class="btn-primary" id="nav-cta-desktop" style="display:none">Solicitar consulta</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" role="menu">
+    <a href="index.html#nosotros" role="menuitem">Nosotros</a>
+    <a href="index.html#equipo" role="menuitem">Equipo médico</a>
+    <a href="index.html#servicios" role="menuitem">Servicios</a>
+    <a href="index.html#pilares" role="menuitem">Valores</a>
+    <a href="antecedentes.html" role="menuitem">Antecedentes</a>
+    <a href="faq.html" role="menuitem">Preguntas frecuentes</a>
+    <a href="index.html#contacto" role="menuitem">Contacto</a>
+    <a href="index.html#contacto" class="btn-primary" role="menuitem">Solicitar consulta</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero" aria-label="Preguntas frecuentes">
+  <a href="index.html" class="page-back-link" aria-label="Volver al inicio">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Volver al inicio
+  </a>
+  <span class="page-hero-eyebrow">Todo lo que necesitás saber</span>
+  <h1 class="page-hero-title">Preguntas frecuentes</h1>
+  <p class="page-hero-desc">Respondemos con claridad las inquietudes más comunes de las familias que confían en nosotros por primera vez.</p>
+</div>
+
+<!-- CONTENT -->
+<section class="page-content-section">
+  <div class="page-content-inner">
+
+    <div class="faq-list fade-up" role="list" style="margin-bottom: 56px;">
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-question-text">¿Por qué cuidados domiciliarios y no internación clínica o geriátrico?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Investigaciones recientes en los países más avanzados coinciden en que los pacientes que se recuperan rodeados de sus afectos, en un entorno familiar amigable, con acceso a su familia, amigos y objetos que les aporten confort, mejoran su estado de ánimo y evolucionan en menor tiempo. La ciencia confirma lo que la lógica ya indicaba: el amor y la cercanía son medicina.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-question-text">¿Longevity Argentina es una agencia de enfermería que envía personas?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            No. No somos una agencia. Brindamos servicios integrales que implican en todo momento el trabajo de un equipo profesional con diferentes roles. Nunca enviamos personas en forma aislada. Garantizamos el cuidado más esmerado del paciente y la debida contención de la familia a través de una estrategia coordinada y sistemática.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-question-text">¿Puedo confiar en quién entra al hogar del paciente?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Absolutamente. Realizamos una exhaustiva selección de nuestros recursos humanos, a quienes probamos y capacitamos en forma previa y posterior a asignarles un servicio. Cotejamos los antecedentes desde todo punto de vista, sobre los que además realizamos un seguimiento permanente. La confianza se construye con transparencia y verificación rigurosa.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-question-text">¿Cómo es el sistema de facturación y pago?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            La contratación de nuestros servicios se realiza en forma particular. El pago es privado y absolutamente confidencial. Emitimos las facturas en legal forma para que puedas gestionar los reintegros pertinentes con tu prepaga u obra social. Los valores se ajustan regularmente para mantener la calidad de las prestaciones intacta, siendo siempre competitivos con empresas habilitadas de primera línea.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-question-text">¿Tienen cobertura de obras sociales o prepagas?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            En algunos casos el servicio está alcanzado por la cobertura médica u obra social del paciente, debiendo entonces realizar su gestión allí. También puede contratarse en forma particular. En ambos casos te orientamos en el proceso para que el acceso sea lo más simple posible.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-question-text">¿Cómo inicio el proceso de contratación?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke="#7B2F8E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            El primer paso es una conversación sin compromiso. Puede iniciarse a través de WhatsApp y respondemos en muy corto plazo. A continuación realizamos entrevistas virtuales para conocer la situación del paciente y la familia. Finalmente, nuestra directora asistencial concurre personalmente al domicilio para presentar al equipo e iniciar la prestación.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA final -->
+    <div class="fade-up" style="text-align:center;">
+      <p style="font-family:'Poppins',sans-serif; font-weight:300; font-size:16px; color:var(--text-lt); margin-bottom:24px;">
+        ¿No encontrás lo que buscás? Escribinos directamente.
+      </p>
+      <a href="https://wa.me/5491166391010" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" style="display:inline-flex;">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M11 2C6.03 2 2 6.03 2 11C2 12.76 2.5 14.4 3.35 15.8L2 20L6.33 18.67C7.7 19.45 9.29 19.9 11 19.9C15.97 19.9 20 15.87 20 10.9C20 6.03 15.97 2 11 2Z" fill="white"/>
+          <path d="M8.5 7.5C8.5 7.5 7.5 9.5 8.5 11C9.5 12.5 11 14 12.5 14.5C13.5 14.8 15 14 15 14L14 12.5L12.5 13C12.5 13 10 11 9.5 9.5L11 9L9.5 7L8.5 7.5Z" fill="#25D366"/>
+        </svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRE-FOOTER CTA -->
+<div class="prefooter" aria-label="Llamado a la acción">
+  <div style="max-width:700px; margin:0 auto;">
+    <span class="prefooter-eyebrow fade-up">Primera consulta sin compromiso</span>
+    <p class="prefooter-title fade-up delay-1">Comience hoy.<br>Su familia lo merece.</p>
+    <p class="prefooter-text fade-up delay-2">La primera conversación es gratuita y absolutamente confidencial.</p>
+    <a href="https://wa.me/5491166391010" class="btn-whatsapp fade-up delay-3" target="_blank" rel="noopener noreferrer" style="display:inline-flex;">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <path d="M11 2C6.03 2 2 6.03 2 11C2 12.76 2.5 14.4 3.35 15.8L2 20L6.33 18.67C7.7 19.45 9.29 19.9 11 19.9C15.97 19.9 20 15.87 20 10.9C20 6.03 15.97 2 11 2Z" fill="white"/>
+        <path d="M8.5 7.5C8.5 7.5 7.5 9.5 8.5 11C9.5 12.5 11 14 12.5 14.5C13.5 14.8 15 14 15 14L14 12.5L12.5 13C12.5 13 10 11 9.5 9.5L11 9L9.5 7L8.5 7.5Z" fill="#25D366"/>
+      </svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <div style="margin-bottom:4px;">
+          <img src="marca.png" alt="Longevity Argentina" class="footer-logo-img">
+        </div>
+        <p class="footer-motto">"Omnia Vincit Amor"</p>
+        <p class="footer-desc">Cuidados domiciliarios especializados y profesionales para adultos mayores. La solución más elegida en el segmento ABC1. Servicios en CABA y Gran Buenos Aires Norte.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/longevity.ar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="rgba(255,255,255,0.7)" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="5" stroke="rgba(255,255,255,0.7)" stroke-width="1.8"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="rgba(255,255,255,0.7)"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/longevity.ar" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M18 2H15C13.67 2 12 3.67 12 5V8H9V12H12V22H16V12H19L20 8H16V5C16 4.45 16.45 4 17 4H20V2H18Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Acceso rápido</h4>
+        <ul>
+          <li><a href="index.html#nosotros">Quiénes somos</a></li>
+          <li><a href="index.html#legado">El legado</a></li>
+          <li><a href="index.html#equipo">Equipo médico</a></li>
+          <li><a href="index.html#servicios">Nuestros servicios</a></li>
+          <li><a href="index.html#pilares">Pilares CECE</a></li>
+          <li><a href="antecedentes.html">Antecedentes</a></li>
+          <li><a href="index.html#prepagas">Cobertura</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="index.html#contacto">Solicitar consulta</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Longevity Argentina. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Términos de uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5491166391010" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <path d="M14 2C7.37 2 2 7.37 2 14C2 16.28 2.64 18.4 3.73 20.2L2 26L8 24.3C9.75 25.35 11.8 25.97 14 25.97C20.63 25.97 26 20.6 26 13.97C26 7.37 20.63 2 14 2Z" fill="white"/>
+    <path d="M10.5 9.5C10.5 9.5 9 12 10.5 14C12 16 14 18 16 18.5C17.5 19 20 18 20 18L18.5 15.5L16.5 16.5C16.5 16.5 13 13.5 12.5 11.5L14.5 11L13 8.5L10.5 9.5Z" fill="#25D366"/>
+  </svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>

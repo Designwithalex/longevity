@@ -590,7 +590,7 @@ body {
   box-shadow: 0 20px 60px rgba(123,47,142,0.15);
 }
 .legado-portrait-frame img {
-  width: 100%; height: 100%; object-fit: cover;
+  width: 100%; height: 122%; object-fit: cover;
 }
 .legado-portrait-overlay {
   position: absolute; inset: 0;
@@ -1500,3 +1500,302 @@ footer { background: #2A2A3A; padding: 72px 40px 40px; }
   transform: translateY(-2px);
 }
 .social-link svg { display: block; }
+
+/* ════════════════════════════════════════════════════════════
+   CAROUSEL — ESPECIALISTAS (videos 9:16 + próximamente)
+   ════════════════════════════════════════════════════════════ */
+.especialistas-carousel-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.especialistas-carousel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  height: 620px;
+  flex: 1;
+  padding: 20px 12px;
+}
+
+.especialistas-carousel::-webkit-scrollbar { display: none; }
+
+.carousel-slide {
+  flex: 0 0 auto;
+  aspect-ratio: 9 / 16;
+  height: 80%;
+  scroll-snap-align: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-card);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: height 0.5s cubic-bezier(0.22,1,0.36,1),
+              opacity 0.5s ease,
+              box-shadow 0.5s ease;
+}
+
+.carousel-slide.is-active {
+  height: 100%;
+  opacity: 1;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+}
+
+.carousel-slide--coming {
+  cursor: default;
+}
+
+.carousel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+  pointer-events: none;
+}
+
+.carousel-slide--coming {
+  background: var(--cream-dk);
+  border: 2px dashed rgba(123,47,142,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  opacity: 0.75;
+}
+
+.coming-inner { text-align: center; padding: 36px 28px; }
+
+.coming-icon {
+  width: 64px; height: 64px; margin: 0 auto 20px;
+  background: rgba(123,47,142,0.07);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+
+.coming-text {
+  font-family: 'Poppins', sans-serif; font-weight: 300; font-style: italic;
+  font-size: 15px; color: var(--text-lt); line-height: 1.7;
+}
+
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(123,47,142,0.18);
+  background: var(--white);
+  color: var(--purple);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.carousel-arrow:hover {
+  background: var(--purple);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(123,47,142,0.3);
+  transform: scale(1.06);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .especialistas-carousel { height: 480px; gap: 14px; padding: 14px 8px; }
+  .carousel-arrow { width: 38px; height: 38px; }
+  .especialistas-carousel-wrap { gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .especialistas-carousel { height: 390px; }
+  .carousel-arrow { display: none; }
+}
+
+/* ── VIDEO MODAL ── */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.video-modal.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.video-modal-inner {
+  position: relative;
+  max-height: 92vh;
+  aspect-ratio: 9/16;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+}
+
+.video-modal-player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}
+
+.video-modal-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.video-modal-close:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.08);
+}
+
+/* ════════════════════════════════════════════════════════════
+   BENEFICIOS DE LA INTERNACIÓN DOMICILIARIA (callout en servicios)
+   ════════════════════════════════════════════════════════════ */
+.beneficios-hogar {
+  padding: 40px 48px;
+  background: linear-gradient(135deg, #2A2A3A 0%, #3d1260 100%);
+  border-radius: var(--radius-lg);
+  position: relative; overflow: hidden;
+}
+
+.beneficios-hogar::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 0, transparent 50%);
+  background-size: 14px 14px;
+}
+
+.beneficios-hogar > * { position: relative; z-index: 1; }
+
+.beneficios-hogar-header { margin-bottom: 28px; }
+
+.beneficios-hogar-title {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px;
+  color: var(--white); line-height: 1.3;
+}
+
+.beneficios-hogar-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.beneficio-hogar-card {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px; border-radius: var(--radius);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.25s;
+}
+
+.beneficio-hogar-card:hover { background: rgba(255,255,255,0.08); }
+
+.beneficio-hogar-icon {
+  flex-shrink: 0; width: 46px; height: 46px;
+  background: rgba(255,255,255,0.07);
+  border-radius: var(--radius); display: flex;
+  align-items: center; justify-content: center;
+}
+
+.beneficio-hogar-card p {
+  font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 14px;
+  color: rgba(255,255,255,0.82); line-height: 1.65; padding-top: 10px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .beneficios-hogar { padding: 32px 24px; }
+  .beneficios-hogar-grid { grid-template-columns: 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   SUBPAGES — page hero y layout interior
+   ════════════════════════════════════════════════════════════ */
+.page-hero {
+  background: linear-gradient(135deg, #3d1260 0%, #7B2F8E 40%, #B565A7 80%, #4FB5E5 100%);
+  background-size: 300% 300%;
+  animation: gradientFlow 14s ease infinite;
+  padding: 140px 40px 80px;
+  text-align: center; position: relative; overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(255,255,255,0.03) 49px, rgba(255,255,255,0.03) 50px),
+    repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(255,255,255,0.03) 49px, rgba(255,255,255,0.03) 50px);
+}
+
+.page-hero > * { position: relative; z-index: 1; }
+
+.page-hero-eyebrow {
+  font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 500;
+  letter-spacing: 3.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 16px; display: block;
+}
+
+.page-hero-title {
+  font-family: 'Poppins', sans-serif; font-weight: 800;
+  font-size: clamp(30px, 4.5vw, 52px);
+  color: var(--white); line-height: 1.1;
+  letter-spacing: -1px; margin-bottom: 20px;
+}
+
+.page-hero-desc {
+  font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 17px;
+  color: rgba(255,255,255,0.78); max-width: 560px; margin: 0 auto;
+  line-height: 1.8;
+}
+
+.page-back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400;
+  color: rgba(255,255,255,0.65); text-decoration: none;
+  margin-bottom: 32px; transition: color 0.2s, gap 0.2s;
+}
+
+.page-back-link:hover { color: rgba(255,255,255,0.95); gap: 12px; }
+
+.page-content-section {
+  background: var(--cream);
+  padding: 80px 40px;
+}
+
+.page-content-inner {
+  max-width: 860px; margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .page-hero { padding: 120px 24px 60px; }
+  .page-content-section { padding: 56px 24px; }
+}
