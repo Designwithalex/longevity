@@ -542,7 +542,7 @@ body {
   filter: grayscale(30%); transform: scale(1.03);
 }
 .nosotros-img-overlay {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; opacity:0%;
   background: linear-gradient(135deg, rgba(123,47,142,0.5) 0%, rgba(79,181,229,0.3) 100%);
   mix-blend-mode: multiply;
 }
@@ -1133,7 +1133,7 @@ body {
 /* ════════════════════════════════════════════════════════════
    FOOTER
    ════════════════════════════════════════════════════════════ */
-footer { background: #2A2A3A; padding: 72px 40px 40px; }
+footer { background: #58587e; padding: 72px 40px 40px; }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-top {
   display: grid; grid-template-columns: 1.6fr 1fr;
@@ -1146,11 +1146,11 @@ footer { background: #2A2A3A; padding: 72px 40px 40px; }
 .footer-brand .nav-logo-sub { color: rgba(255,255,255,0.5); }
 .footer-motto {
   font-family: 'Poppins', sans-serif; font-style: italic; font-size: 18px;
-  color: rgba(255,255,255,0.45); margin-top: 16px; margin-bottom: 12px;
+  color: rgba(255,255,255,0.45); margin-top: 4px; margin-bottom: 12px;
 }
 .footer-desc {
-  font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 13px;
-  color: rgba(255,255,255,0.4); line-height: 1.8;
+  font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 16px;
+  color: rgba(255,255,255,0.4); line-height: 1.8; margin-top:16px;
 }
 .footer-col h4 {
   font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 11px;
