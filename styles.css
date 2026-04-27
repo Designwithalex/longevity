@@ -1258,7 +1258,9 @@ footer { background: #58587e; padding: 72px 40px 40px; }
 
 @media (max-width: 1024px) {
   .hero-split { grid-template-columns: 1fr; grid-template-rows: auto auto; }
-  .hero-image-col { order: 1; height: 72vh; }
+  .hero-image-col { order: 1; height: auto; overflow: visible; display: flex; flex-direction: column; }
+  .hero-nurse-img { position: relative; top: auto; left: auto; transform: none; height: 62vh; width: 100%; object-fit: cover; object-position: top center; }
+  .hero-quote-card { position: relative; bottom: auto; left: auto; right: auto; margin: 0; border-radius: 0; }
   .hero-content { order: 2; padding: 64px 40px 64px; justify-content: flex-start; }
 }
 
@@ -1267,9 +1269,8 @@ footer { background: #58587e; padding: 72px 40px 40px; }
   .hamburger { display: flex; }
   .section { padding: 72px 24px; }
   .hero { min-height: unset; }
-  .hero-image-col { height: 65vh; }
-  .hero-content { padding: 52px 24px 48px; }
-  .hero-quote-card { left: 16px; right: 16px; bottom: 20px; padding: 18px 20px; }
+  .hero-nurse-img { height: 56vh; }
+  .hero-quote-card { padding: 18px 20px; }
   .hero-quote-text { font-size: 14px; }
   .hero-ctas { flex-direction: column; align-items: flex-start; gap: 18px; align-content: center;}
   .services-grid { grid-template-columns: 1fr; }
@@ -1278,7 +1279,7 @@ footer { background: #58587e; padding: 72px 40px 40px; }
   .footer-top { grid-template-columns: 1fr; gap: 36px; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .nav-inner { padding: 0 20px; }
-  .nosotros-motto { right: 0; bottom: 0; }
+  .nosotros-motto { position: static; margin-top: 20px; border-radius: var(--radius); }
   .legado-layout { grid-template-columns: 1fr; }
   .legado-portrait { position: static; max-width: 300px; }
   .pilares-grid { grid-template-columns: 1fr 1fr; }
@@ -1287,7 +1288,7 @@ footer { background: #58587e; padding: 72px 40px 40px; }
 }
 
 @media (max-width: 480px) {
-  .hero-image-col { height: 58vh; }
+  .hero-nurse-img { height: 50vh; }
   .valores-grid { grid-template-columns: 1fr; }
   .stat-cards { grid-template-columns: 1fr; background: transparent; gap: 2px; }
   .stat-card { background: rgba(255,255,255,0.07); margin-bottom: 1px; }
@@ -1679,62 +1680,79 @@ footer { background: #58587e; padding: 72px 40px 40px; }
 }
 
 /* ════════════════════════════════════════════════════════════
-   BENEFICIOS DE LA INTERNACIÓN DOMICILIARIA (callout en servicios)
+   10 RAZONES PARA ELEGIR LONGEVITY
    ════════════════════════════════════════════════════════════ */
-.beneficios-hogar {
+.razones-longevity {
   padding: 40px 48px;
   background: linear-gradient(135deg, #2A2A3A 0%, #3d1260 100%);
   border-radius: var(--radius-lg);
   position: relative; overflow: hidden;
 }
 
-.beneficios-hogar::before {
+.razones-longevity::before {
   content: '';
   position: absolute; inset: 0;
   background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 0, transparent 50%);
   background-size: 14px 14px;
 }
 
-.beneficios-hogar > * { position: relative; z-index: 1; }
+.razones-longevity > * { position: relative; z-index: 1; }
 
-.beneficios-hogar-header { margin-bottom: 28px; }
+.razones-header { margin-bottom: 32px; }
 
-.beneficios-hogar-title {
+.razones-title {
   font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px;
-  color: var(--white); line-height: 1.3;
+  color: var(--white); line-height: 1.3; margin-top: 8px;
 }
 
-.beneficios-hogar-grid {
+.razones-lista {
+  list-style: none; margin: 0; padding: 0;
   display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
-.beneficio-hogar-card {
+.razones-lista li {
   display: flex; align-items: flex-start; gap: 16px;
-  padding: 20px; border-radius: var(--radius);
+  padding: 18px 20px; border-radius: var(--radius);
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.07);
   transition: background 0.25s;
 }
 
-.beneficio-hogar-card:hover { background: rgba(255,255,255,0.08); }
+.razones-lista li:hover { background: rgba(255,255,255,0.08); }
 
-.beneficio-hogar-icon {
-  flex-shrink: 0; width: 46px; height: 46px;
-  background: rgba(255,255,255,0.07);
-  border-radius: var(--radius); display: flex;
-  align-items: center; justify-content: center;
+.razon-num {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px;
+  color: #B565A7; letter-spacing: 1px; flex-shrink: 0;
+  padding-top: 2px;
 }
 
-.beneficio-hogar-card p {
+.razones-lista li p {
   font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 14px;
-  color: rgba(255,255,255,0.82); line-height: 1.65; padding-top: 10px;
-  margin: 0;
+  color: rgba(255,255,255,0.85); line-height: 1.7; margin: 0;
+}
+
+.razones-lista li p em {
+  font-style: italic; color: rgba(255,255,255,0.95);
+}
+
+.razon-destacada {
+  grid-column: 1 / -1;
+  border-color: rgba(181,101,167,0.35) !important;
+  background: rgba(181,101,167,0.1) !important;
+}
+
+.razon-destacada .razon-num { color: #e8a0dc; }
+
+.razon-destacada p {
+  font-weight: 500 !important;
+  color: rgba(255,255,255,0.95) !important;
 }
 
 @media (max-width: 768px) {
-  .beneficios-hogar { padding: 32px 24px; }
-  .beneficios-hogar-grid { grid-template-columns: 1fr; }
+  .razones-longevity { padding: 32px 24px; }
+  .razones-lista { grid-template-columns: 1fr; }
+  .razon-destacada { grid-column: 1; }
 }
 
 /* ════════════════════════════════════════════════════════════
