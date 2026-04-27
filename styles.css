@@ -190,7 +190,6 @@ body {
 }
 .footer-logo-img {
   height: 36px; width: auto; display: block;
-  filter: brightness(0) invert(1);
   opacity: 0.75;
 }
 .nav-links {
@@ -1737,7 +1736,6 @@ footer { background: #58587e; padding: 72px 40px 40px; }
 }
 
 .razon-destacada {
-  grid-column: 1 / -1;
   border-color: rgba(181,101,167,0.35) !important;
   background: rgba(181,101,167,0.1) !important;
 }
@@ -1752,7 +1750,6 @@ footer { background: #58587e; padding: 72px 40px 40px; }
 @media (max-width: 768px) {
   .razones-longevity { padding: 32px 24px; }
   .razones-lista { grid-template-columns: 1fr; }
-  .razon-destacada { grid-column: 1; }
 }
 
 /* ════════════════════════════════════════════════════════════
