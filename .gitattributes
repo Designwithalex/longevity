@@ -1,0 +1,19 @@
+# Normalizar finales de linea: en el repo se guardan como LF,
+# en el working tree de Windows se ven como CRLF.
+# Evita que se vuelvan a colar terminadores \r\r\n.
+* text=auto
+
+*.html  text eol=crlf
+*.css   text eol=crlf
+*.js    text eol=crlf
+*.php   text eol=crlf
+*.xml   text eol=crlf
+*.txt   text eol=crlf
+
+# Binarios: nunca tocar
+*.webp  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.mp4   binary
+*.zip   binary
