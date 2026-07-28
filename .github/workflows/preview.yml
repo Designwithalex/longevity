@@ -1,0 +1,101 @@
+name: Preview de staging (GitHub Pages)
+
+# Publica la rama staging en https://designwithalex.github.io/longevity/
+# para revisar los cambios antes de mergearlos a main.
+#
+# Produccion NO se toca: el deploy por FTP a GoDaddy vive en deploy.yml
+# y solo se dispara con push a main.
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: preview-staging
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    name: Publicar preview
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: Checkout de staging
+        uses: actions/checkout@v4
+
+      - name: Sacar lo que no debe servirse en el preview
+        # Pages sirve los .php como texto plano, asi que quedaria expuesto
+        # el codigo del formulario. En el preview el form no funciona igual
+        # (no hay PHP), asi que se remueve la carpeta entera.
+        run: |
+          rm -rf php .vscode
+          rm -f sitemap.xml cgi-bin.zip .deploy.env .ftpquota
+
+      - name: Bloquear la indexacion del preview
+        # Evita que el preview compita en Google con longevityargentina.com.
+        run: |
+          printf 'User-agent: *\nDisallow: /\n' > robots.txt
+
+      - name: Adaptar el sitio al subpath y marcarlo como preview
+        run: |
+          python3 - <<'PYEOF'
+          import glob, re, os
+
+          SHA = os.environ.get('GITHUB_SHA', '')[:7]
+
+          BANNER = (
+              '<div id="preview-flag" aria-hidden="true">'
+              'PREVIEW &middot; staging &middot; ' + SHA +
+              '</div>\n'
+              '<style>#preview-flag{position:fixed;left:0;bottom:0;z-index:100000;'
+              'background:#7B2F8E;color:#fff;font:600 10px/1 Poppins,sans-serif;'
+              'letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;'
+              'border-top-right-radius:6px;opacity:.85;pointer-events:none}</style>\n'
+          )
+
+          # noindex tambien por meta, por si algun crawler ignora robots.txt
+          META = '  <meta name="robots" content="noindex, nofollow">\n'
+
+          for f in sorted(glob.glob('*.html')):
+              d = open(f, encoding='utf-8', newline='').read()
+
+              # el sitio se sirve bajo /longevity/, un href="/" saldria del proyecto
+              d = d.replace('<a href="/" class="nav-logo"', '<a href="index.html" class="nav-logo"')
+
+              if 'name="robots"' not in d:
+                  d = d.replace('</head>', META + '</head>', 1)
+
+              d = d.replace('</body>', BANNER + '</body>', 1)
+
+              open(f, 'w', encoding='utf-8', newline='').write(d)
+
+          print('paginas preparadas:', len(glob.glob('*.html')))
+          PYEOF
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empaquetar el sitio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publicar en Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Resumen
+        run: |
+          echo "### Preview publicado" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.deploy.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Rama: staging &middot; commit ${GITHUB_SHA:0:7}" >> $GITHUB_STEP_SUMMARY
