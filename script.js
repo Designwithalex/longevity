@@ -359,4 +359,27 @@
     }
   }
 
+  /* ── BOTONERA DE SERVICIOS ──
+     En desktop el detalle se despliega con hover y con foco de teclado,
+     los dos resueltos por CSS. Este bloque agrega el tap en touch:
+     el primer toque activa la tarjeta, y solo el link interno navega. */
+  var hiveCells = document.querySelectorAll('.hive-cell');
+  if (hiveCells.length) {
+    var canHover = window.matchMedia('(hover: hover)').matches;
+
+    Array.prototype.forEach.call(hiveCells, function (cell) {
+      cell.addEventListener('click', function (e) {
+        // el link interno hace su trabajo normal
+        if (e.target.closest('.hive-cell-arrow')) return;
+        if (canHover) return;
+
+        var wasActive = cell.classList.contains('is-active');
+        Array.prototype.forEach.call(hiveCells, function (c) {
+          c.classList.remove('is-active');
+        });
+        if (!wasActive) cell.classList.add('is-active');
+      });
+    });
+  }
+
 })();
