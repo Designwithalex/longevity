@@ -2600,11 +2600,22 @@ footer {
   animation: pulseDot 2.5s ease-in-out infinite;
 }
 
-.form-float {
+/* ── DOCK DE CONTACTO SIEMPRE VISIBLE ──────────────────────────────
+   El canal de WhatsApp lo cubre el widget verde de Cliengo, que se
+   inyecta abajo a la derecha. Este dock queda abajo a la izquierda
+   para no superponerse con el. */
+.contact-dock {
   position: fixed;
   bottom: 32px;
   left: 32px;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.contact-dock-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2623,15 +2634,27 @@ footer {
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
 }
 
-.form-float svg {
+.contact-dock-btn svg {
   flex-shrink: 0;
 }
 
-.form-float:hover {
+.contact-dock-btn:hover,
+.contact-dock-btn:focus-visible {
   background: var(--purple);
   color: var(--white);
   transform: scale(1.06) translateY(-3px);
   box-shadow: 0 8px 32px rgba(123, 47, 142, 0.35);
+}
+
+/* El mail es el canal secundario: mismo lenguaje, un escalon mas abajo */
+.contact-dock-btn--mail {
+  height: 42px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(123, 47, 142, 0.45);
 }
 
 /* Gradient line divider */
@@ -2857,9 +2880,18 @@ footer {
     height: 54px;
   }
 
-  .form-float {
+  /* En mobile el dock pasa a fila de botones circulares, pegado a la
+     izquierda para dejar libre la esquina derecha donde vive Cliengo. */
+  .contact-dock {
     bottom: 20px;
     left: 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-dock-btn,
+  .contact-dock-btn--mail {
     width: 54px;
     height: 54px;
     padding: 0;
@@ -2867,7 +2899,7 @@ footer {
     border-radius: 50%;
   }
 
-  .form-float-text {
+  .contact-dock-text {
     display: none;
   }
 
