@@ -1,0 +1,112 @@
+name: Deploy a produccion (FTP)
+
+# Sube el sitio al hosting de GoDaddy por FTP cada vez que se pushea a main.
+# Tambien se puede correr a mano desde la pestania Actions -> Run workflow.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-produccion
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Subir por FTP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repo
+        uses: actions/checkout@v4
+
+      - name: Preparar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Generar php/config.php desde los secrets
+        # config.php no vive en el repo porque contiene la contrasenia SMTP.
+        # Se arma en cada deploy con los valores guardados en GitHub Secrets.
+        # Se usa var_export() de PHP para que el escapado sea siempre correcto,
+        # incluso si la contrasenia tiene comillas o barras invertidas.
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER || 'info@longevityargentina.com' }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO || 'info@longevityargentina.com' }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM || 'info@longevityargentina.com' }}
+        run: |
+          if [ -z "$SMTP_PASS" ]; then
+            echo "::error::Falta el secret SMTP_PASS (contrasenia de aplicacion de Google Workspace)."
+            exit 1
+          fi
+          php -r '
+          $c = [
+              "smtp_host"      => getenv("SMTP_HOST"),
+              "smtp_port"      => (int) getenv("SMTP_PORT"),
+              "smtp_user"      => getenv("SMTP_USER"),
+              "smtp_pass"      => getenv("SMTP_PASS"),
+              "mail_to"        => getenv("MAIL_TO"),
+              "mail_from"      => getenv("MAIL_FROM"),
+              "mail_from_name" => "Web Longevity Argentina",
+          ];
+          $out = "<?php\n"
+              . "// Archivo generado automaticamente por .github/workflows/deploy.yml\n"
+              . "// No editar a mano en el servidor: se sobrescribe en cada deploy.\n"
+              . "return " . var_export($c, true) . ";\n";
+          file_put_contents("php/config.php", $out);
+          '
+          echo "config.php generado ($(wc -c < php/config.php) bytes)"
+
+      - name: Validar sintaxis PHP
+        run: |
+          find php -name '*.php' -not -path 'php/PHPMailer/*' -print0 \
+            | xargs -0 -n1 php -l
+
+      - name: Verificar que config.php sea valido
+        env:
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: |
+          php -r '
+          $c = require "php/config.php";
+          foreach (["smtp_host","smtp_port","smtp_user","smtp_pass","mail_to","mail_from"] as $k) {
+              if (empty($c[$k])) { fwrite(STDERR, "::error::config.php: falta $k\n"); exit(1); }
+          }
+          if ($c["smtp_pass"] !== getenv("SMTP_PASS")) {
+              fwrite(STDERR, "::error::config.php: la contrasenia no se escribio correctamente\n"); exit(1);
+          }
+          echo "config.php OK\n";
+          '
+
+      - name: Deploy por FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: /
+          # Archivos que NO deben subirse al servidor.
+          # Los videos pesados y cgi-bin.zip no estan en el repo: quedan
+          # intactos en el servidor porque el deploy no los conoce.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.vscode/**
+            **/node_modules/**
+            **/.deploy.env
+            **/deploy.env
+            **/error_log
+            **/*.md
+            **/.ftpquota
+            **/resize-images.js
+            **/config.sample.php
+            **/cgi-bin.zip
+
+      - name: Resumen
+        if: success()
+        run: echo "Deploy completado en https://longevityargentina.com"
