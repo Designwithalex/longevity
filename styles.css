@@ -585,32 +585,43 @@ body {
   justify-content: center;
 }
 
+/* Foto institucional y frase: los dos bloques comparten exactamente
+   las mismas medidas, definidas una sola vez en estas variables. */
 .hero-image-col {
+  --hero-block-w: 216px;
+  --hero-block-h: 264px;
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 16px;
+  align-items: stretch;
+  justify-content: center;
+  gap: 18px;
   margin: 0 auto 28px;
 }
 
+.hero-image-frame,
+.hero-quote-card {
+  width: var(--hero-block-w);
+  height: var(--hero-block-h);
+  flex: 0 0 var(--hero-block-w);
+  border-radius: 16px;
+}
+
 .hero-image-frame {
-  width: 110px;
-  height: 100%;
-  flex-shrink: 0;
-  border-radius: 22px;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
+/* contain, no cover: la sena de abrazo entra completa, sin recorte */
 .hero-nurse-img {
   position: static;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center bottom;
   display: block;
   pointer-events: none;
 }
@@ -618,14 +629,15 @@ body {
 .hero-quote-card {
   position: relative;
   z-index: 3;
-  width: 100%;
-  max-width: 400px;
-  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 22px;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 14px;
   text-align: center;
 }
 
@@ -633,10 +645,10 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-style: italic;
-  font-size: 13px;
+  font-size: 13.5px;
   color: #3d1260;
-  line-height: 1.55;
-  margin-bottom: 6px;
+  line-height: 1.6;
+  margin-bottom: 10px;
 }
 
 .hero-quote-author {
@@ -2902,12 +2914,24 @@ footer {
     min-height: unset;
   }
 
+  /* Los dos bloques bajan de tamano juntos y siguen siendo identicos */
+  .hero-image-col {
+    --hero-block-w: 150px;
+    --hero-block-h: 190px;
+    gap: 12px;
+  }
+
   .hero-quote-card {
-    padding: 18px 20px;
+    padding: 14px 14px;
   }
 
   .hero-quote-text {
-    font-size: 14px;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .hero-quote-author {
+    font-size: 9px;
   }
 
   .hero-ctas {
@@ -4190,41 +4214,47 @@ footer {
   gap: 20px;
 }
 
+/* Dos rectangulos por vista, exactamente del mismo tamano.
+   El ancho de la pista se fija a 2 slides + gap para que no entre
+   un tercero a medias. */
 .especialistas-carousel {
+  --slide-w: 300px;
+  --slide-gap: 20px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--slide-gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  height: 620px;
-  flex: 1;
-  padding: 20px 12px;
+  width: calc(var(--slide-w) * 2 + var(--slide-gap));
+  max-width: 100%;
+  margin: 0 auto;
+  flex: 0 1 auto;
+  padding: 20px 0;
 }
 
 .especialistas-carousel::-webkit-scrollbar {
   display: none;
 }
 
+/* Todos los slides miden lo mismo: la tarjeta activa solo cambia
+   el enfasis (sombra y opacidad), nunca el tamano. */
 .carousel-slide {
-  flex: 0 0 auto;
+  flex: 0 0 var(--slide-w);
+  width: var(--slide-w);
   aspect-ratio: 9 / 16;
-  height: 80%;
   scroll-snap-align: center;
   border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
   box-shadow: var(--shadow-card);
-  opacity: 0.6;
+  opacity: 0.62;
   cursor: pointer;
-  transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.5s ease,
-    box-shadow 0.5s ease;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
 }
 
 .carousel-slide.is-active {
-  height: 100%;
   opacity: 1;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
 }
@@ -4309,9 +4339,9 @@ footer {
 
 @media (max-width: 768px) {
   .especialistas-carousel {
-    height: 480px;
-    gap: 14px;
-    padding: 14px 8px;
+    --slide-w: 232px;
+    --slide-gap: 14px;
+    padding: 14px 0;
   }
 
   .carousel-arrow {
@@ -4325,8 +4355,11 @@ footer {
 }
 
 @media (max-width: 480px) {
+  /* En pantallas chicas entra un rectangulo por vista, del mismo
+     tamano que el siguiente. */
   .especialistas-carousel {
-    height: 390px;
+    --slide-w: 210px;
+    width: var(--slide-w);
   }
 
   .carousel-arrow {
