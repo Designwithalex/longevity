@@ -41,6 +41,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://longevityargentina.com/por-que-longevity.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://longevityargentina.com/quienes-somos.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
