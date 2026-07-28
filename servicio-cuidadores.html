@@ -116,10 +116,10 @@
     </a>
     <ul class="nav-links" role="list">
       <li class="nav-has-dropdown">
-        <a href="index.html#servicios">Servicios <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="index.html#servicios" style="color:var(--purple)">Servicios <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-dropdown-menu" role="menu">
           <span class="dropdown-label">Nuestros servicios</span>
-          <a href="servicio-cuidadores.html" role="menuitem">Cuidadores/as Profesionales</a>
+          <a href="servicio-cuidadores.html" role="menuitem" style="color:var(--purple)">Cuidadores/as Profesionales</a>
           <a href="servicio-acompanantes-terapeuticos.html" role="menuitem">Acompañantes Terapéuticos</a>
           <a href="servicio-enfermeria.html" role="menuitem">Enfermería</a>
           <a href="servicio-all-inclusive-elder-care.html" role="menuitem">All Inclusive</a>
@@ -127,39 +127,63 @@
           <a href="elderwatch.html" role="menuitem">ElderWatch®</a>
         </div>
       </li>
-      <li><a href="por-que-longevity.html">Por qué Longevity</a></li>
-      <li><a href="legado.html">Legado</a></li>
-      <li><a href="quienes-somos.html">Quiénes somos</a></li>
-      <li><a href="antecedentes.html">Historia</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="trabaja-con-nosotros.html">Trabajá con Nosotros</a></li>
+      <li class="nav-has-dropdown">
+        <a href="quienes-somos.html">Nosotros <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu" role="menu">
+          <span class="dropdown-label">Sobre Longevity</span>
+          <a href="quienes-somos.html" role="menuitem">Quiénes somos</a>
+          <a href="legado.html" role="menuitem">Legado</a>
+          <a href="antecedentes.html" role="menuitem">Historia</a>
+          <a href="por-que-longevity.html" role="menuitem">Por qué Longevity</a>
+        </div>
+      </li>
+      <li class="nav-has-dropdown">
+        <a href="faq.html">Recursos <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu" role="menu">
+          <span class="dropdown-label">Más información</span>
+          <a href="faq.html" role="menuitem">Preguntas frecuentes</a>
+          <a href="trabaja-con-nosotros.html" role="menuitem">Trabajá con Nosotros</a>
+        </div>
+      </li>
       <li><a href="index.html#contacto">Contacto</a></li>
     </ul>
-    <a href="index.html#contacto" class="btn-primary" id="nav-cta-desktop" style="display:none">Solicitar consulta</a>
+    <a href="index.html#contacto" class="btn-primary" id="nav-cta-desktop" style="display:none">Coordinar evaluación</a>
     <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-menu" id="mobile-menu" role="menu">
-    <button class="mobile-dropdown-toggle" id="mobile-services-toggle" aria-expanded="false">
+    <button class="mobile-dropdown-toggle open" id="mobile-services-toggle" aria-expanded="true">
       Servicios
       <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <div class="mobile-dropdown-items" id="mobile-services-items">
-      <a href="servicio-cuidadores.html">Cuidadores/as Profesionales</a>
+    <div class="mobile-dropdown-items open" id="mobile-services-items">
+      <a href="servicio-cuidadores.html" style="color:var(--purple)">Cuidadores/as Profesionales</a>
       <a href="servicio-acompanantes-terapeuticos.html">Acompañantes Terapéuticos</a>
       <a href="servicio-enfermeria.html">Enfermería</a>
       <a href="servicio-all-inclusive-elder-care.html">All Inclusive</a>
       <a href="elderwatch.html">ElderWatch®</a>
     </div>
-    <a href="por-que-longevity.html" role="menuitem">Por qué Longevity</a>
-    <a href="legado.html" role="menuitem">Legado</a>
-    <a href="quienes-somos.html" role="menuitem">Quiénes somos</a>
-    <a href="antecedentes.html" role="menuitem">Historia</a>
-    <a href="faq.html" role="menuitem">Preguntas frecuentes</a>
-    <a href="trabaja-con-nosotros.html" role="menuitem">Trabajá con Nosotros</a>
+    <button class="mobile-dropdown-toggle" aria-expanded="false">
+      Nosotros
+      <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-dropdown-items">
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="legado.html">Legado</a>
+      <a href="antecedentes.html">Historia</a>
+      <a href="por-que-longevity.html">Por qué Longevity</a>
+    </div>
+    <button class="mobile-dropdown-toggle" aria-expanded="false">
+      Recursos
+      <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-dropdown-items">
+      <a href="faq.html">Preguntas frecuentes</a>
+      <a href="trabaja-con-nosotros.html">Trabajá con Nosotros</a>
+    </div>
     <a href="index.html#contacto" role="menuitem">Contacto</a>
-    <a href="index.html#contacto" class="btn-primary" role="menuitem">Solicitar consulta</a>
+    <a href="index.html#contacto" class="btn-primary" role="menuitem">Coordinar evaluación</a>
   </div>
 </nav>
 

@@ -57,16 +57,33 @@
     });
   }
 
-  /* ── MOBILE SERVICES DROPDOWN ── */
-  var mobileServicesToggle = document.getElementById('mobile-services-toggle');
-  var mobileServicesItems = document.getElementById('mobile-services-items');
-  if (mobileServicesToggle && mobileServicesItems) {
-    mobileServicesToggle.addEventListener('click', function () {
-      var isOpen = mobileServicesItems.classList.toggle('open');
-      mobileServicesToggle.classList.toggle('open');
-      mobileServicesToggle.setAttribute('aria-expanded', isOpen);
+  /* ── DROPDOWNS DEL MENU MOBILE ──
+     Hay uno por grupo (Servicios, Nosotros, Recursos). Cada boton
+     despliega el bloque de links que tiene inmediatamente debajo, y
+     al abrir uno se cierran los otros para que el menu no crezca de mas. */
+  var mobileToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+  Array.prototype.forEach.call(mobileToggles, function (toggle) {
+    var items = toggle.nextElementSibling;
+    if (!items || !items.classList.contains('mobile-dropdown-items')) return;
+
+    toggle.addEventListener('click', function () {
+      var abrir = !items.classList.contains('open');
+
+      Array.prototype.forEach.call(mobileToggles, function (otro) {
+        var otrosItems = otro.nextElementSibling;
+        if (!otrosItems || !otrosItems.classList.contains('mobile-dropdown-items')) return;
+        otrosItems.classList.remove('open');
+        otro.classList.remove('open');
+        otro.setAttribute('aria-expanded', 'false');
+      });
+
+      if (abrir) {
+        items.classList.add('open');
+        toggle.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
     });
-  }
+  });
 
   /* ── SMOOTH SCROLL ── */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
