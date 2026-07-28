@@ -1,4 +1,15 @@
-/.claude
-/descargar_assets.py
-/feedback
-/mkt
+# ── Credenciales / configuracion local ───────────────────────────────────────
+# Nunca subir: contienen contrasenas en texto plano.
+deploy.env
+.deploy.env
+php/config.php
+
+# ── Logs y artefactos del servidor ───────────────────────────────────────────
+php/error_log
+.ftpquota
+
+# ── Archivos pesados ─────────────────────────────────────────────────────────
+# Superan el limite de 100 MB por archivo de GitHub. Viven solo en el servidor.
+cgi-bin.zip
+videos/LONGEVITY21.mp4
+videos/LONGEVITY22.mp4

@@ -1,0 +1,48 @@
+# ── REDIRECTS 301: consolidación de servicios (7 páginas → 4) ──
+Redirect 301 /servicio-cuidador.html /servicio-cuidadores.html
+Redirect 301 /servicio-acompanante-terapeutico.html /servicio-acompanantes-terapeuticos.html
+Redirect 301 /servicio-auxiliar-enfermeria.html /servicio-enfermeria.html
+Redirect 301 /servicio-enfermero-profesional.html /servicio-enfermeria.html
+Redirect 301 /servicio-cuidados-paliativos.html /servicio-enfermeria.html
+Redirect 301 /servicio-internacion-domiciliaria.html /servicio-enfermeria.html
+Redirect 301 /servicio-eldering.html /servicio-all-inclusive-elder-care.html
+
+# ── COMPRESIÓN GZIP ───────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript
+</IfModule>
+
+# ── CACHE HEADERS ─────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Imágenes: 1 año (prácticamente permanentes)
+  ExpiresByType image/webp               "access plus 1 year"
+  ExpiresByType image/png                "access plus 1 year"
+  ExpiresByType image/jpeg               "access plus 1 year"
+  ExpiresByType image/svg+xml            "access plus 1 year"
+  ExpiresByType image/x-icon             "access plus 1 year"
+
+  # Videos: 1 mes
+  ExpiresByType video/mp4                "access plus 1 month"
+
+  # CSS y JS: 1 semana
+  ExpiresByType text/css                 "access plus 1 week"
+  ExpiresByType application/javascript   "access plus 1 week"
+  ExpiresByType text/javascript          "access plus 1 week"
+
+  # HTML: sin cache (siempre fresco)
+  ExpiresByType text/html                "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|png|jpg|jpeg|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(mp4)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
