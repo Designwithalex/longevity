@@ -671,29 +671,6 @@ body {
   opacity: 1;
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.95);
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  padding: 16px 34px;
-  border-radius: 44px;
-  margin-bottom: 36px;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  justify-content: center;
-}
-
-.hero-badge svg {
-  flex-shrink: 0;
-  animation: heartbeat 3s ease-in-out infinite;
-}
-
 .hero-eyebrow {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
