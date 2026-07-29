@@ -28,15 +28,6 @@
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
-  /* ── NAV CTA RESPONSIVE ── */
-  var navCta = document.getElementById('nav-cta-desktop');
-  function updateNavCta() {
-    if (!navCta) return;
-    navCta.style.display = window.innerWidth > 768 ? 'inline-block' : 'none';
-  }
-  updateNavCta();
-  window.addEventListener('resize', updateNavCta);
-
   /* ── HAMBURGER MENU ── */
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobile-menu');
