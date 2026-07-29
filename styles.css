@@ -1247,28 +1247,26 @@ body {
 /* Ilustracion a trazo fino, propia de cada servicio */
 .hive-cell-illus {
   width: 100%;
-  max-width: 168px;
-  aspect-ratio: 120 / 100;
-  margin-bottom: 18px;
-  color: var(--purple);
+  max-width: 260px;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 16px;
 }
 
-.hive-cell-illus svg {
+.hive-cell-img {
   width: 100%;
   height: 100%;
   display: block;
-  overflow: visible;
-}
-
-/* Los trazos se afinan en reposo y ganan cuerpo cuando la celda se activa */
-.hive-cell-illus svg [stroke] {
+  /* El dibujo viene sobre fondo blanco: multiply lo integra con el crema
+     de la tarjeta activa sin necesidad de recortar el fondo. */
+  mix-blend-mode: multiply;
+  opacity: 0.82;
   transition: opacity 0.3s ease;
-  opacity: 0.72;
 }
 
-.hive-cell:hover .hive-cell-illus svg [stroke],
-.hive-cell:focus-within .hive-cell-illus svg [stroke],
-.hive-cell.is-active .hive-cell-illus svg [stroke] {
+/* El trazo se afina en reposo y gana cuerpo cuando la celda se activa */
+.hive-cell:hover .hive-cell-img,
+.hive-cell:focus-within .hive-cell-img,
+.hive-cell.is-active .hive-cell-img {
   opacity: 1;
 }
 
@@ -1379,7 +1377,7 @@ body {
   .hive-cell,
   .hive-cell::before,
   .hive-cell-detail,
-  .hive-cell-illus svg [stroke] {
+  .hive-cell-img {
     transition: none;
   }
 }
@@ -1394,8 +1392,8 @@ body {
   }
 
   .hive-cell-illus {
-    max-width: 132px;
-    margin-bottom: 14px;
+    max-width: 200px;
+    margin-bottom: 12px;
   }
 }
 
@@ -2735,62 +2733,153 @@ footer {
   animation: pulseDot 2.5s ease-in-out infinite;
 }
 
-/* ── DOCK DE CONTACTO SIEMPRE VISIBLE ──────────────────────────────
-   El canal de WhatsApp lo cubre el widget verde de Cliengo, que se
-   inyecta abajo a la derecha. Este dock queda abajo a la izquierda
-   para no superponerse con el. */
+
+/* ── CONTACTO: UN SOLO BOTON ─────────────────────────────────────
+   Siempre visible abajo a la derecha. Al tocarlo despliega los tres
+   canales: WhatsApp, formulario y mail. Reemplaza al widget de
+   Cliengo, que ocupaba esta misma esquina. */
 .contact-dock {
   position: fixed;
-  bottom: 32px;
-  left: 32px;
+  right: 28px;
+  bottom: 28px;
   z-index: 999;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 10px;
 }
 
-.contact-dock-btn {
-  display: flex;
+.contact-dock-toggle {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 48px;
-  padding: 0 20px;
+  gap: 9px;
+  height: 52px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 30px;
+  background: #25D366;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.42);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.contact-dock-toggle:hover,
+.contact-dock-toggle:focus-visible {
+  background: #1FBA5A;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+}
+
+.contact-dock-toggle svg {
+  flex-shrink: 0;
+}
+
+/* El icono cambia a una cruz cuando el panel esta abierto */
+.contact-dock-ico-close {
+  display: none;
+}
+
+.contact-dock.is-open .contact-dock-ico-open {
+  display: none;
+}
+
+.contact-dock.is-open .contact-dock-ico-close {
+  display: block;
+}
+
+.contact-dock-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+}
+
+.contact-dock-options[hidden] {
+  display: none;
+}
+
+.contact-dock-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 26px;
   background: var(--white);
   color: var(--purple);
-  border: 1.5px solid var(--purple);
-  border-radius: 30px;
+  border: 1.5px solid rgba(123, 47, 142, 0.3);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 13px;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 4px 20px rgba(123, 47, 142, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  animation: contactOptIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
-.contact-dock-btn svg {
-  flex-shrink: 0;
-}
+.contact-dock-opt:nth-child(1) { animation-delay: 0.06s; }
+.contact-dock-opt:nth-child(2) { animation-delay: 0.03s; }
+.contact-dock-opt:nth-child(3) { animation-delay: 0s; }
 
-.contact-dock-btn:hover,
-.contact-dock-btn:focus-visible {
+.contact-dock-opt:hover,
+.contact-dock-opt:focus-visible {
   background: var(--purple);
   color: var(--white);
-  transform: scale(1.06) translateY(-3px);
-  box-shadow: 0 8px 32px rgba(123, 47, 142, 0.35);
+  border-color: var(--purple);
 }
 
-/* El mail es el canal secundario: mismo lenguaje, un escalon mas abajo */
-.contact-dock-btn--mail {
-  height: 42px;
-  font-size: 12px;
-  font-weight: 500;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-color: rgba(123, 47, 142, 0.45);
+.contact-dock-opt--wa {
+  color: #1FA855;
+  border-color: rgba(37, 211, 102, 0.45);
 }
+
+.contact-dock-opt--wa:hover,
+.contact-dock-opt--wa:focus-visible {
+  background: #25D366;
+  color: var(--white);
+  border-color: #25D366;
+}
+
+@keyframes contactOptIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-dock-opt {
+    animation: none;
+  }
+  .contact-dock-toggle {
+    transition: none;
+  }
+  .contact-dock-toggle:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-dock {
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .contact-dock-toggle {
+    height: 50px;
+    padding: 0 18px;
+    font-size: 13.5px;
+  }
+
+  .contact-dock-opt {
+    height: 42px;
+    font-size: 12.5px;
+  }
+}
+
 
 /* Gradient line divider */
 .divider-gradient {
@@ -3025,29 +3114,6 @@ footer {
     right: 20px;
     width: 54px;
     height: 54px;
-  }
-
-  /* En mobile el dock pasa a fila de botones circulares, pegado a la
-     izquierda para dejar libre la esquina derecha donde vive Cliengo. */
-  .contact-dock {
-    bottom: 20px;
-    left: 20px;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .contact-dock-btn,
-  .contact-dock-btn--mail {
-    width: 54px;
-    height: 54px;
-    padding: 0;
-    justify-content: center;
-    border-radius: 50%;
-  }
-
-  .contact-dock-text {
-    display: none;
   }
 
   .pilares-grid {
@@ -4243,25 +4309,118 @@ footer {
 .carousel-slide {
   flex: 0 0 var(--slide-w);
   width: var(--slide-w);
-  aspect-ratio: 9 / 16;
+  margin: 0;
   scroll-snap-align: center;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
   position: relative;
-  box-shadow: var(--shadow-card);
   opacity: 0.62;
   cursor: pointer;
-  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 
 .carousel-slide.is-active {
   opacity: 1;
+}
+
+.carousel-media {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.4s ease;
+}
+
+.carousel-slide.is-active .carousel-media {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
 }
 
-.carousel-slide--coming {
-  cursor: default;
+/* Senal de que el video se abre al tocarlo */
+.carousel-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--purple);
+  padding-left: 3px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease;
 }
+
+.carousel-slide:hover .carousel-play {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Zocalo: quien habla en cada video */
+.carousel-caption {
+  padding: 14px 6px 0;
+  text-align: center;
+}
+
+.carousel-name {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--purple);
+  line-height: 1.35;
+}
+
+.carousel-role {
+  display: block;
+  margin-top: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--text-lt);
+  line-height: 1.45;
+}
+
+/* Puntos: dejan a la vista que hay mas videos y cual se esta mirando */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  margin-top: 26px;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(123, 47, 142, 0.22);
+  cursor: pointer;
+  transition: background 0.3s ease, width 0.3s ease;
+}
+
+.carousel-dot:hover {
+  background: rgba(123, 47, 142, 0.45);
+}
+
+.carousel-dot.is-active {
+  width: 26px;
+  border-radius: 5px;
+  background: var(--gradient);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-dot,
+  .carousel-slide,
+  .carousel-media,
+  .carousel-play {
+    transition: none;
+  }
+}
+
 
 .carousel-video {
   width: 100%;
@@ -4272,40 +4431,9 @@ footer {
   pointer-events: none;
 }
 
-.carousel-slide--coming {
-  background: var(--cream-dk);
-  border: 2px dashed rgba(123, 47, 142, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: none;
-  opacity: 0.75;
-}
 
-.coming-inner {
-  text-align: center;
-  padding: 36px 28px;
-}
 
-.coming-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 20px;
-  background: rgba(123, 47, 142, 0.07);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.coming-text {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 15px;
-  color: var(--text-lt);
-  line-height: 1.7;
-}
 
 .carousel-arrow {
   flex-shrink: 0;
@@ -4488,16 +4616,25 @@ footer {
   background: rgba(255, 255, 255, 0.08);
 }
 
+/* El icono acompana a cada razon: sobre el violeta oscuro necesita
+   cuerpo y contraste, si no se pierde y la lista queda solo texto. */
 .razon-icon {
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: #B565A7;
+  background: linear-gradient(135deg, rgba(181, 101, 167, 0.30), rgba(79, 181, 229, 0.22));
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: #F1DCEC;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.razones-lista li:hover .razon-icon {
+  background: linear-gradient(135deg, rgba(181, 101, 167, 0.48), rgba(79, 181, 229, 0.34));
+  border-color: rgba(255, 255, 255, 0.34);
 }
 
 .razon-destacada .razon-icon {

@@ -28,15 +28,6 @@
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
-  /* ── NAV CTA RESPONSIVE ── */
-  var navCta = document.getElementById('nav-cta-desktop');
-  function updateNavCta() {
-    if (!navCta) return;
-    navCta.style.display = window.innerWidth > 768 ? 'inline-block' : 'none';
-  }
-  updateNavCta();
-  window.addEventListener('resize', updateNavCta);
-
   /* ── HAMBURGER MENU ── */
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobile-menu');
@@ -213,17 +204,39 @@
     var slides   = Array.from(track.querySelectorAll('.carousel-slide'));
     var prevBtn  = document.getElementById('esp-prev');
     var nextBtn  = document.getElementById('esp-next');
+    var dotsWrap = document.getElementById('esp-dots');
     var modal    = document.getElementById('video-modal');
     var modalVid = document.getElementById('modal-video');
     var modalClose = document.getElementById('modal-close');
     var current  = 0;
     var autoTimer = null;
 
+    /* — puntos: dejan a la vista cuantos videos hay y en cual estamos — */
+    var dots = [];
+    if (dotsWrap) {
+      slides.forEach(function (slide, i) {
+        var nombre = slide.querySelector('.carousel-name');
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label',
+          'Video ' + (i + 1) + (nombre ? ' — ' + nombre.textContent : ''));
+        dot.addEventListener('click', function () { goTo(i); startAuto(); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
     /* — navegar a un slide — */
     function goTo(idx) {
       idx = (idx % slides.length + slides.length) % slides.length;
       current = idx;
       slides.forEach(function (s, i) { s.classList.toggle('is-active', i === idx); });
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === idx);
+        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      });
       var slide  = slides[idx];
       var target = slide.offsetLeft - (track.clientWidth / 2) + (slide.offsetWidth / 2);
       track.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
@@ -277,7 +290,6 @@
     }
 
     slides.forEach(function (slide) {
-      if (slide.classList.contains('carousel-slide--coming')) return;
       var src = slide.querySelector('source');
       if (!src) return;
       slide.addEventListener('click', function () { openModal(src.getAttribute('src')); });
@@ -374,6 +386,43 @@
       target.parentNode.insertBefore(banner, target);
       banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  }
+
+  /* ── CONTACTO: UN SOLO BOTON ──
+     El boton despliega los tres canales. Se cierra al elegir uno, al
+     tocar fuera o con Escape. */
+  var contactDock = document.getElementById('contact-dock');
+  var contactToggle = document.getElementById('contact-dock-toggle');
+  var contactOptions = document.getElementById('contact-dock-options');
+
+  if (contactDock && contactToggle && contactOptions) {
+    var abrirContacto = function (abrir) {
+      contactDock.classList.toggle('is-open', abrir);
+      contactToggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      contactToggle.setAttribute('aria-label',
+        abrir ? 'Cerrar opciones de contacto' : 'Abrir opciones de contacto');
+      if (abrir) {
+        contactOptions.removeAttribute('hidden');
+      } else {
+        contactOptions.setAttribute('hidden', '');
+      }
+    };
+
+    contactToggle.addEventListener('click', function () {
+      abrirContacto(!contactDock.classList.contains('is-open'));
+    });
+
+    contactOptions.querySelectorAll('a').forEach(function (opt) {
+      opt.addEventListener('click', function () { abrirContacto(false); });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!contactDock.contains(e.target)) abrirContacto(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') abrirContacto(false);
+    });
   }
 
   /* ── BOTONERA DE SERVICIOS ──

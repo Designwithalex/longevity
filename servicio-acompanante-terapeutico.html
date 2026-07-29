@@ -176,7 +176,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </li>
       <li><a href="index.html#contacto">Contacto</a></li>
     </ul>
-    <a href="index.html#contacto" class="btn-primary" id="nav-cta-desktop" style="display:none">Coordinar evaluación</a>
     <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -212,7 +211,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="trabaja-con-nosotros.html">Trabajá con Nosotros</a>
     </div>
     <a href="index.html#contacto" role="menuitem">Contacto</a>
-    <a href="index.html#contacto" class="btn-primary" role="menuitem">Coordinar evaluación</a>
   </div>
 </nav>
 
@@ -483,7 +481,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="prefooter-eyebrow fade-up">Dirección Asistencial</span>
     <!-- CTA-FINAL: copy sugerido, pendiente de texto definitivo del cliente -->
     <p class="prefooter-title fade-up delay-1">Comience hoy.<br>El cuidado que su familia necesita.</p>
-    <p class="prefooter-text fade-up delay-2">La primera conversación es absolutamente confidencial.</p>
+    <p class="prefooter-text fade-up delay-2">El primer paso es una conversación con la Dirección Asistencial.</p>
     <a href="https://wa.me/5491166391010" class="btn-whatsapp fade-up delay-3" target="_blank" rel="noopener noreferrer" style="display:inline-flex;">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path d="M11 2C6.03 2 2 6.03 2 11C2 12.76 2.5 14.4 3.35 15.8L2 20L6.33 18.67C7.7 19.45 9.29 19.9 11 19.9C15.97 19.9 20 15.87 20 10.9C20 6.03 15.97 2 11 2Z" fill="white"/>
@@ -544,6 +542,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
 
 <script src="script.js" defer></script>
+
+<!-- CONTACTO: un unico boton siempre visible que despliega los tres canales -->
+<div class="contact-dock" id="contact-dock">
+  <div class="contact-dock-options" id="contact-dock-options" hidden>
+    <a href="https://wa.me/5491166391010" class="contact-dock-opt contact-dock-opt--wa" target="_blank" rel="noopener noreferrer">
+      <svg width="19" height="19" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <path d="M11 2C6.03 2 2 6.03 2 11c0 1.76.5 3.4 1.35 4.8L2 20l4.33-1.33A8.9 8.9 0 0 0 11 19.9c4.97 0 9-4.03 9-9S15.97 2 11 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M8.4 7.4c-.6.5-1 1.7-.3 3 .9 1.7 2.6 3.3 4.3 4 1.3.5 2.4 0 2.8-.7l-1.4-1.2-1.5.5c-.8-.4-2-1.6-2.4-2.4l.6-1.4-1.2-1.5Z" fill="currentColor"/>
+      </svg>
+      Escribir por WhatsApp
+    </a>
+    <a href="index.html#contacto" class="contact-dock-opt">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="3" y="2.5" width="14" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M6.5 7h7M6.5 10.5h7M6.5 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Formulario
+    </a>
+    <a href="mailto:info@longevityargentina.com?subject=Consulta%20-%20Longevity%20Argentina" class="contact-dock-opt">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M3 6l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Mail
+    </a>
+  </div>
+
+  <button type="button" class="contact-dock-toggle" id="contact-dock-toggle"
+          aria-expanded="false" aria-controls="contact-dock-options"
+          aria-label="Abrir opciones de contacto">
+    <svg class="contact-dock-ico-open" width="21" height="21" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <path d="M11 2.5c-4.7 0-8.5 3.4-8.5 7.6 0 2.4 1.2 4.5 3.1 5.9v3.5l3.3-1.8c.7.1 1.4.2 2.1.2 4.7 0 8.5-3.4 8.5-7.6S15.7 2.5 11 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M7.6 9.7h6.8M7.6 12.6h4.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <svg class="contact-dock-ico-close" width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="contact-dock-text">Contacto</span>
+  </button>
+</div>
 
 </body>
 </html>
