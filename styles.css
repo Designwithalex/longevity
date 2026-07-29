@@ -2273,28 +2273,6 @@ body {
   margin-bottom: 36px;
 }
 
-.btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: #25D366;
-  color: var(--white);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 16px 36px;
-  border-radius: 40px;
-  text-decoration: none;
-  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
-  margin-bottom: 20px;
-}
-
-.btn-whatsapp:hover {
-  background: #1fb357;
-  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.4);
-  transform: translateY(-2px);
-}
-
 .contacto-note {
   font-family: 'Poppins', sans-serif;
   font-size: 11.5px;
@@ -2698,42 +2676,6 @@ footer {
   color: rgba(255, 255, 255, 0.65);
 }
 
-/* ════════════════════════════════════════════════════════════
-   WA FLOAT
-   ════════════════════════════════════════════════════════════ */
-.wa-float {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  z-index: 999;
-  width: 60px;
-  height: 60px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.55);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  text-decoration: none;
-}
-
-.wa-float:hover {
-  transform: scale(1.12) translateY(-3px);
-  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.6);
-}
-
-
-.wa-float::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid rgba(37, 211, 102, 0.5);
-  animation: pulseDot 2.5s ease-in-out infinite;
-}
-
-
 /* ── CONTACTO: UN SOLO BOTON ─────────────────────────────────────
    Siempre visible abajo a la derecha. Al tocarlo despliega los tres
    canales: WhatsApp, formulario y mail. Reemplaza al widget de
@@ -3107,13 +3049,6 @@ footer {
 
   .hero-title {
     font-size: 38px;
-  }
-
-  .wa-float {
-    bottom: 20px;
-    right: 20px;
-    width: 54px;
-    height: 54px;
   }
 
   .pilares-grid {
