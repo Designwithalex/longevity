@@ -397,6 +397,43 @@
     }
   }
 
+  /* ── CONTACTO: UN SOLO BOTON ──
+     El boton despliega los tres canales. Se cierra al elegir uno, al
+     tocar fuera o con Escape. */
+  var contactDock = document.getElementById('contact-dock');
+  var contactToggle = document.getElementById('contact-dock-toggle');
+  var contactOptions = document.getElementById('contact-dock-options');
+
+  if (contactDock && contactToggle && contactOptions) {
+    var abrirContacto = function (abrir) {
+      contactDock.classList.toggle('is-open', abrir);
+      contactToggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      contactToggle.setAttribute('aria-label',
+        abrir ? 'Cerrar opciones de contacto' : 'Abrir opciones de contacto');
+      if (abrir) {
+        contactOptions.removeAttribute('hidden');
+      } else {
+        contactOptions.setAttribute('hidden', '');
+      }
+    };
+
+    contactToggle.addEventListener('click', function () {
+      abrirContacto(!contactDock.classList.contains('is-open'));
+    });
+
+    contactOptions.querySelectorAll('a').forEach(function (opt) {
+      opt.addEventListener('click', function () { abrirContacto(false); });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!contactDock.contains(e.target)) abrirContacto(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') abrirContacto(false);
+    });
+  }
+
   /* ── BOTONERA DE SERVICIOS ──
      En desktop el detalle se despliega con hover y con foco de teclado,
      los dos resueltos por CSS. Este bloque agrega el tap en touch:

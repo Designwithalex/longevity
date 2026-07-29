@@ -2733,62 +2733,153 @@ footer {
   animation: pulseDot 2.5s ease-in-out infinite;
 }
 
-/* ── DOCK DE CONTACTO SIEMPRE VISIBLE ──────────────────────────────
-   El canal de WhatsApp lo cubre el widget verde de Cliengo, que se
-   inyecta abajo a la derecha. Este dock queda abajo a la izquierda
-   para no superponerse con el. */
+
+/* ── CONTACTO: UN SOLO BOTON ─────────────────────────────────────
+   Siempre visible abajo a la derecha. Al tocarlo despliega los tres
+   canales: WhatsApp, formulario y mail. Reemplaza al widget de
+   Cliengo, que ocupaba esta misma esquina. */
 .contact-dock {
   position: fixed;
-  bottom: 32px;
-  left: 32px;
+  right: 28px;
+  bottom: 28px;
   z-index: 999;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 10px;
 }
 
-.contact-dock-btn {
-  display: flex;
+.contact-dock-toggle {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 48px;
-  padding: 0 20px;
+  gap: 9px;
+  height: 52px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 30px;
+  background: #25D366;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.42);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.contact-dock-toggle:hover,
+.contact-dock-toggle:focus-visible {
+  background: #1FBA5A;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+}
+
+.contact-dock-toggle svg {
+  flex-shrink: 0;
+}
+
+/* El icono cambia a una cruz cuando el panel esta abierto */
+.contact-dock-ico-close {
+  display: none;
+}
+
+.contact-dock.is-open .contact-dock-ico-open {
+  display: none;
+}
+
+.contact-dock.is-open .contact-dock-ico-close {
+  display: block;
+}
+
+.contact-dock-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+}
+
+.contact-dock-options[hidden] {
+  display: none;
+}
+
+.contact-dock-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 26px;
   background: var(--white);
   color: var(--purple);
-  border: 1.5px solid var(--purple);
-  border-radius: 30px;
+  border: 1.5px solid rgba(123, 47, 142, 0.3);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 13px;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 4px 20px rgba(123, 47, 142, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  animation: contactOptIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
-.contact-dock-btn svg {
-  flex-shrink: 0;
-}
+.contact-dock-opt:nth-child(1) { animation-delay: 0.06s; }
+.contact-dock-opt:nth-child(2) { animation-delay: 0.03s; }
+.contact-dock-opt:nth-child(3) { animation-delay: 0s; }
 
-.contact-dock-btn:hover,
-.contact-dock-btn:focus-visible {
+.contact-dock-opt:hover,
+.contact-dock-opt:focus-visible {
   background: var(--purple);
   color: var(--white);
-  transform: scale(1.06) translateY(-3px);
-  box-shadow: 0 8px 32px rgba(123, 47, 142, 0.35);
+  border-color: var(--purple);
 }
 
-/* El mail es el canal secundario: mismo lenguaje, un escalon mas abajo */
-.contact-dock-btn--mail {
-  height: 42px;
-  font-size: 12px;
-  font-weight: 500;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-color: rgba(123, 47, 142, 0.45);
+.contact-dock-opt--wa {
+  color: #1FA855;
+  border-color: rgba(37, 211, 102, 0.45);
 }
+
+.contact-dock-opt--wa:hover,
+.contact-dock-opt--wa:focus-visible {
+  background: #25D366;
+  color: var(--white);
+  border-color: #25D366;
+}
+
+@keyframes contactOptIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-dock-opt {
+    animation: none;
+  }
+  .contact-dock-toggle {
+    transition: none;
+  }
+  .contact-dock-toggle:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-dock {
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .contact-dock-toggle {
+    height: 50px;
+    padding: 0 18px;
+    font-size: 13.5px;
+  }
+
+  .contact-dock-opt {
+    height: 42px;
+    font-size: 12.5px;
+  }
+}
+
 
 /* Gradient line divider */
 .divider-gradient {
@@ -3023,29 +3114,6 @@ footer {
     right: 20px;
     width: 54px;
     height: 54px;
-  }
-
-  /* En mobile el dock pasa a fila de botones circulares, pegado a la
-     izquierda para dejar libre la esquina derecha donde vive Cliengo. */
-  .contact-dock {
-    bottom: 20px;
-    left: 20px;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .contact-dock-btn,
-  .contact-dock-btn--mail {
-    width: 54px;
-    height: 54px;
-    padding: 0;
-    justify-content: center;
-    border-radius: 50%;
-  }
-
-  .contact-dock-text {
-    display: none;
   }
 
   .pilares-grid {
