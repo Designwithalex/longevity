@@ -213,17 +213,39 @@
     var slides   = Array.from(track.querySelectorAll('.carousel-slide'));
     var prevBtn  = document.getElementById('esp-prev');
     var nextBtn  = document.getElementById('esp-next');
+    var dotsWrap = document.getElementById('esp-dots');
     var modal    = document.getElementById('video-modal');
     var modalVid = document.getElementById('modal-video');
     var modalClose = document.getElementById('modal-close');
     var current  = 0;
     var autoTimer = null;
 
+    /* — puntos: dejan a la vista cuantos videos hay y en cual estamos — */
+    var dots = [];
+    if (dotsWrap) {
+      slides.forEach(function (slide, i) {
+        var nombre = slide.querySelector('.carousel-name');
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label',
+          'Video ' + (i + 1) + (nombre ? ' — ' + nombre.textContent : ''));
+        dot.addEventListener('click', function () { goTo(i); startAuto(); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
     /* — navegar a un slide — */
     function goTo(idx) {
       idx = (idx % slides.length + slides.length) % slides.length;
       current = idx;
       slides.forEach(function (s, i) { s.classList.toggle('is-active', i === idx); });
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === idx);
+        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      });
       var slide  = slides[idx];
       var target = slide.offsetLeft - (track.clientWidth / 2) + (slide.offsetWidth / 2);
       track.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
@@ -277,7 +299,6 @@
     }
 
     slides.forEach(function (slide) {
-      if (slide.classList.contains('carousel-slide--coming')) return;
       var src = slide.querySelector('source');
       if (!src) return;
       slide.addEventListener('click', function () { openModal(src.getAttribute('src')); });

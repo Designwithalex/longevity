@@ -4241,25 +4241,118 @@ footer {
 .carousel-slide {
   flex: 0 0 var(--slide-w);
   width: var(--slide-w);
-  aspect-ratio: 9 / 16;
+  margin: 0;
   scroll-snap-align: center;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
   position: relative;
-  box-shadow: var(--shadow-card);
   opacity: 0.62;
   cursor: pointer;
-  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 
 .carousel-slide.is-active {
   opacity: 1;
+}
+
+.carousel-media {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.4s ease;
+}
+
+.carousel-slide.is-active .carousel-media {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
 }
 
-.carousel-slide--coming {
-  cursor: default;
+/* Senal de que el video se abre al tocarlo */
+.carousel-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--purple);
+  padding-left: 3px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease;
 }
+
+.carousel-slide:hover .carousel-play {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Zocalo: quien habla en cada video */
+.carousel-caption {
+  padding: 14px 6px 0;
+  text-align: center;
+}
+
+.carousel-name {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--purple);
+  line-height: 1.35;
+}
+
+.carousel-role {
+  display: block;
+  margin-top: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--text-lt);
+  line-height: 1.45;
+}
+
+/* Puntos: dejan a la vista que hay mas videos y cual se esta mirando */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  margin-top: 26px;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(123, 47, 142, 0.22);
+  cursor: pointer;
+  transition: background 0.3s ease, width 0.3s ease;
+}
+
+.carousel-dot:hover {
+  background: rgba(123, 47, 142, 0.45);
+}
+
+.carousel-dot.is-active {
+  width: 26px;
+  border-radius: 5px;
+  background: var(--gradient);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-dot,
+  .carousel-slide,
+  .carousel-media,
+  .carousel-play {
+    transition: none;
+  }
+}
+
 
 .carousel-video {
   width: 100%;
@@ -4270,40 +4363,9 @@ footer {
   pointer-events: none;
 }
 
-.carousel-slide--coming {
-  background: var(--cream-dk);
-  border: 2px dashed rgba(123, 47, 142, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: none;
-  opacity: 0.75;
-}
 
-.coming-inner {
-  text-align: center;
-  padding: 36px 28px;
-}
 
-.coming-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 20px;
-  background: rgba(123, 47, 142, 0.07);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.coming-text {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 15px;
-  color: var(--text-lt);
-  line-height: 1.7;
-}
 
 .carousel-arrow {
   flex-shrink: 0;
