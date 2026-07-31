@@ -448,4 +448,216 @@
     });
   }
 
+  /* ── SELECTOR DE CLIENTE DE MAIL ──
+     Un mailto abre el cliente que tenga configurado el sistema, que en
+     muchas maquinas no es el que la persona usa de verdad. Al tocar
+     cualquier link de mail copiamos la direccion al portapapeles y
+     ofrecemos abrir Gmail, Outlook, Yahoo o la app del sistema.
+     Sin JS el mailto sigue funcionando como siempre. */
+  (function () {
+    var mailLinks = document.querySelectorAll('a[href^="mailto:"]');
+    if (!mailLinks.length) return;
+
+    var PROVEEDORES = [
+      {
+        nombre: 'Gmail',
+        clase: 'is-gmail',
+        url: function (m) {
+          return 'https://mail.google.com/mail/?view=cm&fs=1&to=' +
+            encodeURIComponent(m.to) + '&su=' + encodeURIComponent(m.asunto);
+        }
+      },
+      {
+        nombre: 'Outlook',
+        clase: 'is-outlook',
+        url: function (m) {
+          return 'https://outlook.live.com/mail/0/deeplink/compose?to=' +
+            encodeURIComponent(m.to) + '&subject=' + encodeURIComponent(m.asunto);
+        }
+      },
+      {
+        nombre: 'Yahoo',
+        clase: 'is-yahoo',
+        url: function (m) {
+          return 'https://compose.mail.yahoo.com/?to=' +
+            encodeURIComponent(m.to) + '&subject=' + encodeURIComponent(m.asunto);
+        }
+      },
+      {
+        nombre: 'App de correo',
+        clase: 'is-app',
+        nativo: true,
+        url: function (m) { return m.href; }
+      }
+    ];
+
+    /* — separar destinatario y asunto del href — */
+    function leerMailto(href) {
+      var crudo = href.replace(/^mailto:/i, '');
+      var corte = crudo.indexOf('?');
+      var asunto = '';
+      if (corte !== -1) {
+        crudo.slice(corte + 1).split('&').forEach(function (par) {
+          var kv = par.split('=');
+          if (kv[0].toLowerCase() === 'subject') {
+            asunto = decodeURIComponent((kv[1] || '').replace(/\+/g, ' '));
+          }
+        });
+      }
+      return {
+        to: decodeURIComponent(corte === -1 ? crudo : crudo.slice(0, corte)),
+        asunto: asunto,
+        href: href
+      };
+    }
+
+    /* — copiar: Clipboard API y, si la rechaza (sin foco, sin permiso
+         o navegador viejo), el metodo de seleccion de toda la vida — */
+    function copiar(texto) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(texto).catch(function () {
+          return copiarLegacy(texto);
+        });
+      }
+      return copiarLegacy(texto);
+    }
+
+    function copiarLegacy(texto) {
+      return new Promise(function (resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = texto;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+        document.body.removeChild(ta);
+        ok ? resolve() : reject();
+      });
+    }
+
+    /* — armado del modal, una sola vez por pagina — */
+    var modal = document.createElement('div');
+    modal.className = 'mail-picker';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'mail-picker-title');
+    modal.hidden = true;
+    modal.innerHTML =
+      '<div class="mail-picker-backdrop"></div>' +
+      '<div class="mail-picker-box">' +
+        '<button type="button" class="mail-picker-close" aria-label="Cerrar">' +
+          '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
+            '<path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' +
+          '</svg>' +
+        '</button>' +
+        '<h3 class="mail-picker-title" id="mail-picker-title">Escribinos por mail</h3>' +
+        '<p class="mail-picker-sub">Copiamos la direccion al portapapeles. Elegi con que correo queres escribirnos.</p>' +
+        '<div class="mail-picker-address">' +
+          '<span class="mail-picker-address-value"></span>' +
+          '<button type="button" class="mail-picker-copy">Copiar</button>' +
+        '</div>' +
+        '<p class="mail-picker-status" role="status" aria-live="polite"></p>' +
+        '<div class="mail-picker-opts"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+
+    var box       = modal.querySelector('.mail-picker-box');
+    var backdrop  = modal.querySelector('.mail-picker-backdrop');
+    var cerrarBtn = modal.querySelector('.mail-picker-close');
+    var valorEl   = modal.querySelector('.mail-picker-address-value');
+    var copiarBtn = modal.querySelector('.mail-picker-copy');
+    var estadoEl  = modal.querySelector('.mail-picker-status');
+    var optsEl    = modal.querySelector('.mail-picker-opts');
+    var actual    = null;
+    var ultimoFoco = null;
+
+    PROVEEDORES.forEach(function (prov) {
+      var a = document.createElement('a');
+      a.className = 'mail-picker-opt ' + prov.clase;
+      if (!prov.nativo) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+      a.innerHTML =
+        '<span class="mail-picker-opt-dot" aria-hidden="true"></span>' +
+        '<span class="mail-picker-opt-name">' + prov.nombre + '</span>' +
+        '<svg class="mail-picker-opt-arrow" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
+          '<path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.6" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>';
+      a.addEventListener('click', function () {
+        // El href ya apunta al proveedor; solo cerramos detras del click.
+        setTimeout(cerrar, 80);
+      });
+      optsEl.appendChild(a);
+      prov.el = a;
+    });
+
+    function marcarEstado(texto, ok) {
+      estadoEl.textContent = texto;
+      estadoEl.classList.toggle('is-error', !ok);
+    }
+
+    function intentarCopiar() {
+      copiar(actual.to).then(function () {
+        marcarEstado('Direccion copiada al portapapeles', true);
+        copiarBtn.textContent = 'Copiado';
+      }).catch(function () {
+        // Si el navegador no deja copiar, al menos dejamos la direccion
+        // seleccionada para que alcance con Ctrl+C.
+        marcarEstado('No pudimos copiarla: ya te la dejamos seleccionada', false);
+        copiarBtn.textContent = 'Copiar';
+        try {
+          var rango = document.createRange();
+          rango.selectNodeContents(valorEl);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(rango);
+        } catch (err) { /* sin seleccion, queda el texto a la vista */ }
+      });
+    }
+
+    function abrir(datos) {
+      actual = datos;
+      valorEl.textContent = datos.to;
+      copiarBtn.textContent = 'Copiar';
+      marcarEstado('', true);
+      PROVEEDORES.forEach(function (prov) { prov.el.href = prov.url(datos); });
+
+      ultimoFoco = document.activeElement;
+      modal.hidden = false;
+      // el reflow deja que la transicion de entrada se vea
+      void box.offsetWidth;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      cerrarBtn.focus();
+      intentarCopiar();
+    }
+
+    function cerrar() {
+      if (modal.hidden) return;
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      window.setTimeout(function () { modal.hidden = true; }, 200);
+      if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
+    }
+
+    copiarBtn.addEventListener('click', intentarCopiar);
+    cerrarBtn.addEventListener('click', cerrar);
+    backdrop.addEventListener('click', cerrar);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') cerrar();
+    });
+
+    Array.prototype.forEach.call(mailLinks, function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        abrir(leerMailto(link.getAttribute('href')));
+      });
+    });
+  })();
+
 })();
