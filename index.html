@@ -323,21 +323,44 @@
   </style>
 
   <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=optional"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap"
     as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=optional">
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap">
   </noscript>
 
-  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="styles.css?v=20260803">
+
+
+  <script>
+    /* Intro: solo en la primera carga de la sesion. Se decide antes de pintar. */
+    try {
+      if (sessionStorage.getItem('lgv-intro') === '1') {
+        document.documentElement.className += ' intro-done';
+      } else {
+        sessionStorage.setItem('lgv-intro', '1');
+      }
+    } catch (e) { }
+  </script>
   <noscript>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+      #intro {
+        display: none
+      }
+    </style>
   </noscript>
 
 </head>
 
 <body>
+  <!-- INTRO — cortina de primera carga -->
+  <div id="intro" aria-hidden="true">
+    <div class="intro-mark">
+      <img src="img/marca_blanco-242.webp" alt="" width="242" height="72" fetchpriority="high">
+      <span class="intro-bar"><i></i></span>
+    </div>
+  </div>
 
 
   <!-- SCROLL PROGRESS -->
@@ -532,6 +555,26 @@
             propuesta de cuidado</p>
         </div>
 
+
+        <!-- Asesor senior: encabeza la seccion, por delante de los videos -->
+        <div class="advisor fade-up">
+          <div class="advisor-portrait">
+            <img src="img/julio-nemerovsky-600.webp"
+              srcset="img/julio-nemerovsky-300.webp 300w, img/julio-nemerovsky-600.webp 600w"
+              sizes="(max-width: 768px) 240px, 300px"
+              width="600" height="600" loading="lazy" decoding="async"
+              alt="Retrato del Dr. Julio Nemerovsky en su consultorio">
+          </div>
+          <div>
+            <h3 class="advisor-name">Dr. Julio Nemerovsky</h3>
+            <p class="advisor-role">Senior Health &amp; Elder Care Advisor at Longevity Argentina</p>
+            <ul class="advisor-credentials">
+              <li>M&eacute;dico (UBA), especialista en Geriatr&iacute;a y Cl&iacute;nica M&eacute;dica</li>
+              <li>Past President de la Sociedad Argentina de Geriatr&iacute;a y Gerontolog&iacute;a</li>
+              <li>Actual Director de la Carrera de Especialista en Geriatr&iacute;a (SAGG)</li>
+            </ul>
+          </div>
+        </div>
         <div class="especialistas-carousel-wrap fade-up delay-1">
 
           <button class="carousel-arrow carousel-arrow--prev" id="esp-prev" aria-label="Anterior" disabled>
@@ -543,11 +586,9 @@
 
           <div class="especialistas-carousel" id="esp-track">
 
-            <figure class="carousel-slide is-active">
+            <figure class="carousel-slide is-active" data-video="videos/LONGEVITY21.mp4">
               <div class="carousel-media">
-                <video muted preload="metadata" class="carousel-video" playsinline>
-                  <source src="videos/LONGEVITY21.mp4" type="video/mp4">
-                </video>
+                <img src="img/poster-LONGEVITY21.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Julio Nemerovsky — reproducir video">
                 <span class="carousel-play" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
@@ -560,11 +601,9 @@
               </figcaption>
             </figure>
 
-            <figure class="carousel-slide">
+            <figure class="carousel-slide" data-video="videos/LONGEVITY22.mp4">
               <div class="carousel-media">
-                <video muted preload="metadata" class="carousel-video" playsinline>
-                  <source src="videos/LONGEVITY22.mp4" type="video/mp4">
-                </video>
+                <img src="img/poster-LONGEVITY22.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Julio Nemerovsky — reproducir video">
                 <span class="carousel-play" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
@@ -577,11 +616,9 @@
               </figcaption>
             </figure>
 
-            <figure class="carousel-slide">
+            <figure class="carousel-slide" data-video="videos/LONGEVITY12.mp4">
               <div class="carousel-media">
-                <video muted preload="metadata" class="carousel-video" playsinline>
-                  <source src="videos/LONGEVITY12.mp4" type="video/mp4">
-                </video>
+                <img src="img/poster-LONGEVITY12.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
                 <span class="carousel-play" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
@@ -593,11 +630,9 @@
               </figcaption>
             </figure>
 
-            <figure class="carousel-slide">
+            <figure class="carousel-slide" data-video="videos/LONGEVITY15.mp4">
               <div class="carousel-media">
-                <video muted preload="metadata" class="carousel-video" playsinline>
-                  <source src="videos/LONGEVITY15.mp4" type="video/mp4">
-                </video>
+                <img src="img/poster-LONGEVITY15.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
                 <span class="carousel-play" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
@@ -609,11 +644,9 @@
               </figcaption>
             </figure>
 
-            <figure class="carousel-slide">
+            <figure class="carousel-slide" data-video="videos/LONGEVITY19-web.mp4">
               <div class="carousel-media">
-                <video muted preload="metadata" class="carousel-video" playsinline>
-                  <source src="videos/LONGEVITY19-web.mp4" type="video/mp4">
-                </video>
+                <img src="img/poster-LONGEVITY19-web.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
                 <span class="carousel-play" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
@@ -625,11 +658,9 @@
               </figcaption>
             </figure>
 
-            <figure class="carousel-slide">
+            <figure class="carousel-slide" data-video="videos/LONGEVITY20-web.mp4">
               <div class="carousel-media">
-                <video muted preload="metadata" class="carousel-video" playsinline>
-                  <source src="videos/LONGEVITY20-web.mp4" type="video/mp4">
-                </video>
+                <img src="img/poster-LONGEVITY20-web.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
                 <span class="carousel-play" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
@@ -1069,7 +1100,8 @@
       </svg>
     </button>
     <div class="video-modal-inner">
-      <video class="video-modal-player" id="modal-video" controls playsinline></video>
+      <!-- Sin src ni preload: el mp4 se carga recien cuando se abre el modal -->
+      <video class="video-modal-player" id="modal-video" controls playsinline preload="none"></video>
     </div>
   </div>
 
@@ -1122,7 +1154,7 @@
   </div>
 
 
-  <script src="script.js" defer></script>
+  <script src="script.js?v=20260803" defer></script>
 
 
 </body>

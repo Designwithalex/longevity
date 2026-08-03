@@ -5,6 +5,76 @@
 (function () {
   'use strict';
 
+  /* ── INTRO — RETIRO DE LA CORTINA ──
+     La cortina se va apenas estan la tipografia y la imagen del hero, con un
+     piso para que no parpadee en cache caliente y un techo para que nunca
+     retenga la pagina. Si este script no corre, el CSS la saca igual. */
+  var intro = document.getElementById('intro');
+
+  /* Ya se mostro en esta sesion: el CSS la oculto, aca solo se saca del DOM */
+  if (intro && document.documentElement.className.indexOf('intro-done') !== -1) {
+    if (intro.parentNode) intro.parentNode.removeChild(intro);
+    intro = null;
+  }
+
+  if (intro) {
+    var MIN_MS = 700;
+    var MAX_MS = 2200;
+    var pending = 0;
+    var settled = false;
+    var capId = null;
+
+    var removeIntro = function () {
+      if (settled) return;
+      settled = true;
+      clearTimeout(capId);
+      intro.classList.add('is-out');
+      setTimeout(function () {
+        if (intro.parentNode) intro.parentNode.removeChild(intro);
+      }, 900);
+    };
+
+    var maybeDone = function () {
+      if (pending > 0 || settled) return;
+      var elapsed = (window.performance && performance.now) ? performance.now() : MIN_MS;
+      setTimeout(removeIntro, Math.max(0, MIN_MS - elapsed));
+    };
+
+    var track = function (fn) {
+      pending++;
+      fn(function () {
+        pending--;
+        maybeDone();
+      });
+    };
+
+    /* Tipografia: el cambio a Poppins ocurre detras de la cortina, no a la vista */
+    if (document.fonts && document.fonts.ready) {
+      track(function (done) {
+        var fontLink = document.querySelector('link[href*="fonts.googleapis.com"]');
+        var waitFonts = function () { document.fonts.ready.then(done, done); };
+        if (!fontLink || fontLink.rel === 'stylesheet') {
+          waitFonts();
+        } else {
+          fontLink.addEventListener('load', waitFonts, { once: true });
+          fontLink.addEventListener('error', done, { once: true });
+        }
+      });
+    }
+
+    /* Imagen principal: que no aparezca a medio cargar al levantar la cortina */
+    var heroImg = document.querySelector('.hero img');
+    if (heroImg && !heroImg.complete) {
+      track(function (done) {
+        heroImg.addEventListener('load', done, { once: true });
+        heroImg.addEventListener('error', done, { once: true });
+      });
+    }
+
+    capId = setTimeout(removeIntro, MAX_MS);
+    maybeDone();
+  }
+
   /* ── SCROLL PROGRESS BAR ── */
   var progressBar = document.getElementById('scroll-progress');
   function updateProgress() {
@@ -237,9 +307,13 @@
         d.classList.toggle('is-active', i === idx);
         d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
       });
+      /* offsetLeft es relativo a la pista (que es position:relative) y el
+         slide se alinea al borde izquierdo, no al centro: asi el primero
+         y el ultimo quedan siempre completos. */
       var slide  = slides[idx];
-      var target = slide.offsetLeft - (track.clientWidth / 2) + (slide.offsetWidth / 2);
-      track.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      var maxScroll = track.scrollWidth - track.clientWidth;
+      var target = Math.min(Math.max(0, slide.offsetLeft), maxScroll);
+      track.scrollTo({ left: target, behavior: 'smooth' });
       if (prevBtn) prevBtn.disabled = idx === 0;
       if (nextBtn) nextBtn.disabled = idx === slides.length - 1;
     }
@@ -290,9 +364,9 @@
     }
 
     slides.forEach(function (slide) {
-      var src = slide.querySelector('source');
+      var src = slide.getAttribute('data-video');
       if (!src) return;
-      slide.addEventListener('click', function () { openModal(src.getAttribute('src')); });
+      slide.addEventListener('click', function () { openModal(src); });
     });
 
     if (modalClose) modalClose.addEventListener('click', closeModal);

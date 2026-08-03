@@ -46,6 +46,142 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ── INTRO — CORTINA DE PRIMERA CARGA ──
+   Cubre la pagina mientras terminan de llegar la tipografia y la imagen del
+   hero, y se retira sola. La animacion de salida arranca sin JS a los 2.2s:
+   si el script falla o nunca corre, la cortina se va igual. */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #3d1260 0%, #7B2F8E 30%, #B565A7 65%, #4FB5E5 100%);
+  animation: introOut 0.62s cubic-bezier(0.4, 0, 0.2, 1) 2.2s forwards;
+}
+
+/* El JS la retira apenas la pagina esta lista, sin esperar el failsafe.
+   Va con nombre propio a proposito: tocar solo el delay no reinicia la
+   animacion y la cortina saltaria al final sin fundirse. */
+#intro.is-out {
+  animation: introOutNow 0.62s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Ya se vio en esta sesion: no se pinta nunca */
+html.intro-done #intro {
+  display: none;
+}
+
+@keyframes introOut {
+  to {
+    opacity: 0;
+    transform: scale(1.04);
+    visibility: hidden;
+  }
+}
+
+@keyframes introOutNow {
+  to {
+    opacity: 0;
+    transform: scale(1.04);
+    visibility: hidden;
+  }
+}
+
+.intro-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.intro-mark img {
+  width: clamp(176px, 30vw, 264px);
+  height: auto;
+  opacity: 0;
+  animation: introMark 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.06s forwards;
+}
+
+@keyframes introMark {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.intro-bar {
+  position: relative;
+  overflow: hidden;
+  width: 88px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.intro-bar i {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: introBar 2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+/* Avanza rapido y despues se frena: sugiere progreso sin prometer un final exacto */
+@keyframes introBar {
+  0% {
+    transform: scaleX(0);
+  }
+
+  45% {
+    transform: scaleX(0.66);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #intro {
+    animation: introFade 0.2s linear 0.6s forwards;
+  }
+
+  #intro.is-out {
+    animation: introFadeNow 0.2s linear forwards;
+  }
+
+  @keyframes introFade {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @keyframes introFadeNow {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .intro-mark img {
+    opacity: 1;
+    animation: none;
+  }
+
+  .intro-bar i {
+    transform: scaleX(1);
+    animation: none;
+  }
+}
+
 /* ── SCROLL PROGRESS BAR ── */
 #scroll-progress {
   position: fixed;
@@ -4605,6 +4741,117 @@ footer {
 /* ════════════════════════════════════════════════════════════
    CAROUSEL — ESPECIALISTAS (videos 9:16 + próximamente)
    ════════════════════════════════════════════════════════════ */
+/* ── ASESOR DESTACADO — ancla de la seccion, antes de los videos ── */
+.advisor {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(32px, 4.5vw, 60px);
+  align-items: center;
+  margin-bottom: clamp(48px, 6vw, 76px);
+  padding: clamp(28px, 3.5vw, 44px);
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+}
+
+.advisor-portrait {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.advisor-portrait img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.advisor-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--purple);
+  text-wrap: balance;
+}
+
+/* Filete corto en vez de un separador de ancho completo: cierra el nombre
+   sin partir la columna en dos bloques */
+.advisor-role {
+  position: relative;
+  margin-top: 14px;
+  padding-top: 14px;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--purple-dk);
+}
+
+.advisor-role::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient);
+}
+
+.advisor-credentials {
+  margin-top: 22px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 62ch;
+}
+
+.advisor-credentials li {
+  position: relative;
+  padding-left: 20px;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.advisor-credentials li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 9px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--mauve);
+}
+
+@media (max-width: 768px) {
+  .advisor {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 26px;
+  }
+
+  .advisor-portrait {
+    width: min(240px, 68vw);
+  }
+
+  .advisor-role::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .advisor-credentials {
+    text-align: left;
+    gap: 12px;
+  }
+}
+
 .especialistas-carousel-wrap {
   display: flex;
   align-items: center;
@@ -4617,6 +4864,9 @@ footer {
 .especialistas-carousel {
   --slide-w: 300px;
   --slide-gap: 20px;
+  /* Sin esto los slides miden su offsetLeft contra un ancestro y el JS
+     scrollea de mas, cortando el primero */
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--slide-gap);
@@ -4641,7 +4891,9 @@ footer {
   flex: 0 0 var(--slide-w);
   width: var(--slide-w);
   margin: 0;
-  scroll-snap-align: center;
+  /* Alineado al borde y no al centro: en una vista de dos slides el centro
+     del primero cae fuera del rango de scroll y el snap lo dejaba cortado */
+  scroll-snap-align: start;
   position: relative;
   opacity: 0.62;
   cursor: pointer;
@@ -4753,7 +5005,9 @@ footer {
 }
 
 
-.carousel-video {
+/* Miniatura: es una imagen del primer frame util, no el video.
+   El mp4 recien se descarga cuando la persona toca para reproducir. */
+.carousel-thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
