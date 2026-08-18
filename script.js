@@ -119,7 +119,7 @@
   }
 
   /* ── DROPDOWNS DEL MENU MOBILE ──
-     Hay uno por grupo (Servicios, Nosotros, Recursos). Cada boton
+     Hay uno por grupo (Servicios, Nosotros). Cada boton
      despliega el bloque de links que tiene inmediatamente debajo, y
      al abrir uno se cierran los otros para que el menu no crezca de mas. */
   var mobileToggles = document.querySelectorAll('.mobile-dropdown-toggle');
