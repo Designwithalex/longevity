@@ -60,6 +60,21 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7T2WPBX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+<!-- Conversión de formulario: solo se dispara si venimos del envío real
+     (send-form.php agrega ?ok=1). Los bots caen en /gracias.html sin el
+     parámetro y por lo tanto no generan el evento.
+     En GTM: trigger de "Custom Event" con nombre form_conversion. -->
+<script>
+  (function () {
+    if (new URLSearchParams(window.location.search).get('ok') !== '1') return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'form_conversion' });
+    // Limpiamos la URL para que el parámetro no se comparta ni se recargue.
+    if (window.history.replaceState) {
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  })();
+</script>
   <!-- INTRO — cortina de primera carga -->
   <div id="intro" aria-hidden="true">
     <div class="intro-mark">

@@ -31,9 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 /**
- * Marca un envío como spam. A los bots les mostramos la página de "gracias"
- * (fail-silently: no les damos pistas de que los detectamos). Los errores
- * legítimos, en cambio, vuelven al form con un mensaje (redirect_error).
+ * Marca un envío como spam. A los bots les mostramos la misma página de
+ * "gracias" (fail-silently: no les damos pistas de que los detectamos), pero
+ * SIN el parámetro ?ok=1. Ese parámetro es el que dispara la conversión en
+ * GTM, así que los bots no ensucian las métricas de Ads/Analytics.
+ * Los errores legítimos, en cambio, vuelven al form con un mensaje
+ * (redirect_error).
  */
 function drop_as_spam(): void
 {
@@ -203,5 +206,6 @@ try {
     redirect_error('error_envio');
 }
 
-header('Location: /gracias.html');
+// ?ok=1 => envío legítimo. Es el único caso que debe contar como conversión.
+header('Location: /gracias.html?ok=1');
 exit;
