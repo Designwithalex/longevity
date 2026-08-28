@@ -445,6 +445,7 @@
       email_invalido: 'El email ingresado no es válido.',
       error_adjunto: 'Hubo un problema con el archivo adjunto. Probá de nuevo.',
       adjunto_muy_grande: 'El archivo es demasiado grande (máximo 5 MB).',
+      envio_muy_grande: 'El envío superó el tamaño permitido por el servidor. Probá con un archivo más liviano.',
       formato_adjunto_invalido: 'Formato de archivo no permitido. Subí un PDF o Word.',
       spam: 'No pudimos procesar el envío. Si el problema persiste, escribinos por WhatsApp.',
       demasiados_envios: 'Recibimos varias consultas desde tu conexión. Esperá unos minutos e intentá de nuevo.',

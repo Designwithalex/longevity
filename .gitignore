@@ -6,6 +6,7 @@ php/config.php
 
 # ── Logs y artefactos del servidor ───────────────────────────────────────────
 php/error_log
+php/logs/
 .ftpquota
 
 # ── Archivos pesados ─────────────────────────────────────────────────────────

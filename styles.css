@@ -2604,12 +2604,12 @@ html.intro-done #intro {
   min-height: 96px;
 }
 
+/* Honeypot: va con display:none, no fuera de pantalla.
+   Un campo llamado "website" que sigue siendo visible para el navegador se lo
+   autocompletan los gestores de contrasenas, y el envio termina descartado
+   como spam sin que la persona se entere. */
 .simple-form .form-honeypot {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  display: none !important;
 }
 
 .form-error-banner {

@@ -16,4 +16,18 @@ return [
     'mail_to'       => 'info@longevityargentina.com',
     'mail_from'     => 'info@longevityargentina.com',
     'mail_from_name'=> 'Web Longevity Argentina',
+
+    /* ── Opcionales ────────────────────────────────────────────────────────
+       smtp_secure   'tls' (STARTTLS, puerto 587) o 'ssl' (SMTPS, puerto 465).
+                     Si se omite, se usa STARTTLS.
+       smtp_timeout  Segundos de espera al conectar. Bajo a proposito: si el
+                     hosting bloquea el puerto SMTP, queremos fallar rapido y
+                     mostrar el aviso, no colgarnos hasta el fatal de PHP.
+       smtp_debug    true escribe el dialogo SMTP en php/logs/form.log (sin las
+                     credenciales). Dejarlo en true mientras se diagnostica y
+                     pasarlo a false cuando el formulario ande.
+       ------------------------------------------------------------------- */
+    'smtp_secure'   => 'tls',
+    'smtp_timeout'  => 8,
+    'smtp_debug'    => true,
 ];
