@@ -18,8 +18,12 @@ return [
     'mail_from_name'=> 'Web Longevity Argentina',
 
     /* ── Opcionales ────────────────────────────────────────────────────────
-       smtp_secure   'tls' (STARTTLS, puerto 587) o 'ssl' (SMTPS, puerto 465).
-                     Si se omite, se usa STARTTLS.
+       smtp_secure   'tls' (STARTTLS, puerto 587), 'ssl' (SMTPS, puerto 465) o
+                     'none' (sin cifrar, unico modo del relay del hosting en el
+                     puerto 25). Si se omite, se usa STARTTLS.
+       smtp_auth     false cuando el relay autentica por IP y no pide usuario ni
+                     contrasenia (relay-hosting.secureserver.net de GoDaddy).
+                     Si se omite, se autentica.
        smtp_timeout  Segundos de espera al conectar. Bajo a proposito: si el
                      hosting bloquea el puerto SMTP, queremos fallar rapido y
                      mostrar el aviso, no colgarnos hasta el fatal de PHP.
@@ -28,6 +32,7 @@ return [
                      pasarlo a false cuando el formulario ande.
        ------------------------------------------------------------------- */
     'smtp_secure'   => 'tls',
+    'smtp_auth'     => true,
     'smtp_timeout'  => 8,
     'smtp_debug'    => true,
 ];

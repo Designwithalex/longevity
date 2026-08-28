@@ -200,6 +200,17 @@ if (!is_file($configFile)) {
 }
 $config = require $configFile;
 
+// Ajustes de transporte (auth, cifrado, timeout, debug). Van aparte porque no
+// son secretos: config.php lo regenera el deploy desde los GitHub Secrets y
+// solo trae servidor, puerto y credenciales. Lo de aca pisa a config.php.
+$transportFile = __DIR__ . '/smtp-transport.php';
+if (is_file($transportFile)) {
+    $transport = require $transportFile;
+    if (is_array($transport)) {
+        $config = array_merge($config, $transport);
+    }
+}
+
 $nombre   = trim((string)($_POST['nombre'] ?? ''));
 $telefono = trim((string)($_POST['telefono'] ?? ''));
 $email    = trim((string)($_POST['email'] ?? ''));
@@ -284,13 +295,29 @@ $mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
-    $mail->Host       = $config['smtp_host'];
-    $mail->SMTPAuth   = true;
-    $mail->Username   = $config['smtp_user'];
-    $mail->Password   = $config['smtp_pass'];
-    $mail->SMTPSecure = $config['smtp_secure'] ?? PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = (int)$config['smtp_port'];
-    $mail->CharSet    = 'UTF-8';
+    $mail->Host    = $config['smtp_host'];
+    $mail->Port    = (int)$config['smtp_port'];
+    $mail->CharSet = 'UTF-8';
+
+    // Los relays del propio hosting (GoDaddy: relay-hosting.secureserver.net,
+    // puerto 25) no piden usuario ni contrasenia: autentican por IP de origen.
+    // Gmail y Brevo si autentican, y ahi smtp_auth va en true.
+    $mail->SMTPAuth = (bool)($config['smtp_auth'] ?? true);
+    if ($mail->SMTPAuth) {
+        $mail->Username = $config['smtp_user'];
+        $mail->Password = $config['smtp_pass'];
+    }
+
+    // 'tls' = STARTTLS (587) | 'ssl' = SMTPS (465) | '' o 'none' = sin cifrar,
+    // que es el unico modo que acepta el relay de GoDaddy en el puerto 25.
+    $secure = (string)($config['smtp_secure'] ?? PHPMailer::ENCRYPTION_STARTTLS);
+    if ($secure === '' || strtolower($secure) === 'none') {
+        $mail->SMTPSecure = '';
+        // Sin esto PHPMailer intenta STARTTLS igual y el relay corta la sesion.
+        $mail->SMTPAutoTLS = false;
+    } else {
+        $mail->SMTPSecure = $secure;
+    }
 
     // Sin esto, un puerto SMTP bloqueado por el hosting deja la conexión colgada
     // hasta que PHP mata el script por max_execution_time: error fatal y página
