@@ -6,18 +6,31 @@
  *
  * Lo que se define aca pisa a config.php.
  *
- * ── Estado actual ─────────────────────────────────────────────────────────
- * El servidor no alcanza a smtp.gmail.com:587 (la conexion no completa y
- * agota el timeout), asi que estamos usando el relay del propio hosting,
- * relay-hosting.secureserver.net:25, que autentica por IP de origen y no
- * acepta cifrado. Host y puerto salen de los secrets SMTP_HOST y SMTP_PORT.
+ * ── Por que localhost ─────────────────────────────────────────────────────
+ * Este hosting tiene TODO el SMTP saliente bloqueado. Medido desde el propio
+ * servidor, dan "Connection timed out" a los 6 segundos:
  *
- * ── Para volver a Gmail o pasar a Brevo ───────────────────────────────────
- *   'smtp_auth'   => true,
- *   'smtp_secure' => 'tls',
- * y cargar SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS en los secrets.
- * Brevo: smtp-relay.brevo.com, puerto 2525 (el 587 tambien esta bloqueado
- * desde este hosting).
+ *   smtp.gmail.com:587      smtp.gmail.com:465
+ *   smtp-relay.brevo.com:587    smtp-relay.brevo.com:2525
+ *   smtp.sendgrid.net:2525      relay-hosting.secureserver.net:25
+ *
+ * En cambio google.com:443 responde en 36ms: la salida a internet anda, lo
+ * que esta cerrado son los puertos de mail. Y localhost:25 responde en 1ms,
+ * porque el servidor corre su propio Exim. Ese es el unico camino posible
+ * aca, y por eso va sin auth y sin cifrado. Host y puerto salen de los
+ * secrets SMTP_HOST y SMTP_PORT.
+ *
+ * Conclusion: ningun proveedor externo (Brevo, SendGrid, Gmail) sirve en
+ * este plan de hosting. Para usar uno habria que migrar a un hosting sin
+ * ese bloqueo, o mandar por API HTTPS en vez de SMTP (el 443 esta abierto).
+ *
+ * ── PENDIENTE: entregabilidad ─────────────────────────────────────────────
+ * El SPF del dominio es "v=spf1 include:_spf.google.com ~all" y el DMARC
+ * esta en p=quarantine, asi que un mail salido de la IP de GoDaddy con
+ * From: @longevityargentina.com no pasa SPF y Google lo manda a spam.
+ * Se arregla agregando el hosting al SPF:
+ *
+ *   v=spf1 include:_spf.google.com include:secureserver.net ~all
  */
 
 return [
