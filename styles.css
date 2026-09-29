@@ -2524,31 +2524,13 @@ html.intro-done #intro {
   color: #1FA855;
 }
 
-/* ── Nota de privacidad (por que el sitio no muestra fotos) ── */
-.contacto-privacidad {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px 18px;
-  margin-bottom: 28px;
-  background: rgba(123, 47, 142, 0.045);
-  border-left: 3px solid rgba(123, 47, 142, 0.35);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  color: var(--purple);
+/* ── Columna derecha: formulario y, debajo, el mail ── */
+.contacto-canales--wa {
+  margin-bottom: 32px;
 }
 
-.contacto-privacidad svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-  opacity: 0.75;
-}
-
-.contacto-privacidad p {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--text);
+.contacto-canales--mail {
+  margin: 20px 0 0;
 }
 
 
@@ -3416,6 +3398,25 @@ footer {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+
+  /* En una columna el recorrido es WhatsApp → formulario → mail → direccion.
+     Las dos columnas se disuelven para poder ordenar sus bloques. */
+  .contacto-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .contacto-left,
+  .contacto-right {
+    display: contents;
+  }
+
+  .contacto-canales--wa { order: 1; margin-bottom: 20px; }
+  .contacto-info { order: 2; }
+  .contacto-canales--mail { order: 3; }
+  .contacto-domicilio { order: 4; margin-top: 32px; }
 
   .nosotros-image-block {
     max-width: 480px;
