@@ -5392,22 +5392,10 @@ footer {
 }
 
 /* ════════════════════════════════════════════════════════════
-   ILUSTRACIONES (pasos, paginas de servicio, ElderWatch)
+   ILUSTRACIONES (paginas de servicio, ElderWatch)
    Los dibujos vienen sobre fondo blanco: multiply los integra con
    el crema/blanco de cada seccion sin recortar el fondo.
    ════════════════════════════════════════════════════════════ */
-.paso-illus {
-  /* deja libre la zona del numero grande de arriba a la derecha */
-  margin: 32px -8px 8px;
-}
-
-.paso-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  mix-blend-mode: multiply;
-}
-
 .service-illus {
   float: right;
   width: 42%;
