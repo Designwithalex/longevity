@@ -5391,3 +5391,94 @@ footer {
     padding: 56px 24px;
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   ILUSTRACIONES (pasos, paginas de servicio, ElderWatch)
+   Los dibujos vienen sobre fondo blanco: multiply los integra con
+   el crema/blanco de cada seccion sin recortar el fondo.
+   ════════════════════════════════════════════════════════════ */
+.paso-illus {
+  /* deja libre la zona del numero grande de arriba a la derecha */
+  margin: 32px -8px 8px;
+}
+
+.paso-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.service-illus {
+  float: right;
+  width: 42%;
+  max-width: 360px;
+  margin: 4px 0 20px 40px;
+}
+
+.service-illus--wide {
+  width: 48%;
+  max-width: 420px;
+}
+
+.service-illus img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.service-body-inner::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.elderwatch-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 28px;
+  margin: 24px 0 8px;
+}
+
+.elderwatch-step {
+  margin: 0;
+}
+
+.elderwatch-step img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  border-radius: var(--radius-lg);
+}
+
+.elderwatch-step figcaption {
+  margin-top: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-lt);
+}
+
+.elderwatch-step figcaption strong {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--purple);
+}
+
+@media (max-width: 768px) {
+  .service-illus,
+  .service-illus--wide {
+    float: none;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+
+  .elderwatch-steps {
+    grid-template-columns: 1fr;
+  }
+}
