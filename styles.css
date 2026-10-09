@@ -1387,18 +1387,17 @@ html.intro-done #intro {
 .hive-cell-illus {
   width: auto;
   margin: -44px -40px 20px;
-  /* Encuadre casi cuadrado a proposito: en estas ilustraciones el trazo llega
-     hasta el 6% del alto, asi que un formato mas apaisado les cortaria la
-     cabeza a las figuras. 8/7 se come solo el aire sobrante. */
-  aspect-ratio: 8 / 7;
-  overflow: hidden;
+  /* Sin aspect-ratio ni recorte: el dibujo se ve siempre entero, firma
+     incluida. Los archivos ya vienen con aire blanco alrededor y todos con
+     la misma proporcion, asi que las cuatro tarjetas quedan parejas. */
+  flex-shrink: 0;
 }
 
 .hive-cell-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   /* El dibujo viene sobre fondo blanco: multiply lo integra con el crema
      de la tarjeta activa sin necesidad de recortar el fondo. */
   mix-blend-mode: multiply;
