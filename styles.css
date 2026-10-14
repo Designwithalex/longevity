@@ -1380,35 +1380,50 @@ html.intro-done #intro {
   transform: scaleY(1);
 }
 
-/* Ilustracion a trazo fino, propia de cada servicio.
-   Va a sangre: los margenes negativos anulan el padding de la celda para que
-   el dibujo toque el borde superior y los dos laterales. Las esquinas
-   redondeadas las recorta .hive-grid, que ya tiene overflow: hidden. */
-.hive-cell-illus {
-  width: auto;
-  margin: -44px -40px 20px;
-  /* Sin aspect-ratio ni recorte: el dibujo se ve siempre entero, firma
-     incluida. Los archivos ya vienen con aire blanco alrededor y todos con
-     la misma proporcion, asi que las cuatro tarjetas quedan parejas. */
+/* Mosaico con la serie de ilustraciones de cada servicio.
+   Cada dibujo se ve entero (firma incluida): los archivos de una misma serie
+   vienen con la misma proporcion y aire blanco alrededor, sin recorte. */
+.hive-mosaic {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
   flex-shrink: 0;
 }
 
-.hive-cell-img {
+.hive-mosaic--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.hive-mosaic--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Enfermeria es una serie vertical: mas angosta, para no estirar la fila
+   frente a All Inclusive, que es apaisada. */
+[data-servicio="enfermeria"] .hive-mosaic {
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hive-mosaic-img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
+  border: 1px solid rgba(123, 47, 142, 0.1);
+  border-radius: 8px;
   /* El dibujo viene sobre fondo blanco: multiply lo integra con el crema
      de la tarjeta activa sin necesidad de recortar el fondo. */
   mix-blend-mode: multiply;
-  opacity: 0.82;
+  opacity: 0.88;
   transition: opacity 0.3s ease;
 }
 
-/* El trazo se afina en reposo y gana cuerpo cuando la celda se activa */
-.hive-cell:hover .hive-cell-img,
-.hive-cell:focus-within .hive-cell-img,
-.hive-cell.is-active .hive-cell-img {
+/* El trazo gana cuerpo cuando la celda se activa */
+.hive-cell:hover .hive-mosaic-img,
+.hive-cell:focus-within .hive-mosaic-img,
+.hive-cell.is-active .hive-mosaic-img {
   opacity: 1;
 }
 
@@ -1519,7 +1534,7 @@ html.intro-done #intro {
   .hive-cell,
   .hive-cell::before,
   .hive-cell-detail,
-  .hive-cell-img {
+  .hive-mosaic-img {
     transition: none;
   }
 }
@@ -1533,8 +1548,9 @@ html.intro-done #intro {
     padding: 32px 26px;
   }
 
-  .hive-cell-illus {
-    margin: -32px -26px 16px;
+  .hive-mosaic {
+    gap: 6px;
+    margin-bottom: 18px;
   }
 }
 
@@ -5392,10 +5408,22 @@ footer {
 }
 
 /* ════════════════════════════════════════════════════════════
-   ILUSTRACIONES (paginas de servicio, ElderWatch)
+   ILUSTRACIONES (pasos, paginas de servicio, ElderWatch)
    Los dibujos vienen sobre fondo blanco: multiply los integra con
    el crema/blanco de cada seccion sin recortar el fondo.
    ════════════════════════════════════════════════════════════ */
+.paso-illus {
+  /* deja libre la zona del numero grande de arriba a la derecha */
+  margin: 32px -8px 8px;
+}
+
+.paso-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
 .service-illus {
   float: right;
   width: 42%;
