@@ -1325,9 +1325,20 @@ html.intro-done #intro {
   background: var(--cream);
 }
 
+/* El titulo general de la seccion va en su propia burbuja, separado de las
+   tarjetas: es comun a todos los servicios, no encabeza a ninguno. */
 .servicios-header {
   text-align: center;
-  margin-bottom: 64px;
+  max-width: 760px;
+  margin: 0 auto 48px;
+  padding: 40px 32px 36px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.servicios-header .section-subtitle {
+  margin-bottom: 0;
 }
 
 /* Panel tipo tatetí/colmena: 4 categorías en grid 2x2 con líneas divisorias finas */
@@ -1380,39 +1391,37 @@ html.intro-done #intro {
   transform: scaleY(1);
 }
 
-/* Mosaico con la serie de ilustraciones de cada servicio.
-   Cada dibujo se ve entero (firma incluida): los archivos de una misma serie
-   vienen con la misma proporcion y aire blanco alrededor, sin recorte. */
+/* Placa con la serie de ilustraciones de cada servicio. Va debajo del titulo
+   y la descripcion, y tiene el mismo tamanio en todos los servicios: los
+   dibujos (6 o 4 segun la serie) se acomodan adentro, enteros y con la firma. */
 .hive-mosaic {
   display: grid;
-  gap: 8px;
-  margin-bottom: 24px;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-top: 22px;
+  padding: 14px;
+  background: var(--white);
+  border: 1px solid rgba(123, 47, 142, 0.12);
+  border-radius: var(--radius-lg);
   flex-shrink: 0;
 }
 
 .hive-mosaic--3 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .hive-mosaic--2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-/* Enfermeria es una serie vertical: mas angosta, para no estirar la fila
-   frente a All Inclusive, que es apaisada. */
-[data-servicio="enfermeria"] .hive-mosaic {
-  width: 100%;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .hive-mosaic-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
   display: block;
-  border: 1px solid rgba(123, 47, 142, 0.1);
-  border-radius: 8px;
   /* El dibujo viene sobre fondo blanco: multiply lo integra con el crema
      de la tarjeta activa sin necesidad de recortar el fondo. */
   mix-blend-mode: multiply;
@@ -1550,7 +1559,13 @@ html.intro-done #intro {
 
   .hive-mosaic {
     gap: 6px;
-    margin-bottom: 18px;
+    padding: 10px;
+    margin-top: 18px;
+  }
+
+  .servicios-header {
+    padding: 32px 22px 28px;
+    margin-bottom: 32px;
   }
 }
 
