@@ -111,7 +111,7 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "All Inclusive",
+                "name": "All Inclusive Elder Care",
                 "url": "https://longevityargentina.com/servicio-all-inclusive-elder-care.html",
                 "description": "Contención y asistencia integral al adulto mayor: vida social, vínculos y soporte adaptado a cada situación."
               }
@@ -398,7 +398,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="servicio-cuidadores.html" role="menuitem">Cuidadores/as Profesionales</a>
             <a href="servicio-acompanantes-terapeuticos.html" role="menuitem">Acompañantes Terapéuticos</a>
             <a href="servicio-enfermeria.html" role="menuitem">Enfermería</a>
-            <a href="servicio-all-inclusive-elder-care.html" role="menuitem">All Inclusive</a>
+            <a href="servicio-all-inclusive-elder-care.html" role="menuitem">All Inclusive Elder Care</a>
             <div class="nav-dropdown-divider"></div>
             <a href="elderwatch.html" role="menuitem">ElderWatch®</a>
           </div>
@@ -439,7 +439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="servicio-cuidadores.html">Cuidadores/as Profesionales</a>
         <a href="servicio-acompanantes-terapeuticos.html">Acompañantes Terapéuticos</a>
         <a href="servicio-enfermeria.html">Enfermería</a>
-        <a href="servicio-all-inclusive-elder-care.html">All Inclusive</a>
+        <a href="servicio-all-inclusive-elder-care.html">All Inclusive Elder Care</a>
         <a href="elderwatch.html">ElderWatch®</a>
       </div>
       <button class="mobile-dropdown-toggle" aria-expanded="false">
@@ -692,118 +692,124 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="section-subtitle">Cada perfil, formado para una necesidad específica</p>
         </div>
 
-        <!-- BOTONERA DE SERVICIOS
-         Cada tarjeta se activa con hover, foco de teclado o tap y despliega
-         el detalle del servicio. El link interno conserva la navegacion a la
-         pagina completa como fallback si el JS no corre. -->
-        <div class="hive-grid" role="list">
+        <!-- PLACAS DE SERVICIOS
+         Una placa por servicio, de a una: foto en el estilo de redes (sin
+         caras, tono violeta de marca), el nombre arriba y abajo los items y
+         los botones. Sin JS se recorren con scroll horizontal (scroll-snap);
+         el JS suma flechas, botones por servicio y teclado. -->
+        <div class="servicios-carrusel" data-carrusel aria-roledescription="carrusel" aria-label="Servicios de Longevity Argentina">
 
-          <div class="hive-cell fade-up delay-1" role="listitem" data-servicio="cuidadores">
-            <span class="hive-cell-complexity">3 niveles de complejidad</span>
-            <h3 class="hive-cell-title">Cuidadores/as Profesionales</h3>
-            <p class="hive-cell-desc">Compañía y asistencia diaria no clínica: por turnos, jornada completa o dedicación
-              exclusiva 24 hs.</p>
-            <div class="hive-mosaic hive-mosaic--3">
-              <img src="img/mos-cuidadora-fem-01-paseo-baston-300.webp" srcset="img/mos-cuidadora-fem-01-paseo-baston-300.webp 300w, img/mos-cuidadora-fem-01-paseo-baston-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Cuidadora acompanando a una mujer mayor que camina con baston" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-cuidadora-fem-02-medicacion-300.webp" srcset="img/mos-cuidadora-fem-02-medicacion-300.webp 300w, img/mos-cuidadora-fem-02-medicacion-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Cuidadora ayudando con la medicacion oral" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-cuidadora-fem-03-lectura-sillon-300.webp" srcset="img/mos-cuidadora-fem-03-lectura-sillon-300.webp 300w, img/mos-cuidadora-fem-03-lectura-sillon-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Cuidadora acompanando la lectura en el sillon" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-cuidadora-fem-04-alimentacion-300.webp" srcset="img/mos-cuidadora-fem-04-alimentacion-300.webp 300w, img/mos-cuidadora-fem-04-alimentacion-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Cuidadora asistiendo durante la comida" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-cuidadora-fem-05-contencion-mesa-300.webp" srcset="img/mos-cuidadora-fem-05-contencion-mesa-300.webp 300w, img/mos-cuidadora-fem-05-contencion-mesa-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Cuidadora tomando de las manos a una paciente" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-cuidadora-fem-06-ejercicio-elongacion-300.webp" srcset="img/mos-cuidadora-fem-06-ejercicio-elongacion-300.webp 300w, img/mos-cuidadora-fem-06-ejercicio-elongacion-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Cuidadora acompanando ejercicios de elongacion" class="hive-mosaic-img" loading="lazy" decoding="async">
-            </div>
-            <div class="hive-cell-detail">
-              <ul class="hive-cell-list">
-                <li>Compañía por turnos</li>
-                <li>Jornada completa</li>
-                <li>Dedicación exclusiva 24 hs</li>
-              </ul>
-              <a class="hive-cell-arrow" href="servicio-cuidadores.html">Ver el servicio completo →</a>
-            </div>
+          <div class="servicios-tabs" role="tablist" aria-label="Elegí un servicio">
+            <button type="button" class="servicios-tab is-active" role="tab" aria-selected="true" aria-controls="placa-cuidadores" data-placa="0">Cuidadores/as</button>
+            <button type="button" class="servicios-tab" role="tab" aria-selected="false" aria-controls="placa-acompanantes" data-placa="1">Acompañantes</button>
+            <button type="button" class="servicios-tab" role="tab" aria-selected="false" aria-controls="placa-enfermeria" data-placa="2">Enfermería</button>
+            <button type="button" class="servicios-tab" role="tab" aria-selected="false" aria-controls="placa-allinclusive" data-placa="3">All Inclusive Elder Care</button>
           </div>
 
-          <div class="hive-cell fade-up delay-2" role="listitem" data-servicio="acompanantes">
-            <span class="hive-cell-complexity">3 niveles de complejidad</span>
-            <h3 class="hive-cell-title">Acompañantes Terapéuticos</h3>
-            <p class="hive-cell-desc">Contención emocional y estimulación cognitiva, coordinada con el equipo
-              terapéutico interdisciplinario.</p>
-            <div class="hive-mosaic hive-mosaic--3">
-              <img src="img/mos-at-masc-01-juegos-mesa-ajedrez-300.webp" srcset="img/mos-at-masc-01-juegos-mesa-ajedrez-300.webp 300w, img/mos-at-masc-01-juegos-mesa-ajedrez-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Acompanante terapeutico jugando al ajedrez con un hombre mayor" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-at-masc-02-uso-notebook-300.webp" srcset="img/mos-at-masc-02-uso-notebook-300.webp 300w, img/mos-at-masc-02-uso-notebook-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Acompanante terapeutico usando una notebook con un hombre mayor" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-at-masc-03-ver-tv-juntos-300.webp" srcset="img/mos-at-masc-03-ver-tv-juntos-300.webp 300w, img/mos-at-masc-03-ver-tv-juntos-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Acompanante terapeutico viendo television con un hombre mayor" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-at-masc-04-gym-simple-300.webp" srcset="img/mos-at-masc-04-gym-simple-300.webp 300w, img/mos-at-masc-04-gym-simple-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Acompanante terapeutico en una rutina de gimnasia suave" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-at-masc-05-paseo-bici-300.webp" srcset="img/mos-at-masc-05-paseo-bici-300.webp 300w, img/mos-at-masc-05-paseo-bici-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Acompanante terapeutico paseando en bicicleta con un hombre mayor" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-at-masc-06-caminata-parque-300.webp" srcset="img/mos-at-masc-06-caminata-parque-300.webp 300w, img/mos-at-masc-06-caminata-parque-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 190px" alt="Acompanante terapeutico caminando por el parque con un hombre mayor" class="hive-mosaic-img" loading="lazy" decoding="async">
-            </div>
-            <div class="hive-cell-detail">
-              <ul class="hive-cell-list">
-                <li>Sesiones acotadas</li>
-                <li>Contención diaria</li>
-                <li>Presencia permanente</li>
-              </ul>
-              <a class="hive-cell-arrow" href="servicio-acompanantes-terapeuticos.html">Ver el servicio completo →</a>
-            </div>
+          <div class="servicios-track" tabindex="0">
+
+            <article class="servicio-placa" id="placa-cuidadores" role="tabpanel" aria-roledescription="diapositiva" aria-label="1 de 4: Cuidadores/as Profesionales">
+              <img class="servicio-placa-img" src="img/foto-servicio-cuidadores-600.webp"
+                srcset="img/foto-servicio-cuidadores-600.webp 600w, img/foto-servicio-cuidadores-1200.webp 1200w"
+                sizes="(max-width: 1100px) 100vw, 1100px" width="1200" height="896"
+                alt="Cuidadora tomando las manos de una mujer mayor junto a una taza de te y un album de fotos" loading="lazy" decoding="async">
+              <div class="servicio-placa-top">
+                <span class="servicio-placa-nivel">3 niveles de complejidad</span>
+                <h3 class="servicio-placa-title">Cuidadores/as Profesionales</h3>
+                <p class="servicio-placa-desc">Compañía y asistencia diaria no clínica: por turnos, jornada completa o dedicación exclusiva 24 hs.</p>
+              </div>
+              <div class="servicio-placa-bottom">
+                <ul class="servicio-placa-list">
+                  <li>Compañía por turnos</li>
+                  <li>Jornada completa</li>
+                  <li>Dedicación exclusiva 24 hs</li>
+                </ul>
+                <div class="servicio-placa-ctas">
+                  <a class="servicio-placa-btn" href="servicio-cuidadores.html">Ver el servicio</a>
+                  <a class="servicio-placa-btn servicio-placa-btn--wa" href="https://wa.me/5491166391010" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="servicio-placa" id="placa-acompanantes" role="tabpanel" aria-roledescription="diapositiva" aria-label="2 de 4: Acompañantes Terapéuticos">
+              <img class="servicio-placa-img" src="img/foto-servicio-acompanantes-terapeuticos-600.webp"
+                srcset="img/foto-servicio-acompanantes-terapeuticos-600.webp 600w, img/foto-servicio-acompanantes-terapeuticos-1200.webp 1200w"
+                sizes="(max-width: 1100px) 100vw, 1100px" width="1200" height="896"
+                alt="Acompanante terapeutica con ambo armando un rompecabezas junto a un hombre mayor" loading="lazy" decoding="async">
+              <div class="servicio-placa-top">
+                <span class="servicio-placa-nivel">3 niveles de complejidad</span>
+                <h3 class="servicio-placa-title">Acompañantes Terapéuticos</h3>
+                <p class="servicio-placa-desc">Contención emocional y estimulación cognitiva, coordinada con el equipo terapéutico interdisciplinario.</p>
+              </div>
+              <div class="servicio-placa-bottom">
+                <ul class="servicio-placa-list">
+                  <li>Sesiones acotadas</li>
+                  <li>Contención diaria</li>
+                  <li>Presencia permanente</li>
+                </ul>
+                <div class="servicio-placa-ctas">
+                  <a class="servicio-placa-btn" href="servicio-acompanantes-terapeuticos.html">Ver el servicio</a>
+                  <a class="servicio-placa-btn servicio-placa-btn--wa" href="https://wa.me/5491166391010" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="servicio-placa" id="placa-enfermeria" role="tabpanel" aria-roledescription="diapositiva" aria-label="3 de 4: Enfermería">
+              <img class="servicio-placa-img" src="img/foto-servicio-enfermeria-600.webp"
+                srcset="img/foto-servicio-enfermeria-600.webp 600w, img/foto-servicio-enfermeria-1200.webp 1200w"
+                sizes="(max-width: 1100px) 100vw, 1100px" width="1200" height="896"
+                alt="Enfermera con ambo controlando el pulso de una paciente en su cama" loading="lazy" decoding="async">
+              <div class="servicio-placa-top">
+                <span class="servicio-placa-nivel">3 niveles de complejidad</span>
+                <h3 class="servicio-placa-title">Enfermería</h3>
+                <p class="servicio-placa-desc">Desde curaciones básicas hasta internación domiciliaria de máxima complejidad y cuidados paliativos.</p>
+              </div>
+              <div class="servicio-placa-bottom">
+                <ul class="servicio-placa-list">
+                  <li><a href="servicio-auxiliar-enfermeria.html">Auxiliar de Enfermería</a></li>
+                  <li><a href="servicio-enfermero-profesional.html">Enfermero Profesional</a></li>
+                  <li><a href="servicio-cuidados-paliativos.html">Paliativista</a></li>
+                </ul>
+                <div class="servicio-placa-ctas">
+                  <a class="servicio-placa-btn" href="servicio-enfermeria.html">Ver el servicio</a>
+                  <a class="servicio-placa-btn servicio-placa-btn--wa" href="https://wa.me/5491166391010" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="servicio-placa" id="placa-allinclusive" role="tabpanel" aria-roledescription="diapositiva" aria-label="4 de 4: All Inclusive Elder Care">
+              <img class="servicio-placa-img" src="img/foto-servicio-all-inclusive-600.webp"
+                srcset="img/foto-servicio-all-inclusive-600.webp 600w, img/foto-servicio-all-inclusive-1200.webp 1200w"
+                sizes="(max-width: 1100px) 100vw, 1100px" width="1200" height="896"
+                alt="Profesional con ambo haciendole la manicura a una mujer mayor en su casa" loading="lazy" decoding="async">
+              <div class="servicio-placa-top">
+                <span class="servicio-placa-nivel">Acompañamiento integral</span>
+                <h3 class="servicio-placa-title">All Inclusive Elder Care</h3>
+                <p class="servicio-placa-desc">El servicio más completo: cuidado que trasciende la salud, con vida social, gestiones y vínculos.</p>
+              </div>
+              <div class="servicio-placa-bottom">
+                <ul class="servicio-placa-list">
+                  <li>Asistencia integral de salud</li>
+                  <li>Vida social activa y gestiones personales</li>
+                  <li>Coordinación familiar y red de apoyo 24/7</li>
+                </ul>
+                <div class="servicio-placa-ctas">
+                  <a class="servicio-placa-btn" href="servicio-all-inclusive-elder-care.html">Ver el servicio</a>
+                  <a class="servicio-placa-btn servicio-placa-btn--wa" href="https://wa.me/5491166391010" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+                </div>
+              </div>
+            </article>
+
           </div>
 
-          <div class="hive-cell fade-up delay-3" role="listitem" data-servicio="enfermeria">
-            <span class="hive-cell-complexity">3 niveles de complejidad</span>
-            <h3 class="hive-cell-title">Enfermería</h3>
-            <p class="hive-cell-desc">Desde curaciones básicas hasta internación domiciliaria de máxima complejidad y
-              cuidados paliativos.</p>
-            <div class="hive-mosaic hive-mosaic--2">
-              <img src="img/mos-enfermeria-01-presion-silla-fem-300.webp" srcset="img/mos-enfermeria-01-presion-silla-fem-300.webp 300w, img/mos-enfermeria-01-presion-silla-fem-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Enfermera tomando la presion arterial a una paciente en silla de ruedas" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-enfermeria-02-inyeccion-extraccion-fem-300.webp" srcset="img/mos-enfermeria-02-inyeccion-extraccion-fem-300.webp 300w, img/mos-enfermeria-02-inyeccion-extraccion-fem-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Enfermera realizando una extraccion de sangre" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-enfermeria-03-suero-iv-masc-300.webp" srcset="img/mos-enfermeria-03-suero-iv-masc-300.webp 300w, img/mos-enfermeria-03-suero-iv-masc-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Enfermero controlando un suero endovenoso" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-enfermeria-04-grua-traslado-masc-300.webp" srcset="img/mos-enfermeria-04-grua-traslado-masc-300.webp 300w, img/mos-enfermeria-04-grua-traslado-masc-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Enfermero trasladando a un paciente con grua" class="hive-mosaic-img" loading="lazy" decoding="async">
-            </div>
-            <div class="hive-cell-detail">
-              <ul class="hive-cell-list">
-                <li>Auxiliar de Enfermería</li>
-                <li>Enfermero Profesional</li>
-                <li>Paliativista</li>
-              </ul>
-              <a class="hive-cell-arrow" href="servicio-enfermeria.html">Ver el servicio completo →</a>
-            </div>
-          </div>
-
-          <div class="hive-cell fade-up delay-4" role="listitem" data-servicio="allinclusive">
-            <span class="hive-cell-complexity">Acompañamiento integral</span>
-            <h3 class="hive-cell-title">All Inclusive</h3>
-            <p class="hive-cell-desc">El servicio más completo: cuidado que trasciende la salud, con vida social,
-              gestiones y vínculos.</p>
-            <div class="hive-mosaic hive-mosaic--2">
-              <img src="img/mos-premium-01-medico-domicilio-familia-300.webp" srcset="img/mos-premium-01-medico-domicilio-familia-300.webp 300w, img/mos-premium-01-medico-domicilio-familia-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Medico de visita en el domicilio junto al paciente y su familia" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-premium-02-peluqueria-manicuria-silla-300.webp" srcset="img/mos-premium-02-peluqueria-manicuria-silla-300.webp 300w, img/mos-premium-02-peluqueria-manicuria-silla-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Peluqueria y manicuria a domicilio" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-premium-03-actividades-grupales-cartas-te-300.webp" srcset="img/mos-premium-03-actividades-grupales-cartas-te-300.webp 300w, img/mos-premium-03-actividades-grupales-cartas-te-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Tarde de cartas y te con amigas" class="hive-mosaic-img" loading="lazy" decoding="async">
-              <img src="img/mos-premium-04-instalacion-tecnologia-wifi-300.webp" srcset="img/mos-premium-04-instalacion-tecnologia-wifi-300.webp 300w, img/mos-premium-04-instalacion-tecnologia-wifi-600.webp 600w"
-                sizes="(max-width: 768px) calc(50vw - 60px), 290px" alt="Instalacion de tecnologia y wifi en el hogar" class="hive-mosaic-img" loading="lazy" decoding="async">
-            </div>
-            <div class="hive-cell-detail">
-              <ul class="hive-cell-list">
-                <li>Asistencia integral de salud</li>
-                <li>Vida social activa y gestiones personales</li>
-                <li>Coordinación familiar y red de apoyo 24/7</li>
-              </ul>
-              <a class="hive-cell-arrow" href="servicio-all-inclusive-elder-care.html">Ver el servicio completo →</a>
-            </div>
+          <div class="servicios-nav">
+            <button type="button" class="servicios-flecha" data-dir="-1" aria-label="Servicio anterior">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <span class="servicios-contador" aria-live="polite">1 / 4</span>
+            <button type="button" class="servicios-flecha" data-dir="1" aria-label="Servicio siguiente">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
 
         </div>
@@ -1189,6 +1195,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script src="script.js?v=20260828" defer></script>
 
 
+  <!-- Cliengo: chatbot y calificacion de contactos -->
+  <script type="text/javascript">
+  (function () {
+  var ldk = document.createElement('script');
+  ldk.type = 'text/javascript';
+  ldk.async = true;
+  ldk.src = 'https://s.cliengo.com/weboptimizer/69d943d97d5c4d765375ec9b/6ad63a02f4d5ab4ce7ba6090.js?platform=onboarding_modular';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ldk, s);
+  })();
+  </script>
 </body>
 
 </html>

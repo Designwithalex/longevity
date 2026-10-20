@@ -500,27 +500,57 @@
     });
   }
 
-  /* ── BOTONERA DE SERVICIOS ──
-     En desktop el detalle se despliega con hover y con foco de teclado,
-     los dos resueltos por CSS. Este bloque agrega el tap en touch:
-     el primer toque activa la tarjeta, y solo el link interno navega. */
-  var hiveCells = document.querySelectorAll('.hive-cell');
-  if (hiveCells.length) {
-    var canHover = window.matchMedia('(hover: hover)').matches;
+  /* ── PLACAS DE SERVICIOS ──
+     Carrusel de una placa por vez. El desplazamiento lo hace el scroll-snap
+     nativo (funciona con swipe y sin JS); aca se suman las flechas, los
+     botones con el nombre de cada servicio, el contador y las flechas del
+     teclado. La placa activa se detecta con IntersectionObserver. */
+  var carrusel = document.querySelector('[data-carrusel]');
+  if (carrusel) {
+    var track = carrusel.querySelector('.servicios-track');
+    var placas = carrusel.querySelectorAll('.servicio-placa');
+    var tabs = carrusel.querySelectorAll('.servicios-tab');
+    var contador = carrusel.querySelector('.servicios-contador');
+    var actual = 0;
 
-    Array.prototype.forEach.call(hiveCells, function (cell) {
-      cell.addEventListener('click', function (e) {
-        // el link interno hace su trabajo normal
-        if (e.target.closest('.hive-cell-arrow')) return;
-        if (canHover) return;
-
-        var wasActive = cell.classList.contains('is-active');
-        Array.prototype.forEach.call(hiveCells, function (c) {
-          c.classList.remove('is-active');
-        });
-        if (!wasActive) cell.classList.add('is-active');
+    var marcar = function (i) {
+      actual = i;
+      Array.prototype.forEach.call(tabs, function (t, j) {
+        t.classList.toggle('is-active', j === i);
+        t.setAttribute('aria-selected', j === i ? 'true' : 'false');
       });
+      if (contador) contador.textContent = (i + 1) + ' / ' + placas.length;
+    };
+
+    var ir = function (i) {
+      i = (i + placas.length) % placas.length;
+      track.scrollTo({ left: placas[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      marcar(i);
+    };
+
+    Array.prototype.forEach.call(tabs, function (t) {
+      t.addEventListener('click', function () { ir(Number(t.getAttribute('data-placa'))); });
     });
+
+    Array.prototype.forEach.call(carrusel.querySelectorAll('.servicios-flecha'), function (b) {
+      b.addEventListener('click', function () { ir(actual + Number(b.getAttribute('data-dir'))); });
+    });
+
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); ir(actual + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); ir(actual - 1); }
+    });
+
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && en.intersectionRatio > 0.6) {
+            marcar(Array.prototype.indexOf.call(placas, en.target));
+          }
+        });
+      }, { root: track, threshold: [0.6] });
+      Array.prototype.forEach.call(placas, function (p) { obs.observe(p); });
+    }
   }
 
   /* ── SELECTOR DE CLIENTE DE MAIL ──
