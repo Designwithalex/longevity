@@ -1325,217 +1325,317 @@ html.intro-done #intro {
   background: var(--cream);
 }
 
+/* El titulo general de la seccion va en su propia burbuja, separado de las
+   tarjetas: es comun a todos los servicios, no encabeza a ninguno. */
 .servicios-header {
   text-align: center;
-  margin-bottom: 64px;
-}
-
-/* Panel tipo tatetí/colmena: 4 categorías en grid 2x2 con líneas divisorias finas */
-.hive-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  background: rgba(123, 47, 142, 0.15);
+  max-width: 760px;
+  margin: 0 auto 48px;
+  padding: 40px 32px 36px;
+  background: var(--white);
   border-radius: var(--radius-lg);
-  overflow: hidden;
   box-shadow: var(--shadow-card);
 }
 
-/* Cada celda es un boton: se activa con hover, foco de teclado o tap
-   y despliega el detalle del servicio. */
-.hive-cell {
+.servicios-header .section-subtitle {
+  margin-bottom: 0;
+}
+
+/* Placas de servicios: una por servicio, de a una (carrusel con scroll-snap).
+   La foto lleva el tono violeta de marca encima, como las piezas de redes,
+   y el texto va adentro de la foto: nombre arriba, items y botones abajo. */
+.servicios-carrusel {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.servicios-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.servicios-tab {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--purple);
   background: var(--white);
-  padding: 44px 40px;
-  text-decoration: none;
-  color: inherit;
+  border: 1px solid rgba(123, 47, 142, 0.22);
+  border-radius: 999px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.servicios-tab:hover {
+  border-color: var(--purple);
+}
+
+.servicios-tab.is-active {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: var(--white);
+}
+
+.servicios-tab:focus-visible,
+.servicios-flecha:focus-visible,
+.servicios-track:focus-visible {
+  outline: 2px solid var(--celeste);
+  outline-offset: 3px;
+}
+
+.servicios-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.servicios-track::-webkit-scrollbar {
+  display: none;
+}
+
+.servicio-placa {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  aspect-ratio: 16 / 9;
+  min-height: 520px;
   display: flex;
   flex-direction: column;
-  transition: background 0.25s ease;
-  position: relative;
-  cursor: pointer;
-}
-
-.hive-cell::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--gradient);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.3s ease;
-}
-
-.hive-cell:hover,
-.hive-cell:focus-within,
-.hive-cell.is-active {
-  background: var(--cream);
-}
-
-.hive-cell:hover::before,
-.hive-cell:focus-within::before,
-.hive-cell.is-active::before {
-  transform: scaleY(1);
-}
-
-/* Ilustracion a trazo fino, propia de cada servicio.
-   Va a sangre: los margenes negativos anulan el padding de la celda para que
-   el dibujo toque el borde superior y los dos laterales. Las esquinas
-   redondeadas las recorta .hive-grid, que ya tiene overflow: hidden. */
-.hive-cell-illus {
-  width: auto;
-  margin: -44px -40px 20px;
-  /* Encuadre casi cuadrado a proposito: en estas ilustraciones el trazo llega
-     hasta el 6% del alto, asi que un formato mas apaisado les cortaria la
-     cabeza a las figuras. 8/7 se come solo el aire sobrante. */
-  aspect-ratio: 8 / 7;
+  justify-content: space-between;
+  padding: 48px 56px 44px;
+  color: var(--white);
   overflow: hidden;
+  isolation: isolate;
 }
 
-.hive-cell-img {
+.servicio-placa-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
-  /* El dibujo viene sobre fondo blanco: multiply lo integra con el crema
-     de la tarjeta activa sin necesidad de recortar el fondo. */
-  mix-blend-mode: multiply;
-  opacity: 0.82;
-  transition: opacity 0.3s ease;
+  z-index: -3;
 }
 
-/* El trazo se afina en reposo y gana cuerpo cuando la celda se activa */
-.hive-cell:hover .hive-cell-img,
-.hive-cell:focus-within .hive-cell-img,
-.hive-cell.is-active .hive-cell-img {
-  opacity: 1;
+/* Degradado para que el texto se lea arriba y abajo */
+.servicio-placa::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(61, 18, 96, 0.82) 0%,
+      rgba(94, 30, 110, 0.35) 34%,
+      rgba(94, 30, 110, 0.25) 52%,
+      rgba(61, 18, 96, 0.88) 100%);
+  z-index: -1;
 }
 
-/* Detalle desplegable */
-.hive-cell-detail {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+.servicio-placa-top {
+  max-width: 560px;
 }
 
-.hive-cell-detail > * {
-  overflow: hidden;
-  min-height: 0;
+.servicio-placa-nivel {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 8px;
 }
 
-.hive-cell:hover .hive-cell-detail,
-.hive-cell:focus-within .hive-cell-detail,
-.hive-cell.is-active .hive-cell-detail {
-  grid-template-rows: 1fr;
-  opacity: 1;
-}
-
-.hive-cell-list {
-  list-style: none;
-  margin: 18px 0 0;
-  padding: 0;
-  border-top: 1px solid rgba(123, 47, 142, 0.14);
-}
-
-.hive-cell-list li {
+.servicio-placa-title {
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 13px;
-  color: var(--text);
-  padding: 9px 0 9px 20px;
-  position: relative;
-  border-bottom: 1px solid rgba(123, 47, 142, 0.08);
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 12px;
 }
 
-.hive-cell-list li:last-child {
+.servicio-placa-desc {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.servicio-placa-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.servicio-placa-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 240px;
+}
+
+.servicio-placa-list li {
+  font-size: 14px;
+  padding: 8px 0 8px 20px;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.servicio-placa-list li:last-child {
   border-bottom: none;
 }
 
-.hive-cell-list li::before {
+.servicio-placa-list li::before {
   content: '';
   position: absolute;
   left: 2px;
-  top: 17px;
+  top: 19px;
   width: 8px;
   height: 1.5px;
   background: var(--celeste);
 }
 
-.hive-cell-complexity {
-  font-family: 'Poppins', sans-serif;
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: var(--mauve);
-  margin-bottom: 8px;
-  display: block;
+.servicio-placa-list a {
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
 }
 
-.hive-cell-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--purple);
-  margin-bottom: 10px;
+.servicio-placa-list a:hover {
+  border-bottom-color: var(--white);
 }
 
-.hive-cell-desc {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 13.5px;
-  color: var(--text);
-  line-height: 1.8;
-  flex: 1;
+.servicio-placa-ctas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.hive-cell-arrow {
-  margin-top: 18px;
+.servicio-placa-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   font-family: 'Poppins', sans-serif;
+  font-size: 13px;
   font-weight: 600;
-  font-size: 12px;
-  color: var(--purple);
+  padding: 12px 22px;
+  border-radius: var(--radius);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  background: var(--white);
+  color: var(--purple);
+  border: 1px solid var(--white);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.hive-cell-arrow:hover,
-.hive-cell-arrow:focus-visible {
-  border-bottom-color: var(--purple);
+.servicio-placa-btn:hover {
+  background: var(--cream);
 }
 
-/* Sin JS y sin hover (lectores, impresion) el detalle queda visible */
-.no-js .hive-cell-detail {
-  grid-template-rows: 1fr;
-  opacity: 1;
+.servicio-placa-btn--wa {
+  background: transparent;
+  color: var(--white);
+}
+
+.servicio-placa-btn--wa:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.servicios-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.servicios-flecha {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(123, 47, 142, 0.25);
+  background: var(--white);
+  color: var(--purple);
+  cursor: pointer;
+}
+
+.servicios-flecha:hover {
+  border-color: var(--purple);
+}
+
+.servicios-contador {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-lt);
+  min-width: 44px;
+  text-align: center;
+}
+
+.no-js .servicios-nav,
+.no-js .servicios-tabs {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hive-cell,
-  .hive-cell::before,
-  .hive-cell-detail,
-  .hive-cell-img {
-    transition: none;
+  .servicios-track {
+    scroll-behavior: auto;
   }
 }
 
 @media (max-width: 768px) {
-  .hive-grid {
-    grid-template-columns: 1fr;
+  .servicios-tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0 -24px 18px;
+    padding: 0 24px;
   }
 
-  .hive-cell {
-    padding: 32px 26px;
+  .servicios-tabs::-webkit-scrollbar {
+    display: none;
   }
 
-  .hive-cell-illus {
-    margin: -32px -26px 16px;
+  .servicios-tab {
+    flex-shrink: 0;
+  }
+
+  .servicio-placa {
+    aspect-ratio: auto;
+    min-height: 600px;
+    padding: 32px 24px 28px;
+  }
+
+  .servicio-placa-bottom {
+    gap: 20px;
+  }
+
+  .servicio-placa-list {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .servicio-placa-ctas {
+    width: 100%;
+  }
+
+  .servicio-placa-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .servicios-header {
+    padding: 32px 22px 28px;
+    margin-bottom: 32px;
   }
 }
 
@@ -2065,7 +2165,8 @@ html.intro-done #intro {
   font-weight: 700;
   font-size: 18px;
   color: var(--purple);
-  margin: 8px 0 12px;
+  /* deja libre la zona del numero grande de arriba a la derecha */
+  margin: 40px 0 12px;
 }
 
 .paso-desc {
@@ -2524,31 +2625,13 @@ html.intro-done #intro {
   color: #1FA855;
 }
 
-/* ── Nota de privacidad (por que el sitio no muestra fotos) ── */
-.contacto-privacidad {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px 18px;
-  margin-bottom: 28px;
-  background: rgba(123, 47, 142, 0.045);
-  border-left: 3px solid rgba(123, 47, 142, 0.35);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  color: var(--purple);
+/* ── Columna derecha: formulario y, debajo, el mail ── */
+.contacto-canales--wa {
+  margin-bottom: 32px;
 }
 
-.contacto-privacidad svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-  opacity: 0.75;
-}
-
-.contacto-privacidad p {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--text);
+.contacto-canales--mail {
+  margin: 20px 0 0;
 }
 
 
@@ -2991,153 +3074,6 @@ footer {
   color: rgba(255, 255, 255, 0.65);
 }
 
-/* ── CONTACTO: UN SOLO BOTON ─────────────────────────────────────
-   Siempre visible abajo a la derecha. Al tocarlo despliega los tres
-   canales: WhatsApp, formulario y mail. Reemplaza al widget de
-   Cliengo, que ocupaba esta misma esquina. */
-.contact-dock {
-  position: fixed;
-  right: 28px;
-  bottom: 28px;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.contact-dock-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  height: 52px;
-  padding: 0 22px;
-  border: none;
-  border-radius: 30px;
-  background: #25D366;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.42);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
-.contact-dock-toggle:hover,
-.contact-dock-toggle:focus-visible {
-  background: #1FBA5A;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-}
-
-.contact-dock-toggle svg {
-  flex-shrink: 0;
-}
-
-/* El icono cambia a una cruz cuando el panel esta abierto */
-.contact-dock-ico-close {
-  display: none;
-}
-
-.contact-dock.is-open .contact-dock-ico-open {
-  display: none;
-}
-
-.contact-dock.is-open .contact-dock-ico-close {
-  display: block;
-}
-
-.contact-dock-options {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 9px;
-}
-
-.contact-dock-options[hidden] {
-  display: none;
-}
-
-.contact-dock-opt {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  height: 44px;
-  padding: 0 18px;
-  border-radius: 26px;
-  background: var(--white);
-  color: var(--purple);
-  border: 1.5px solid rgba(123, 47, 142, 0.3);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
-  animation: contactOptIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
-}
-
-.contact-dock-opt:nth-child(1) { animation-delay: 0.06s; }
-.contact-dock-opt:nth-child(2) { animation-delay: 0.03s; }
-.contact-dock-opt:nth-child(3) { animation-delay: 0s; }
-
-.contact-dock-opt:hover,
-.contact-dock-opt:focus-visible {
-  background: var(--purple);
-  color: var(--white);
-  border-color: var(--purple);
-}
-
-.contact-dock-opt--wa {
-  color: #1FA855;
-  border-color: rgba(37, 211, 102, 0.45);
-}
-
-.contact-dock-opt--wa:hover,
-.contact-dock-opt--wa:focus-visible {
-  background: #25D366;
-  color: var(--white);
-  border-color: #25D366;
-}
-
-@keyframes contactOptIn {
-  from { opacity: 0; transform: translateY(10px) scale(0.96); }
-  to   { opacity: 1; transform: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-dock-opt {
-    animation: none;
-  }
-  .contact-dock-toggle {
-    transition: none;
-  }
-  .contact-dock-toggle:hover {
-    transform: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .contact-dock {
-    right: 18px;
-    bottom: 18px;
-  }
-
-  .contact-dock-toggle {
-    height: 50px;
-    padding: 0 18px;
-    font-size: 13.5px;
-  }
-
-  .contact-dock-opt {
-    height: 42px;
-    font-size: 12.5px;
-  }
-}
-
-
 /* ════════════════════════════════════════════════════════════
    SELECTOR DE CLIENTE DE MAIL
    Se arma desde script.js al tocar cualquier link mailto.
@@ -3416,6 +3352,25 @@ footer {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+
+  /* En una columna el recorrido es WhatsApp → formulario → mail → direccion.
+     Las dos columnas se disuelven para poder ordenar sus bloques. */
+  .contacto-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .contacto-left,
+  .contacto-right {
+    display: contents;
+  }
+
+  .contacto-canales--wa { order: 1; margin-bottom: 20px; }
+  .contacto-info { order: 2; }
+  .contacto-canales--mail { order: 3; }
+  .contacto-domicilio { order: 4; margin-top: 32px; }
 
   .nosotros-image-block {
     max-width: 480px;
@@ -5390,3 +5345,97 @@ footer {
     padding: 56px 24px;
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   ILUSTRACIONES (pasos, paginas de servicio, ElderWatch)
+   Los dibujos vienen sobre fondo blanco: multiply los integra con
+   el crema/blanco de cada seccion sin recortar el fondo.
+   ════════════════════════════════════════════════════════════ */
+.service-illus {
+  float: right;
+  width: 42%;
+  max-width: 360px;
+  margin: 4px 0 20px 40px;
+}
+
+.service-illus--wide {
+  width: 48%;
+  max-width: 420px;
+}
+
+.service-illus img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.service-body-inner::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.elderwatch-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 28px;
+  margin: 24px 0 8px;
+}
+
+.elderwatch-step {
+  margin: 0;
+  padding: 24px 26px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border-left: 3px solid var(--purple);
+  box-shadow: var(--shadow-card);
+}
+
+.elderwatch-step figcaption {
+  margin-top: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-lt);
+}
+
+.elderwatch-step figcaption strong {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--purple);
+}
+
+@media (max-width: 768px) {
+  .service-illus,
+  .service-illus--wide {
+    float: none;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+
+  .elderwatch-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Foto del servicio (reemplaza la ilustracion). El tono violeta de marca ya
+   viene aplicado en el archivo. Sin multiply, que era para fundir el blanco del dibujo. */
+.service-illus--foto {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  isolation: isolate;
+}
+
+.service-illus--foto img {
+  mix-blend-mode: normal;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+

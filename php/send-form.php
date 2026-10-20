@@ -217,6 +217,13 @@ $email    = trim((string)($_POST['email'] ?? ''));
 $mensaje  = trim((string)($_POST['mensaje'] ?? ''));
 $origen   = trim((string)($_POST['origen'] ?? 'Sitio web'));
 $nivel    = trim((string)($_POST['nivel'] ?? ''));
+$motivo   = trim((string)($_POST['motivo'] ?? ''));
+
+// Motivo del form de Contacto: solo se aceptan las opciones del combo.
+$motivosValidos = ['Contratar servicios', 'Consulta general', 'Consulta de trabajo'];
+if (!in_array($motivo, $motivosValidos, true)) {
+    $motivo = '';
+}
 
 if ($nombre === '' || $telefono === '') {
     redirect_error('faltan_datos');
@@ -353,11 +360,14 @@ try {
         $mail->addAttachment($cvPath, $cvName);
     }
 
-    $mail->Subject = 'Nueva consulta web — ' . $origen;
+    $mail->Subject = 'Nueva consulta web — ' . ($motivo !== '' ? $motivo : $origen);
 
     $bodyLines = [
         'Origen: ' . $origen,
     ];
+    if ($motivo !== '') {
+        $bodyLines[] = 'Motivo: ' . $motivo;
+    }
     if ($nivel !== '') {
         $bodyLines[] = 'Nivel de complejidad: ' . $nivel;
     }
