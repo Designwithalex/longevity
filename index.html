@@ -111,6 +111,15 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
+                "name": "Cuidados Post Quirúrgicos",
+                "url": "https://longevityargentina.com/servicio-cuidados-post-quirurgicos.html",
+                "description": "Cuidadores y enfermería para la recuperación después de una cirugía, coordinados con el médico tratante."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
                 "name": "All Inclusive Elder Care",
                 "url": "https://longevityargentina.com/servicio-all-inclusive-elder-care.html",
                 "description": "Contención y asistencia integral al adulto mayor: vida social, vínculos y soporte adaptado a cada situación."
@@ -136,9 +145,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com">
 
-  <link rel="preload" as="image" href="img/enfermera-480.webp"
-    imagesrcset="img/enfermera-480.webp 480w, img/enfermera-660.webp 660w, img/enfermera-900.webp 900w"
-    imagesizes="216px" fetchpriority="high">
+  <link rel="preload" as="image" href="img/julio-nemerovsky-600.webp"
+    imagesrcset="img/julio-nemerovsky-300.webp 300w, img/julio-nemerovsky-600.webp 600w"
+    imagesizes="(max-width: 768px) 150px, 216px" fetchpriority="high">
 
   <style>
     *,
@@ -274,12 +283,9 @@
       border: 2px solid rgba(255, 255, 255, .5)
     }
 
-    .hero-nurse-img {
-      position: static;
+    .hero-figure-img {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center bottom;
+      object-fit: cover;
       display: block
     }
 
@@ -337,7 +343,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap">
   </noscript>
 
-  <link rel="stylesheet" href="styles.css?v=20261019">
+  <link rel="stylesheet" href="styles.css?v=20261028">
 
 
   <script>
@@ -387,6 +393,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           class="nav-logo-img" width="270" height="80">
       </a>
 
+      <!-- Sellos: habilitacion, escudo, NAC y SAGG -->
+      <div class="nav-seals" role="group" aria-label="Habilitaciones y avales">
+        <img src="img/sello-ministerio-96.webp" alt="Habilitación Ministerio de Salud de la Nación" class="nav-seal" width="96" height="96">
+        <img src="img/sello-longevity-96.webp" alt="Escudo de Longevity Argentina" class="nav-seal" width="76" height="96">
+        <img src="img/sello-nac-96.webp" alt="National Alliance for Caregiving" class="nav-seal" width="102" height="96">
+        <img src="img/sello-sagg-96.webp" alt="Sociedad Argentina de Gerontología y Geriatría" class="nav-seal" width="96" height="96">
+      </div>
+
       <ul class="nav-links" role="list">
         <li class="nav-has-dropdown">
           <a href="#servicios">Servicios <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -398,6 +412,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="servicio-cuidadores.html" role="menuitem">Cuidadores/as Profesionales</a>
             <a href="servicio-acompanantes-terapeuticos.html" role="menuitem">Acompañantes Terapéuticos</a>
             <a href="servicio-enfermeria.html" role="menuitem">Enfermería</a>
+            <a href="servicio-cuidados-post-quirurgicos.html" role="menuitem">Cuidados Post Quirúrgicos</a>
             <a href="servicio-all-inclusive-elder-care.html" role="menuitem">All Inclusive Elder Care</a>
             <div class="nav-dropdown-divider"></div>
             <a href="elderwatch.html" role="menuitem">ElderWatch®</a>
@@ -417,6 +432,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="por-que-longevity.html" role="menuitem">Por qué Longevity</a>
           </div>
         </li>
+        <li><a href="#especialistas">Especialistas</a></li>
         <li><a href="faq.html">Preguntas frecuentes</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -439,6 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="servicio-cuidadores.html">Cuidadores/as Profesionales</a>
         <a href="servicio-acompanantes-terapeuticos.html">Acompañantes Terapéuticos</a>
         <a href="servicio-enfermeria.html">Enfermería</a>
+        <a href="servicio-cuidados-post-quirurgicos.html">Cuidados Post Quirúrgicos</a>
         <a href="servicio-all-inclusive-elder-care.html">All Inclusive Elder Care</a>
         <a href="elderwatch.html">ElderWatch®</a>
       </div>
@@ -455,6 +472,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="antecedentes.html">Historia</a>
         <a href="por-que-longevity.html">Por qué Longevity</a>
       </div>
+      <a href="#especialistas" role="menuitem">Especialistas</a>
       <a href="faq.html" role="menuitem">Preguntas frecuentes</a>
       <a href="#contacto" role="menuitem">Contacto</a>
     </div>
@@ -473,32 +491,171 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-split">
         <div class="hero-content">
           <div class="hero-content-inner">
-            <div class="hero-image-col fade-up" aria-hidden="true">
-              <div class="hero-image-frame">
-                <img src="img/enfermera-900.webp"
-                  srcset="img/enfermera-480.webp 480w, img/enfermera-660.webp 660w, img/enfermera-900.webp 900w"
-                  sizes="216px" alt="" class="hero-nurse-img" fetchpriority="high" width="900" height="1367">
+            <!-- Figura principal: Dr. Julio Nemerovsky (foto + aval institucional) -->
+            <div class="hero-image-col fade-up">
+              <figure class="hero-image-frame hero-figure">
+                <img src="img/julio-nemerovsky-600.webp"
+                  srcset="img/julio-nemerovsky-300.webp 300w, img/julio-nemerovsky-600.webp 600w"
+                  sizes="(max-width: 768px) 150px, 216px" alt="Retrato del Dr. Julio Nemerovsky"
+                  class="hero-figure-img" fetchpriority="high" width="600" height="600">
+                <figcaption class="hero-figure-name">Dr. Julio Nemerovsky</figcaption>
+              </figure>
+              <div class="hero-quote-card hero-aval-card">
+                <img src="img/logo-sagg-72.webp" srcset="img/logo-sagg-72.webp 1x, img/logo-sagg-144.webp 2x"
+                  alt="Logo de la Sociedad Argentina de Gerontología y Geriatría" class="hero-aval-logo" width="72" height="72">
+                <p class="hero-aval-org">Sociedad Argentina de Geriatría y Gerontología</p>
+                <p class="hero-aval-cargo">Past President y actual Director de Cátedra</p>
               </div>
-              <div class="hero-quote-card">
-                <p class="hero-quote-text">"Si puedes curar, cura; si no puedes curar, alivia; si no puedes aliviar,
-                  consuela; y si no puedes consolar, acompaña"</p>
-                <span class="hero-quote-author">Virginia Henderson</span>
+            </div>
+
+            <!-- Videos de los especialistas: arrancan colapsados. #especialistas
+                 (y el viejo #equipo) los abre al cargar la pagina. -->
+            <div class="hero-avales" id="especialistas">
+             <div class="hero-avales-inner fade-up delay-1">
+              <button type="button" class="avales-toggle" aria-expanded="false" aria-controls="avales-panel">
+                <span>Ver recomendaciones de nuestros especialistas que nos avalan</span>
+                <svg class="avales-chevron" width="12" height="8" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+
+              <div class="avales-panel" id="avales-panel" role="region" aria-label="Recomendaciones de especialistas" hidden>
+                <div class="avales-panel-inner">
+                  <div class="avales-card">
+                    <div class="avales-advisor">
+                      <h2 class="advisor-name">Dr. Julio Nemerovsky</h2>
+                      <p class="advisor-role">Senior Health &amp; Elder Care Advisor at Longevity Argentina</p>
+                      <ul class="advisor-credentials">
+                        <li>M&eacute;dico (UBA), especialista en Geriatr&iacute;a y Cl&iacute;nica M&eacute;dica</li>
+                        <li>Past President de la Sociedad Argentina de Geriatr&iacute;a y Gerontolog&iacute;a</li>
+                        <li>Actual Director de la Carrera de Especialista en Geriatr&iacute;a (SAGG)</li>
+                      </ul>
+                    </div>
+
+              <div class="especialistas-carousel-wrap">
+
+                <button class="carousel-arrow carousel-arrow--prev" id="esp-prev" aria-label="Anterior" disabled>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+
+                <div class="especialistas-carousel" id="esp-track">
+
+                  <figure class="carousel-slide is-active" data-video="videos/LONGEVITY21.mp4">
+                    <div class="carousel-media">
+                      <img src="img/poster-LONGEVITY21.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Julio Nemerovsky — reproducir video">
+                      <span class="carousel-play" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    </div>
+                    <figcaption class="carousel-caption">
+                      <span class="carousel-name">Dr. Julio Nemerovsky</span>
+                      <span class="carousel-role">Ex-presidente de la Sociedad Argentina de Geriatría y Gerontología</span>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="carousel-slide" data-video="videos/LONGEVITY22.mp4">
+                    <div class="carousel-media">
+                      <img src="img/poster-LONGEVITY22.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Julio Nemerovsky — reproducir video">
+                      <span class="carousel-play" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    </div>
+                    <figcaption class="carousel-caption">
+                      <span class="carousel-name">Dr. Julio Nemerovsky</span>
+                      <span class="carousel-role">Director de la Carrera de Especialista en Geriatría de la SAGG</span>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="carousel-slide" data-video="videos/LONGEVITY12.mp4">
+                    <div class="carousel-media">
+                      <img src="img/poster-LONGEVITY12.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
+                      <span class="carousel-play" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    </div>
+                    <figcaption class="carousel-caption">
+                      <span class="carousel-name">Dr. Fernando Burgos</span>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="carousel-slide" data-video="videos/LONGEVITY15.mp4">
+                    <div class="carousel-media">
+                      <img src="img/poster-LONGEVITY15.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
+                      <span class="carousel-play" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    </div>
+                    <figcaption class="carousel-caption">
+                      <span class="carousel-name">Dr. Fernando Burgos</span>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="carousel-slide" data-video="videos/LONGEVITY19-web.mp4">
+                    <div class="carousel-media">
+                      <img src="img/poster-LONGEVITY19-web.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
+                      <span class="carousel-play" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    </div>
+                    <figcaption class="carousel-caption">
+                      <span class="carousel-name">Dr. Fernando Burgos</span>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="carousel-slide" data-video="videos/LONGEVITY20-web.mp4">
+                    <div class="carousel-media">
+                      <img src="img/poster-LONGEVITY20-web.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
+                      <span class="carousel-play" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    </div>
+                    <figcaption class="carousel-caption">
+                      <span class="carousel-name">Dr. Fernando Burgos</span>
+                    </figcaption>
+                  </figure>
+
+                </div>
+
+                <button class="carousel-arrow carousel-arrow--next" id="esp-next" aria-label="Siguiente">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+
               </div>
+
+              <div class="carousel-dots" id="esp-dots" role="tablist" aria-label="Elegir video"></div>
+                  </div>
+                </div>
+              </div>
+             </div>
             </div>
 
             <span class="hero-eyebrow fade-up delay-1">Premium Caregiving</span>
 
             <h1 class="hero-title fade-up delay-2">
-              Cuidados Domiciliarios<br>
-              <span class="accent">Integrales Premium</span>
+              Cuidados Profesionales<br>
+              <span class="accent">y Empáticos</span>
             </h1>
 
-            <p class="hero-subtitle fade-up delay-3">
-              Internación y asistencia domiciliaria de alta complejidad.<br>
-              Profesionales que acompañan cada historia de vida.
-            </p>
-
-            <div class="hero-ctas fade-up delay-4">
+            <div class="hero-ctas fade-up delay-3">
               <a href="#contacto" class="btn-white">Solicitar consulta</a>
               <a href="#servicios" class="btn-link-white">
                 Conocer nuestros servicios
@@ -507,13 +664,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     stroke-linejoin="round" />
                 </svg>
               </a>
-            </div>
-
-            <div class="hero-seals fade-up delay-5">
-              <img src="img/logos-01.webp" alt="Habilitación Ministerio de Salud de la Nación" class="hero-seal"
-                width="200" height="185">
-              <img src="img/logos-02.webp" alt="Certificación institucional" class="hero-seal" width="200" height="185">
-              <img src="img/logos-03.webp" alt="Certificación institucional" class="hero-seal" width="200" height="185">
             </div>
           </div>
 
@@ -525,156 +675,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <div class="divider-gradient"></div>
-
-    <!-- ═══════════════════════════════════════════════════════
-     ESPECIALISTAS / REFERENTES DE LA marca2
-     ═══════════════════════════════════════════════════════ -->
-    <section class="section equipo" id="equipo" aria-labelledby="equipo-title">
-      <div class="section-inner">
-
-        <div class="equipo-header fade-up">
-          <span class="section-label">Referentes de la especialidad</span>
-          <div class="section-separator" style="justify-content:center;">
-            <div class="section-separator-line"></div>
-          </div>
-          <h2 class="section-title" id="equipo-title">Avalados por expertos de trayectoria global</h2>
-          <p class="section-subtitle">Especialistas de trayectoria internacional que respaldan y enriquecen nuestra
-            propuesta de cuidado</p>
-        </div>
-
-
-        <!-- Asesor senior: encabeza la seccion, por delante de los videos -->
-        <div class="advisor fade-up">
-          <div class="advisor-portrait">
-            <img src="img/julio-nemerovsky-600.webp"
-              srcset="img/julio-nemerovsky-300.webp 300w, img/julio-nemerovsky-600.webp 600w"
-              sizes="(max-width: 768px) 240px, 300px"
-              width="600" height="600" loading="lazy" decoding="async"
-              alt="Retrato del Dr. Julio Nemerovsky">
-          </div>
-          <div>
-            <h3 class="advisor-name">Dr. Julio Nemerovsky</h3>
-            <p class="advisor-role">Senior Health &amp; Elder Care Advisor at Longevity Argentina</p>
-            <ul class="advisor-credentials">
-              <li>M&eacute;dico (UBA), especialista en Geriatr&iacute;a y Cl&iacute;nica M&eacute;dica</li>
-              <li>Past President de la Sociedad Argentina de Geriatr&iacute;a y Gerontolog&iacute;a</li>
-              <li>Actual Director de la Carrera de Especialista en Geriatr&iacute;a (SAGG)</li>
-            </ul>
-          </div>
-        </div>
-        <div class="especialistas-carousel-wrap fade-up delay-1">
-
-          <button class="carousel-arrow carousel-arrow--prev" id="esp-prev" aria-label="Anterior" disabled>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </button>
-
-          <div class="especialistas-carousel" id="esp-track">
-
-            <figure class="carousel-slide is-active" data-video="videos/LONGEVITY21.mp4">
-              <div class="carousel-media">
-                <img src="img/poster-LONGEVITY21.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Julio Nemerovsky — reproducir video">
-                <span class="carousel-play" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-              <figcaption class="carousel-caption">
-                <span class="carousel-name">Dr. Julio Nemerovsky</span>
-                <span class="carousel-role">Ex-presidente de la Sociedad Argentina de Geriatría y Gerontología</span>
-              </figcaption>
-            </figure>
-
-            <figure class="carousel-slide" data-video="videos/LONGEVITY22.mp4">
-              <div class="carousel-media">
-                <img src="img/poster-LONGEVITY22.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Julio Nemerovsky — reproducir video">
-                <span class="carousel-play" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-              <figcaption class="carousel-caption">
-                <span class="carousel-name">Dr. Julio Nemerovsky</span>
-                <span class="carousel-role">Director de la Carrera de Especialista en Geriatría de la SAGG</span>
-              </figcaption>
-            </figure>
-
-            <figure class="carousel-slide" data-video="videos/LONGEVITY12.mp4">
-              <div class="carousel-media">
-                <img src="img/poster-LONGEVITY12.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
-                <span class="carousel-play" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-              <figcaption class="carousel-caption">
-                <span class="carousel-name">Dr. Fernando Burgos</span>
-              </figcaption>
-            </figure>
-
-            <figure class="carousel-slide" data-video="videos/LONGEVITY15.mp4">
-              <div class="carousel-media">
-                <img src="img/poster-LONGEVITY15.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
-                <span class="carousel-play" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-              <figcaption class="carousel-caption">
-                <span class="carousel-name">Dr. Fernando Burgos</span>
-              </figcaption>
-            </figure>
-
-            <figure class="carousel-slide" data-video="videos/LONGEVITY19-web.mp4">
-              <div class="carousel-media">
-                <img src="img/poster-LONGEVITY19-web.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
-                <span class="carousel-play" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-              <figcaption class="carousel-caption">
-                <span class="carousel-name">Dr. Fernando Burgos</span>
-              </figcaption>
-            </figure>
-
-            <figure class="carousel-slide" data-video="videos/LONGEVITY20-web.mp4">
-              <div class="carousel-media">
-                <img src="img/poster-LONGEVITY20-web.webp" class="carousel-thumb" width="600" height="1067" loading="lazy" decoding="async" alt="Dr. Fernando Burgos — reproducir video">
-                <span class="carousel-play" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 4.5L15 10L7 15.5V4.5Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-              <figcaption class="carousel-caption">
-                <span class="carousel-name">Dr. Fernando Burgos</span>
-              </figcaption>
-            </figure>
-
-          </div>
-
-          <button class="carousel-arrow carousel-arrow--next" id="esp-next" aria-label="Siguiente">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </button>
-
-        </div>
-
-        <div class="carousel-dots fade-up delay-2" id="esp-dots" role="tablist" aria-label="Elegir video"></div>
       </div>
     </section>
 
@@ -769,6 +769,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <li><a href="servicio-auxiliar-enfermeria.html">Auxiliar de Enfermería</a></li>
                   <li><a href="servicio-enfermero-profesional.html">Enfermero Profesional</a></li>
                   <li><a href="servicio-cuidados-paliativos.html">Paliativista</a></li>
+                  <li><a href="servicio-cuidados-post-quirurgicos.html">Cuidados Post Quirúrgicos</a></li>
                 </ul>
                 <div class="servicio-placa-ctas">
                   <a class="servicio-placa-btn" href="servicio-enfermeria.html">Ver el servicio</a>
@@ -817,89 +818,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
+    <div class="divider-gradient"></div>
 
+    <!-- ═══════════════════════════════════════════════════════
+     COBERTURAS — mismo bloque que por-que-longevity.html#prepagas
+     ═══════════════════════════════════════════════════════ -->
+    <section class="section prepagas" id="prepagas" aria-labelledby="prepagas-title">
+      <div class="section-inner">
 
+        <div class="prepagas-header fade-up">
+          <span class="section-label">Cobertura</span>
+          <h2 class="section-title" id="prepagas-title">Trabajamos con las principales coberturas médicas</h2>
+          <p class="prepagas-desc">Emitimos factura en legal forma para que puedas gestionar el reintegro con tu prepaga u obra social. Te orientamos en todo el proceso.</p>
+        </div>
 
+        <!-- PLACEHOLDER logos: crear carpeta img/ y guardar las imágenes con los nombres indicados.
+             Logos oficiales de cada prepaga disponibles en sus sitios web corporativos. -->
+        <div class="prepagas-logos fade-up delay-1">
+          <div class="prepaga-item">
+            <img src="img/prepaga-osde.webp" alt="OSDE" class="prepaga-logo" onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#505060;\'>OSDE</span>'">
+          </div>
+          <div class="prepaga-item">
+            <img src="img/prepaga-omint-112.webp" alt="OMINT" class="prepaga-logo" onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#505060;\'>OMINT</span>'">
+          </div>
+          <div class="prepaga-item">
+            <img src="img/prepaga-swiss-280.webp" srcset="img/prepaga-swiss-140.webp 1x, img/prepaga-swiss-280.webp 2x" alt="Swiss Medical" class="prepaga-logo" onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#505060;\'>Swiss Medical</span>'">
+          </div>
+          <div class="prepaga-item">
+            <img src="img/prepaga-cemic.webp" alt="CEMIC" class="prepaga-logo" onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#505060;\'>CEMIC</span>'">
+          </div>
+          <div class="prepaga-item">
+            <img src="img/prepaga-hospital-aleman-280.webp" srcset="img/prepaga-hospital-aleman-140.webp 1x, img/prepaga-hospital-aleman-280.webp 2x" alt="Hospital Alemán" class="prepaga-logo" width="140" height="32">
+          </div>
+          <div class="prepaga-item">
+            <img src="img/prepaga-hospital-italiano-280.webp" srcset="img/prepaga-hospital-italiano-140.webp 1x, img/prepaga-hospital-italiano-280.webp 2x" alt="Hospital Italiano" class="prepaga-logo" width="140" height="45">
+          </div>
+          <div class="prepaga-item">
+            <img src="img/prepaga-medicus-280.webp" srcset="img/prepaga-medicus-140.webp 1x, img/prepaga-medicus-280.webp 2x" alt="Medicus" class="prepaga-logo" onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#505060;\'>Medicus</span>'">
+          </div>
+          <div class="prepaga-item">
+            <img src="img/prepaga-galeno-280.webp" srcset="img/prepaga-galeno-140.webp 1x, img/prepaga-galeno-280.webp 2x" alt="Galeno" class="prepaga-logo" onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#505060;\'>Galeno</span>'">
+          </div>
+        </div>
 
+        <p class="prepagas-note fade-up delay-2">* La cobertura varía según plan y prestación. Asesoramos en la gestión del reintegro.</p>
 
+      </div>
+    </section>
 
     <div class="divider-gradient"></div>
 
     <!-- ═══════════════════════════════════════════════════════
-     4 SIMPLES PASOS
+     VIRGINIA HENDERSON — la cita que antes abria el hero
      ═══════════════════════════════════════════════════════ -->
-    <section class="section pasos" id="pasos" aria-labelledby="pasos-title">
+    <section class="section henderson" aria-label="Cita de Virginia Henderson">
       <div class="section-inner">
-
-        <div class="pasos-header fade-up">
-          <span class="section-label">Cómo empezar</span>
-          <div class="section-separator" style="justify-content:center;">
-            <div class="section-separator-line"></div>
+        <div class="hero-image-col fade-up">
+          <div class="hero-image-frame">
+            <img src="img/enfermera-900.webp"
+              srcset="img/enfermera-480.webp 480w, img/enfermera-660.webp 660w, img/enfermera-900.webp 900w"
+              sizes="(max-width: 768px) 150px, 250px" alt="" class="hero-nurse-img" loading="lazy" decoding="async"
+              width="900" height="1367">
           </div>
-          <h2 class="section-title" id="pasos-title">4 Simples Pasos</h2>
-          <p class="section-subtitle">Del primer contacto al inicio del servicio, sin vueltas</p>
-        </div>
-
-        <div class="pasos-grid">
-
-          <div class="paso-card fade-up delay-1">
-            <span class="paso-num">01</span>
-            <h3 class="paso-title">Primera llamada</h3>
-            <p class="paso-desc">Coordinás por WhatsApp una llamada con un gerontólogo asesor senior.</p>
+          <div class="hero-quote-card">
+            <p class="hero-quote-text">"Si puedes curar, cura; si no puedes curar, alivia; si no puedes aliviar,
+              consuela; y si no puedes consolar, acompaña"</p>
+            <span class="hero-quote-author">Virginia Henderson</span>
           </div>
-
-          <div class="paso-card fade-up delay-2">
-            <span class="paso-num">02</span>
-            <h3 class="paso-title">Pre-cotización</h3>
-            <p class="paso-desc">Recibís la pre-cotización del servicio a realizar, ajustada a la necesidad puntual del
-              paciente.</p>
-          </div>
-
-          <div class="paso-card fade-up delay-3">
-            <span class="paso-num">03</span>
-            <h3 class="paso-title">Visita de admisión</h3>
-            <p class="paso-desc">Nuestra fundadora y directora asistencial —gerontóloga con 40 años de experiencia—
-              visita el domicilio (o el centro de salud si el paciente está internado) para ajustar cada detalle. Cada
-              caso es para nosotros, único.</p>
-            <a href="legado.html" class="paso-link">Conocer su historia →</a>
-          </div>
-
-          <div class="paso-card fade-up delay-4">
-            <span class="paso-num">04</span>
-            <h3 class="paso-title">Comienzo del servicio</h3>
-            <p class="paso-desc">El servicio comienza en forma efectiva, usualmente dentro de las 48 hs. de confirmado.
-            </p>
-          </div>
-
         </div>
       </div>
     </section>
-
-    <!-- ═══════════════════════════════════════════════════════
-     STATS
-     ═══════════════════════════════════════════════════════ -->
-    <div class="stats-section" aria-label="Estadísticas">
-      <div class="section-inner">
-        <div class="stat-cards">
-          <div class="stat-card fade-up delay-1">
-            <span class="stat-number"><span data-count="40">0</span><span class="stat-suffix">+</span></span>
-            <div class="stat-label">Años de experiencia clínica en instituciones de primera línea</div>
-          </div>
-          <div class="stat-card fade-up delay-2">
-            <span class="stat-number"><span data-count="6">0</span></span>
-            <div class="stat-label">Perfiles profesionales especializados integrados en cada prestación</div>
-          </div>
-          <div class="stat-card fade-up delay-3">
-            <span class="stat-number" style="font-size:40px;">48hs</span>
-            <div class="stat-label" style="padding-top:16px;">Cobertura en máximo</div>
-          </div>
-          <div class="stat-card fade-up delay-4">
-            <span class="stat-number"><span data-count="100">0</span><span class="stat-suffix">%</span></span>
-            <div class="stat-label">Confidencialidad garantizada en cada etapa del proceso</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="divider-gradient"></div>
 
@@ -1084,13 +1072,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <ul>
             <li><a href="quienes-somos.html">Quiénes somos</a></li>
             <li><a href="legado.html">El legado</a></li>
-            <li><a href="#equipo">Equipo médico</a></li>
+            <li><a href="#especialistas">Especialistas</a></li>
             <li><a href="#servicios">Nuestros servicios</a></li>
             <li><a href="elderwatch.html">ElderWatch®</a></li>
             <li><a href="por-que-longevity.html">Por qué Longevity</a></li>
             <li><a href="por-que-longevity.html#pilares">Pilares CECE</a></li>
             <li><a href="antecedentes.html">Historia</a></li>
-            <li><a href="por-que-longevity.html#prepagas">Cobertura</a></li>
+            <li><a href="#prepagas">Cobertura</a></li>
             <li><a href="faq.html">Preguntas frecuentes</a></li>
             <li><a href="trabaja-con-nosotros.html">Trabajá con Nosotros</a></li>
             <li><a href="#contacto">Solicitar consulta</a></li>
@@ -1124,7 +1112,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
 
-  <script src="script.js?v=20260828" defer></script>
+  <script src="script.js?v=20261027" defer></script>
 
 
   <!-- Cliengo: chatbot y calificacion de contactos -->
