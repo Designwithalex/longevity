@@ -490,11 +490,6 @@ html.intro-done #intro {
   display: block;
 }
 
-.nav-seal--pendiente {
-  width: 38px;
-  font-size: 7px;
-  letter-spacing: 0;
-}
 
 .footer-logo-img {
   height: 36px;
@@ -882,9 +877,11 @@ html.intro-done #intro {
 }
 
 .hero-aval-logo {
+  display: block;
   width: 72px;
   height: 72px;
-  margin-bottom: 14px;
+  margin: 0 auto 14px;
+  object-fit: contain;
 }
 
 .hero-aval-org {
@@ -906,25 +903,6 @@ html.intro-done #intro {
   color: var(--purple);
 }
 
-/* Lugar reservado para un logo que todavia no esta en el repo.
-   Se ve a proposito: es un pendiente, no un adorno. */
-.logo-pendiente {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1.5px dashed currentColor;
-  border-radius: 50%;
-  background: rgba(123, 47, 142, 0.06);
-  color: var(--purple);
-  font-family: 'Poppins', sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1.15;
-  text-transform: uppercase;
-  text-align: center;
-}
 
 /* ── DESPLEGABLE DE VIDEOS ──
    Arranca colapsado (hidden). Al abrir se saca el hidden y la fila de la
@@ -3510,7 +3488,6 @@ footer {
     width: 48px;
     height: 48px;
     margin-bottom: 10px;
-    font-size: 7.5px;
   }
 
   .hero-aval-org {
@@ -3565,10 +3542,6 @@ footer {
     height: 32px;
   }
 
-  .nav-seal--pendiente {
-    width: 32px;
-    font-size: 6px;
-  }
 
   .nosotros-motto {
     position: static;
@@ -3616,10 +3589,6 @@ footer {
     height: 30px;
   }
 
-  .nav-seal--pendiente {
-    width: 30px;
-    font-size: 5.5px;
-  }
 
   .hero-title {
     font-size: 38px;
