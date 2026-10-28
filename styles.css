@@ -820,6 +820,38 @@ html.intro-done #intro {
   display: block;
 }
 
+/* ── VIRGINIA HENDERSON, al final del home ──
+   Los mismos dos rectangulos del hero, sobre fondo claro: sin el vidrio
+   esmerilado ni la sombra pesada que pedia el degradado violeta. */
+.henderson {
+  background: var(--white);
+}
+
+.henderson .hero-image-col {
+  --hero-block-w: 250px;
+  --hero-block-h: 310px;
+  margin: 0 auto;
+}
+
+.henderson .hero-image-frame {
+  background: var(--cream);
+  border: 1px solid rgba(123, 47, 142, 0.08);
+  box-shadow: var(--shadow-card);
+}
+
+.henderson .hero-quote-card {
+  padding: 24px 26px;
+  background: var(--cream);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(123, 47, 142, 0.08);
+  box-shadow: var(--shadow-card);
+}
+
+.henderson .hero-quote-text {
+  font-size: 15px;
+}
+
 /* ── FIGURA PRINCIPAL: DR. NEMEROVSKY ──
    Mismos dos rectangulos que tenia la cita de Henderson: a la izquierda
    la foto con el nombre, a la derecha el aval de la SAGyG. */
@@ -3446,8 +3478,18 @@ footer {
     gap: 12px;
   }
 
-  .hero-quote-card {
+  .hero-quote-card,
+  .henderson .hero-quote-card {
     padding: 14px 14px;
+  }
+
+  .henderson .hero-image-col {
+    --hero-block-w: 160px;
+    --hero-block-h: 204px;
+  }
+
+  .henderson .hero-quote-text {
+    font-size: 12px;
   }
 
   .hero-quote-text {
