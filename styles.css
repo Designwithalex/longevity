@@ -2884,6 +2884,12 @@ html.intro-done #intro {
   border-top: 1px solid rgba(44, 44, 44, 0.08);
 }
 
+/* La segunda direccion va pegada a la primera, sin otro separador */
+.contacto-domicilio--pilar {
+  padding-top: 22px;
+  border-top: none;
+}
+
 /* ════════════════════════════════════════════════════════════
    PRE-FOOTER CTA
    ════════════════════════════════════════════════════════════ */
@@ -3381,6 +3387,7 @@ footer {
   .contacto-info { order: 2; }
   .contacto-canales--mail { order: 3; }
   .contacto-domicilio { order: 4; margin-top: 32px; }
+  .contacto-domicilio--pilar { margin-top: 0; }
 
   .nosotros-image-block {
     max-width: 480px;
