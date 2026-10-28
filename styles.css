@@ -1435,69 +1435,6 @@ html.intro-done #intro {
 }
 
 /* ════════════════════════════════════════════════════════════
-   STATS
-   ════════════════════════════════════════════════════════════ */
-.stats-section {
-  background: var(--purple);
-  padding: 72px 40px;
-  position: relative;
-  overflow: hidden;
-}
-
-.stats-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 1px, transparent 0, transparent 50%);
-  background-size: 14px 14px;
-}
-
-.stat-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 1;
-}
-
-.stat-card {
-  background: rgba(255, 255, 255, 0.04);
-  padding: 36px 32px;
-  text-align: center;
-  transition: background 0.3s;
-  border-radius: 0;
-}
-
-.stat-card:hover {
-  background: rgba(255, 255, 255, 0.09);
-}
-
-.stat-number {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  font-size: 48px;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 10px;
-  display: block;
-  letter-spacing: -1px;
-}
-
-.stat-number .stat-suffix {
-  font-size: 32px;
-  opacity: 0.7;
-}
-
-.stat-label {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.5;
-}
-
-/* ════════════════════════════════════════════════════════════
    SERVICIOS
    ════════════════════════════════════════════════════════════ */
 .servicios {
@@ -2269,106 +2206,6 @@ html.intro-done #intro {
   font-size: 13px;
   color: var(--text-lt);
   line-height: 1.75;
-}
-
-/* ════════════════════════════════════════════════════════════
-   4 SIMPLES PASOS
-   ════════════════════════════════════════════════════════════ */
-.pasos-header {
-  text-align: center;
-  margin-bottom: 64px;
-}
-
-.pasos-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border: 1px solid rgba(123, 47, 142, 0.1);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.paso-card {
-  padding: 44px 28px;
-  text-align: center;
-  border-right: 1px solid rgba(123, 47, 142, 0.08);
-  transition: background 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.paso-card:last-child {
-  border-right: none;
-}
-
-.paso-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
-}
-
-.paso-card:hover {
-  background: rgba(123, 47, 142, 0.03);
-}
-
-.paso-card:hover::after {
-  transform: scaleX(1);
-}
-
-.paso-num {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 56px;
-  line-height: 1;
-  color: var(--purple);
-  opacity: 0.12;
-  position: absolute;
-  top: 16px;
-  right: 20px;
-  transition: opacity 0.3s;
-}
-
-.paso-card:hover .paso-num {
-  opacity: 0.18;
-}
-
-.paso-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--purple);
-  /* deja libre la zona del numero grande de arriba a la derecha */
-  margin: 40px 0 12px;
-}
-
-.paso-desc {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 13px;
-  color: var(--text-lt);
-  line-height: 1.75;
-}
-
-.paso-link {
-  display: inline-block;
-  margin-top: 10px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  color: var(--purple);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(123, 47, 142, 0.3);
-}
-
-.paso-link:hover {
-  border-color: var(--purple);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -3506,22 +3343,6 @@ footer {
   .pilar-card:nth-child(4) {
     border-top: 1px solid rgba(123, 47, 142, 0.08);
   }
-
-  .pasos-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .paso-card:nth-child(2) {
-    border-right: none;
-  }
-
-  .paso-card:nth-child(3) {
-    border-top: 1px solid rgba(123, 47, 142, 0.08);
-  }
-
-  .paso-card:nth-child(4) {
-    border-top: 1px solid rgba(123, 47, 142, 0.08);
-  }
 }
 
 @media (max-width: 1024px) {
@@ -3571,10 +3392,6 @@ footer {
 
   .faq-aside {
     position: static;
-  }
-
-  .stat-cards {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .footer-top {
@@ -3684,10 +3501,6 @@ footer {
     gap: 16px;
   }
 
-  .stat-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .footer-top {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -3734,16 +3547,8 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
-  .pasos-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .quote-strip {
     padding: 44px 24px;
-  }
-
-  .stats-section {
-    padding: 56px 24px;
   }
 }
 
@@ -3774,17 +3579,6 @@ footer {
     font-size: 5.5px;
   }
 
-  .stat-cards {
-    grid-template-columns: 1fr;
-    background: transparent;
-    gap: 2px;
-  }
-
-  .stat-card {
-    background: rgba(255, 255, 255, 0.07);
-    margin-bottom: 1px;
-  }
-
   .hero-title {
     font-size: 38px;
   }
@@ -3799,19 +3593,6 @@ footer {
   }
 
   .pilar-card:last-child {
-    border-bottom: none;
-  }
-
-  .pasos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .paso-card {
-    border-right: none;
-    border-bottom: 1px solid rgba(123, 47, 142, 0.08);
-  }
-
-  .paso-card:last-child {
     border-bottom: none;
   }
 }
@@ -5583,7 +5364,7 @@ footer {
 }
 
 /* ════════════════════════════════════════════════════════════
-   ILUSTRACIONES (pasos, paginas de servicio, ElderWatch)
+   ILUSTRACIONES (paginas de servicio, ElderWatch)
    Los dibujos vienen sobre fondo blanco: multiply los integra con
    el crema/blanco de cada seccion sin recortar el fondo.
    ════════════════════════════════════════════════════════════ */

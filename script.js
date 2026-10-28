@@ -183,49 +183,6 @@
     });
   }
 
-  /* ── STAT COUNTER ANIMATION ── */
-  function animateCounter(el, target, suffix, duration) {
-    var start = 0;
-    var startTime = null;
-    var isDecimal = (target % 1 !== 0);
-
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      var current = eased * target;
-      el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        el.textContent = target;
-      }
-      // append suffix label after the span
-      var suffixEl = el.parentNode.querySelector('.stat-suffix');
-      if (suffixEl) suffixEl.style.opacity = '1';
-    }
-    requestAnimationFrame(step);
-  }
-
-  var counters = document.querySelectorAll('[data-count]');
-  if (counters.length && 'IntersectionObserver' in window) {
-    var counterObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var el = entry.target;
-            var target = parseFloat(el.getAttribute('data-count'));
-            var suffix = el.getAttribute('data-suffix') || '';
-            animateCounter(el, target, suffix, 1800);
-            counterObserver.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    counters.forEach(function (el) { counterObserver.observe(el); });
-  }
-
   /* ── HERO PARTICLES ── */
   var particlesContainer = document.getElementById('hero-particles');
   if (particlesContainer) {
