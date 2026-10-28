@@ -797,26 +797,193 @@ html.intro-done #intro {
   display: block;
 }
 
-.hero-seals {
+/* ── FIGURA PRINCIPAL: DR. NEMEROVSKY ──
+   Mismos dos rectangulos que tenia la cita de Henderson: a la izquierda
+   la foto con el nombre, a la derecha el aval de la SAGyG. */
+.hero-figure {
+  margin: 0;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 44px;
+  flex-direction: column;
 }
 
-.hero-seal {
-  height: 90px;
-  width: auto;
+.hero-figure-img {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 22%;
   display: block;
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
-  transition: opacity 0.25s ease;
 }
 
-.hero-seal:hover {
+.hero-figure-name {
+  padding: 9px 8px 10px;
+  background: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.25;
+  color: #3d1260;
+  text-align: center;
+}
+
+.hero-aval-logo {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 14px;
+}
+
+.hero-aval-org {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #3d1260;
+  margin-bottom: 10px;
+}
+
+.hero-aval-cargo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+
+/* Lugar reservado para un logo que todavia no esta en el repo.
+   Se ve a proposito: es un pendiente, no un adorno. */
+.logo-pendiente {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1.5px dashed currentColor;
+  border-radius: 50%;
+  background: rgba(123, 47, 142, 0.06);
+  color: var(--purple);
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── DESPLEGABLE DE VIDEOS ──
+   Arranca colapsado (hidden). Al abrir se saca el hidden y la fila de la
+   grilla pasa de 0fr a 1fr, asi la altura se anima sin medirla. */
+/* El id del ancla va en .hero-avales, que no se anima: si tuviera el
+   translateY del fade-up, el salto a #especialistas quedaria bajo el nav */
+.hero-avales {
+  width: 100%;
+  margin: 0 auto 28px;
+  scroll-margin-top: 96px;
+}
+
+.hero-avales-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avales-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.avales-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.avales-toggle:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+.avales-chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.avales-toggle[aria-expanded="true"] .avales-chevron {
+  transform: rotate(180deg);
+}
+
+.avales-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  width: 100%;
+  /* 2 slides de 300 + flechas + padding de la tarjeta: con menos se corta el segundo */
+  max-width: 880px;
+  opacity: 0;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+
+.avales-panel[hidden] {
+  display: none;
+}
+
+.avales-panel.is-open {
+  grid-template-rows: 1fr;
   opacity: 1;
+}
+
+.avales-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.avales-card {
+  margin-top: 18px;
+  padding: 28px 24px 24px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Credenciales del ex bloque .advisor, centradas sobre el carrusel */
+.avales-advisor {
+  max-width: 560px;
+  margin: 0 auto 4px;
+  text-align: center;
+}
+
+.avales-advisor .advisor-name {
+  font-size: clamp(20px, 2.2vw, 26px);
+}
+
+.avales-advisor .advisor-role::before {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.avales-advisor .advisor-credentials {
+  margin-top: 16px;
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avales-panel,
+  .avales-chevron {
+    transition: none;
+  }
 }
 
 .hero-eyebrow {
@@ -847,17 +1014,6 @@ html.intro-done #intro {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.hero-subtitle {
-  text-align: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 17px;
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.8;
-  margin: 0 0 52px;
 }
 
 .hero-ctas {
@@ -3458,6 +3614,32 @@ footer {
     font-size: 9px;
   }
 
+  .hero-figure-name {
+    padding: 7px 4px 8px;
+    font-size: 11px;
+  }
+
+  .hero-aval-logo {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+    font-size: 7.5px;
+  }
+
+  .hero-aval-org {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .hero-aval-cargo {
+    font-size: 8.5px;
+    letter-spacing: 0.6px;
+  }
+
+  .avales-card {
+    padding: 22px 8px 18px;
+  }
+
   .hero-ctas {
     flex-direction: column;
     align-items: flex-start;
@@ -3598,15 +3780,6 @@ footer {
 /* ════════════════════════════════════════════════════════════
    EQUIPO MÉDICO — DR. BURGOS
    ════════════════════════════════════════════════════════════ */
-.equipo {
-  background: var(--white);
-}
-
-.equipo-header {
-  text-align: center;
-  margin-bottom: 64px;
-}
-
 .burgos-layout {
   display: grid;
   grid-template-columns: 340px 1fr;

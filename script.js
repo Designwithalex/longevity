@@ -375,9 +375,69 @@
       if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) closeModal();
     });
 
-    /* — init — */
+    /* — init —
+       Dentro del desplegable del hero el auto-avance corre solo mientras
+       esta abierto: colapsado no tiene sentido mover la pista. */
     goTo(0);
-    startAuto();
+    var avalesPanel = track.closest('.avales-panel');
+    if (avalesPanel) {
+      avalesPanel.addEventListener('avales:abierto', function () { goTo(current); startAuto(); });
+      avalesPanel.addEventListener('avales:cerrado', stopAuto);
+    } else {
+      startAuto();
+    }
+  }());
+
+  /* ── DESPLEGABLE DE ESPECIALISTAS (hero) ──
+     Boton con aria-expanded que muestra el carrusel de videos. Se abre solo
+     si la pagina llega con #especialistas (el item del menu) o con el viejo
+     #equipo, que sigue linkeado desde paginas internas y buscadores. */
+  (function () {
+    var avales = document.querySelector('.hero-avales');
+    if (!avales) return;
+    var toggle = avales.querySelector('.avales-toggle');
+    var panel = document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!panel) return;
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cierreTimer = null;
+
+    function abrir() {
+      if (toggle.getAttribute('aria-expanded') === 'true') return;
+      clearTimeout(cierreTimer);
+      panel.hidden = false;
+      // el reflow deja que la transicion de 0fr a 1fr se vea
+      void panel.offsetHeight;
+      panel.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      panel.dispatchEvent(new CustomEvent('avales:abierto'));
+    }
+
+    function cerrar() {
+      toggle.setAttribute('aria-expanded', 'false');
+      panel.classList.remove('is-open');
+      panel.dispatchEvent(new CustomEvent('avales:cerrado'));
+      cierreTimer = setTimeout(function () { panel.hidden = true; }, reduce ? 0 : 450);
+    }
+
+    toggle.addEventListener('click', function () {
+      if (toggle.getAttribute('aria-expanded') === 'true') cerrar(); else abrir();
+    });
+
+    /* el smooth scroll general ya lleva hasta el boton; aca solo se abre */
+    document.querySelectorAll('a[href="#especialistas"]').forEach(function (a) {
+      a.addEventListener('click', abrir);
+    });
+
+    if (/^#(especialistas|equipo)$/.test(window.location.hash)) {
+      abrir();
+      // Se mide al terminar la expansion: el hero centra su contenido en
+      // 100vh y, mientras el panel crece, el boton se va corriendo hacia arriba.
+      setTimeout(function () {
+        var top = avales.getBoundingClientRect().top + window.pageYOffset - 96;
+        window.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
+      }, reduce ? 0 : 480);
+    }
   }());
 
   /* ── CARD TILT (subtle 3D on hover) ── */
