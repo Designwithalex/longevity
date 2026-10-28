@@ -3923,12 +3923,16 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* Grilla de dos columnas iguales: con flex-wrap las tarjetas quedaban
+     de anchos distintos segun el logo */
   .prepagas-logos {
-    gap: 16px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
   }
 
   .prepaga-item {
-    min-width: 130px;
+    min-width: 0;
     padding: 14px 20px;
     min-height: 76px;
   }
