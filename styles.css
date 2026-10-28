@@ -473,6 +473,29 @@ html.intro-done #intro {
   display: block;
 }
 
+/* ── SELLOS EN EL HEADER ──
+   Entre el logo y el menu, en todas las paginas. Son versiones violetas
+   (img/sello-*-96.webp) de los sellos blancos que usaba el hero. */
+.nav-seals {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  margin-right: auto;
+}
+
+.nav-seal {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.nav-seal--pendiente {
+  width: 38px;
+  font-size: 7px;
+  letter-spacing: 0;
+}
+
 .footer-logo-img {
   height: 36px;
   width: auto;
@@ -3575,7 +3598,9 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+/* Menu hamburguesa hasta 1023px: con los sellos en el header, el menu
+   completo no entra en tablets sin pisarse con ellos. */
+@media (max-width: 1023px) {
 
   .nav-links,
   .nav .btn-primary {
@@ -3585,6 +3610,9 @@ footer {
   .hamburger {
     display: flex;
   }
+}
+
+@media (max-width: 768px) {
 
   .section {
     padding: 72px 24px;
@@ -3674,6 +3702,19 @@ footer {
     padding: 0 20px;
   }
 
+  .nav-seals {
+    gap: 10px;
+  }
+
+  .nav-seal {
+    height: 32px;
+  }
+
+  .nav-seal--pendiente {
+    width: 32px;
+    font-size: 6px;
+  }
+
   .nosotros-motto {
     position: static;
     margin-top: 20px;
@@ -3709,6 +3750,28 @@ footer {
 @media (max-width: 480px) {
   .valores-grid {
     grid-template-columns: 1fr;
+  }
+
+  .nav-inner {
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .nav-logo-img {
+    height: 32px;
+  }
+
+  .nav-seals {
+    gap: 8px;
+  }
+
+  .nav-seal {
+    height: 30px;
+  }
+
+  .nav-seal--pendiente {
+    width: 30px;
+    font-size: 5.5px;
   }
 
   .stat-cards {
