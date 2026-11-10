@@ -475,7 +475,9 @@ html.intro-done #intro {
 
 /* ── SELLOS EN EL HEADER ──
    Entre el logo y el menu, en todas las paginas. Son versiones violetas
-   (img/sello-*-96.webp) de los sellos blancos que usaba el hero. */
+   (img/sello-*-96.webp) de los sellos blancos que usaba el hero.
+   Desde el 10/11 son tres (sale la SAGG): van juntos y pegados al logo;
+   con menu hamburguesa se centran en el espacio libre (ver max-width 1023). */
 .nav-seals {
   display: flex;
   align-items: center;
@@ -876,31 +878,62 @@ html.intro-done #intro {
   text-align: center;
 }
 
-.hero-aval-logo {
-  display: block;
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 14px;
-  object-fit: contain;
+/* Tarjeta de texto al lado de la foto: la curricula aprobada, sin logo
+   (la SAGG pidio sacarlo el 10/11). Mismo vidrio que la vieja cita. */
+.hero-aval-card {
+  align-items: stretch;
+  padding: 18px 18px;
+  text-align: left;
 }
 
-.hero-aval-org {
+.hero-aval-nombre {
   font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 13.5px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.25;
+  color: #3d1260;
+  margin-bottom: 4px;
+}
+
+.hero-aval-rol {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: var(--purple);
+  padding-bottom: 9px;
+  margin-bottom: 9px;
+  border-bottom: 1px solid rgba(123, 47, 142, 0.2);
+}
+
+.hero-aval-cv {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-aval-cv li {
+  position: relative;
+  padding-left: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
   line-height: 1.4;
   color: #3d1260;
-  margin-bottom: 10px;
 }
 
-.hero-aval-cargo {
-  font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 1.2px;
-  line-height: 1.5;
-  text-transform: uppercase;
-  color: var(--purple);
+.hero-aval-cv li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--purple);
 }
 
 
@@ -3444,6 +3477,10 @@ footer {
   .hamburger {
     display: flex;
   }
+
+  .nav-seals {
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 768px) {
@@ -3491,20 +3528,28 @@ footer {
     font-size: 11px;
   }
 
-  .hero-aval-logo {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 10px;
+  .hero-quote-card.hero-aval-card {
+    padding: 12px 10px;
   }
 
-  .hero-aval-org {
-    font-size: 11px;
-    margin-bottom: 8px;
+  .hero-aval-nombre {
+    font-size: 11.5px;
   }
 
-  .hero-aval-cargo {
+  .hero-aval-rol {
     font-size: 8.5px;
-    letter-spacing: 0.6px;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+  }
+
+  .hero-aval-cv {
+    gap: 4px;
+  }
+
+  .hero-aval-cv li {
+    padding-left: 8px;
+    font-size: 8.5px;
+    line-height: 1.35;
   }
 
   .avales-card {
