@@ -867,16 +867,6 @@ html.intro-done #intro {
   display: block;
 }
 
-.hero-figure-name {
-  padding: 9px 8px 10px;
-  background: var(--white);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 1.25;
-  color: #3d1260;
-  text-align: center;
-}
 
 /* Tarjeta de texto al lado de la foto: la curricula aprobada, sin logo
    (la SAGG pidio sacarlo el 10/11). Mismo vidrio que la vieja cita. */
@@ -3523,10 +3513,6 @@ footer {
     font-size: 9px;
   }
 
-  .hero-figure-name {
-    padding: 7px 4px 8px;
-    font-size: 11px;
-  }
 
   .hero-quote-card.hero-aval-card {
     padding: 12px 10px;
