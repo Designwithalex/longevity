@@ -37,6 +37,9 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           MAIL_TO: ${{ secrets.MAIL_TO || 'info@longevityargentina.com' }}
           MAIL_FROM: ${{ secrets.MAIL_FROM || 'info@longevityargentina.com' }}
+          # Opcional: clave del equipo para el cotizador (/cotizador/). Sin ella
+          # el cotizador anda en modo prueba (guarda en el navegador).
+          COTIZADOR_CLAVE: ${{ secrets.COTIZADOR_CLAVE }}
         run: |
           if [ -z "$SMTP_PASS" ]; then
             echo "::error::Falta el secret SMTP_PASS (contrasenia de aplicacion de Google Workspace)."
@@ -51,6 +54,7 @@ jobs:
               "mail_to"        => getenv("MAIL_TO"),
               "mail_from"      => getenv("MAIL_FROM"),
               "mail_from_name" => "Web Longevity Argentina",
+              "cotizador_clave" => (string) getenv("COTIZADOR_CLAVE"),
           ];
           $out = "<?php\n"
               . "// Archivo generado automaticamente por .github/workflows/deploy.yml\n"
