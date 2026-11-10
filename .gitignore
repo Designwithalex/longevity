@@ -14,3 +14,7 @@ php/logs/
 cgi-bin.zip
 videos/LONGEVITY21.mp4
 videos/LONGEVITY22.mp4
+
+# Datos del cotizador (viven solo en el servidor)
+php/datos-cotizador/*.json
+php/datos-cotizador/*.tmp*

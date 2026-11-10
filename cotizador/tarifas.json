@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "vigencia": "Octubre 2026",
+  "actualizado": "2026-11-09",
+  "moneda": "ARS",
+  "redondeo": 1,
+  "diasBase": 31,
+  "modalidades": [
+    { "id": "lunvie", "nombre": "Lun – Vie", "detalle": "Lunes a viernes", "dias": 23, "recargo": 0 },
+    { "id": "lundom", "nombre": "Lun – Dom", "detalle": "Semana completa", "dias": 31, "recargo": 0, "destacada": true },
+    { "id": "finde", "nombre": "Sáb y Dom", "detalle": "Fin de semana", "dias": 8, "recargo": 0 }
+  ],
+  "iva": { "porcentaje": 21 },
+  "validezDias": 7,
+  "origenes": ["Formulario web", "Cliengo", "WhatsApp", "Teléfono", "Referido / prepaga", "Otro"],
+  "categorias": [
+    {
+      "id": "cuidador",
+      "nombre": "Cuidador/a o Acompañante de Salud",
+      "descripcion": "Acompañamiento y asistencia en las actividades de la vida diaria, con supervisión del equipo de coordinación.",
+      "colGrupo": "Nivel",
+      "colItem": "Turno",
+      "activa": true,
+      "items": [
+        { "id": "cui-n1-cama", "grupo": "Nivel 1", "nombre": "Con cama", "horas": null, "precio": 3999000, "activo": true },
+        { "id": "cui-n2-8", "grupo": "Nivel 2", "nombre": "8 hs", "horas": 8, "precio": 2753333, "activo": true },
+        { "id": "cui-n2-12", "grupo": "Nivel 2", "nombre": "12 hs", "horas": 12, "precio": 3540000, "activo": true },
+        { "id": "cui-n2-24", "grupo": "Nivel 2", "nombre": "24 hs", "horas": 24, "precio": 5900000, "activo": true },
+        { "id": "cui-n3-8", "grupo": "Nivel 3", "nombre": "8 hs", "horas": 8, "precio": 3686667, "activo": true },
+        { "id": "cui-n3-12", "grupo": "Nivel 3", "nombre": "12 hs", "horas": 12, "precio": 4740000, "activo": true },
+        { "id": "cui-n3-24", "grupo": "Nivel 3", "nombre": "24 hs", "horas": 24, "precio": 7900000, "activo": true }
+      ]
+    },
+    {
+      "id": "at",
+      "nombre": "Acompañante Terapéutico",
+      "descripcion": "Acompañamiento terapéutico profesional, articulado con el equipo tratante.",
+      "colGrupo": "",
+      "colItem": "Turno",
+      "activa": true,
+      "items": [
+        { "id": "at-6", "grupo": "", "nombre": "6 hs", "horas": 6, "precio": 3465000, "activo": true },
+        { "id": "at-12", "grupo": "", "nombre": "12 hs", "horas": 12, "precio": 5940000, "activo": true },
+        { "id": "at-24", "grupo": "", "nombre": "24 hs", "horas": 24, "precio": 9900000, "activo": true }
+      ]
+    },
+    {
+      "id": "enfermeria",
+      "nombre": "Enfermería",
+      "descripcion": "Prestaciones de enfermería en domicilio, turno de 12 horas.",
+      "colGrupo": "",
+      "colItem": "Prestación · 12 hs",
+      "activa": true,
+      "items": [
+        { "id": "enf-aux", "grupo": "", "nombre": "Auxiliar de enfermería", "horas": 12, "precio": 4740000, "activo": true },
+        { "id": "enf-prof", "grupo": "", "nombre": "Enfermero/a profesional", "horas": 12, "precio": 5940000, "activo": true },
+        { "id": "enf-palia", "grupo": "", "nombre": "Enfermero paliativista", "horas": 12, "precio": 7140000, "activo": true }
+      ]
+    }
+  ],
+  "incluyeTitulo": "Todos los planes incluyen",
+  "incluye": [
+    "Dirección médica y visita mensual de seguimiento en domicilio, por geriatra senior de clase mundial",
+    "Coordinación, supervisión y monitoreo digital 24/7",
+    "Contención e información fluida (no invasiva) a la familia"
+  ],
+  "notaCoeficiente": "A los montos estándar aquí descriptos, podrá corresponder o no, un coeficiente por complejidad basado en: distancia, acceso, particularidades clínicas, plazo, unicidad y/u otras que afecten en forma significativa las prestaciones a realizar. Los mismos corresponden a períodos mensuales completos e indivisibles.",
+  "notaFacturacion": "Método de facturación y cobranza: mes adelantado. Valores expresados en pesos y no incluyen IVA.",
+  "empresa": {
+    "nombre": "Longevity Argentina",
+    "bajada": "Cuidados domiciliarios para adultos mayores",
+    "lema": "Omnia Vincit Amor",
+    "telefono": "+54 11 6639-1010",
+    "whatsapp": "5491166391010",
+    "email": "info@longevityargentina.com",
+    "web": "www.longevityargentina.com",
+    "oficinas": [
+      "Distrito Quartier Puerto Retiro, Mayor Arturo Luisoni 2521, CABA",
+      "Parque Empresarial Austral, Av. Sgto. Cayetano Beliera 3025, Pilar",
+      "Presidente Derqui, Pilar, Buenos Aires"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cotización · Longevity Argentina</title>
+  <link rel="icon" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cotizador.css">
+</head>
+<body class="cliente">
+  <div class="cliente-acc">
+    <button type="button" id="v-pdf" class="sec">Descargar PDF</button>
+    <a id="v-wa" class="pri" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+  </div>
+  <div id="v-doc" class="vista-doc"><p class="arranque">Cargando la cotización…</p></div>
+  <script type="module">
+    import { decodificar, renderCotizacion } from './comun.js';
+    const doc = document.getElementById('v-doc');
+    try {
+      const h = location.hash.slice(1);
+      if (!h) throw new Error('vacio');
+      const cot = await decodificar(h);
+      doc.innerHTML = renderCotizacion(cot);
+      document.title = `Cotización N.º ${cot.numero} · ${cot.empresa?.nombre || 'Longevity Argentina'}`;
+      const wa = cot.empresa?.whatsapp || '5491166391010';
+      const txt = `Hola! Tengo una consulta sobre la cotización N.º ${cot.numero}${cot.paciente?.nombre ? ' para ' + cot.paciente.nombre : ''}.`;
+      document.getElementById('v-wa').href = `https://wa.me/${wa}?text=${encodeURIComponent(txt)}`;
+    } catch (e) {
+      doc.innerHTML = '<p class="arranque">No pudimos abrir esta cotización. Pedile a Longevity que te reenvíe el link.</p>';
+      document.querySelector('.cliente-acc').hidden = true;
+    }
+    document.getElementById('v-pdf').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
