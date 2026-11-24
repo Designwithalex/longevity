@@ -5509,3 +5509,241 @@ footer {
   object-fit: cover;
 }
 
+/* ── SERVICIOS: mosaico de dibujos (recuperado de la version del 19/10) ── */
+/* Panel tipo tatetí/colmena: 4 categorías en grid 2x2 con líneas divisorias finas */
+.hive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: rgba(123, 47, 142, 0.15);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+/* Cada celda es un boton: se activa con hover, foco de teclado o tap
+   y despliega el detalle del servicio. */
+.hive-cell {
+  background: var(--white);
+  padding: 44px 40px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.25s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.hive-cell::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gradient);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.hive-cell:hover,
+.hive-cell:focus-within,
+.hive-cell.is-active {
+  background: var(--cream);
+}
+
+.hive-cell:hover::before,
+.hive-cell:focus-within::before,
+.hive-cell.is-active::before {
+  transform: scaleY(1);
+}
+
+/* Placa con la serie de ilustraciones de cada servicio. Va debajo del titulo
+   y la descripcion, y tiene el mismo tamanio en todos los servicios: los
+   dibujos (6 o 4 segun la serie) se acomodan adentro, enteros y con la firma. */
+.hive-mosaic {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-top: 22px;
+  padding: 14px;
+  background: var(--white);
+  border: 1px solid rgba(123, 47, 142, 0.12);
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+.hive-mosaic--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hive-mosaic--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hive-mosaic-img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  display: block;
+  /* El dibujo viene sobre fondo blanco: multiply lo integra con el crema
+     de la tarjeta activa sin necesidad de recortar el fondo. */
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+  transition: opacity 0.3s ease;
+}
+
+/* El trazo gana cuerpo cuando la celda se activa */
+.hive-cell:hover .hive-mosaic-img,
+.hive-cell:focus-within .hive-mosaic-img,
+.hive-cell.is-active .hive-mosaic-img {
+  opacity: 1;
+}
+
+/* Detalle desplegable */
+.hive-cell-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+}
+
+.hive-cell-detail > * {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.hive-cell:hover .hive-cell-detail,
+.hive-cell:focus-within .hive-cell-detail,
+.hive-cell.is-active .hive-cell-detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.hive-cell-list {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(123, 47, 142, 0.14);
+}
+
+.hive-cell-list li {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--text);
+  padding: 9px 0 9px 20px;
+  position: relative;
+  border-bottom: 1px solid rgba(123, 47, 142, 0.08);
+}
+
+.hive-cell-list li:last-child {
+  border-bottom: none;
+}
+
+.hive-cell-list li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 17px;
+  width: 8px;
+  height: 1.5px;
+  background: var(--celeste);
+}
+
+.hive-cell-complexity {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mauve);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.hive-cell-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--purple);
+  margin-bottom: 10px;
+}
+
+.hive-cell-desc {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.8;
+  flex: 1;
+}
+
+.hive-cell-arrow {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--purple);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.hive-cell-arrow:hover,
+.hive-cell-arrow:focus-visible {
+  border-bottom-color: var(--purple);
+}
+
+/* Sin JS y sin hover (lectores, impresion) el detalle queda visible */
+.no-js .hive-cell-detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hive-cell,
+  .hive-cell::before,
+  .hive-cell-detail,
+  .hive-mosaic-img {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hive-cell {
+    padding: 32px 26px;
+  }
+
+  .hive-mosaic {
+    gap: 6px;
+    padding: 10px;
+    margin-top: 18px;
+  }
+
+  .servicios-header {
+    padding: 32px 22px 28px;
+    margin-bottom: 32px;
+  }
+}
+
+/* ── ESPECIALISTAS debajo del hero (recuperado de la version del 19/10) ── */
+.equipo {
+  background: var(--white);
+}
+
+.equipo-header {
+  text-align: center;
+  margin-bottom: 64px;
+}

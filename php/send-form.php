@@ -220,7 +220,7 @@ $nivel    = trim((string)($_POST['nivel'] ?? ''));
 $motivo   = trim((string)($_POST['motivo'] ?? ''));
 
 // Motivo del form de Contacto: solo se aceptan las opciones del combo.
-$motivosValidos = ['Contratar servicios', 'Consulta general', 'Consulta de trabajo'];
+$motivosValidos = ['Contratar servicios', 'Consulta general'];
 if (!in_array($motivo, $motivosValidos, true)) {
     $motivo = '';
 }
